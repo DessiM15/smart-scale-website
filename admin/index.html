@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Scale Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px) saturate(120%);
+            -webkit-backdrop-filter: blur(10px) saturate(120%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .interactive-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .interactive-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(-45deg, #6366f1, #06b6d4, #4c1d95, #ec4899);
+            background-size: 400% 400%;
+            animation: gradientShift 7s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            border: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            border: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .btn-danger:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+        
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background: linear-gradient(-45deg, #1e1b4b, #0e7490, #1e1b4b, #831843);
+            background-size: 400% 400%;
+            animation: gradientShift 7s ease infinite;
+        }
+        
+        body.dark-mode .glass-card {
+            background: rgba(26, 26, 26, 0.95) !important;
+            backdrop-filter: blur(10px) saturate(120%);
+            -webkit-backdrop-filter: blur(10px) saturate(120%);
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+        }
+        
+        body.dark-mode .glass-card:hover {
+            background: rgba(31, 31, 31, 0.98) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+        }
+        
+        body.dark-mode .text-gray-800,
+        body.dark-mode .text-gray-700,
+        body.dark-mode .text-gray-600 {
+            color: #f5f5f5 !important;
+        }
+        
+        body.dark-mode .text-gray-900 {
+            color: #ffffff !important;
+        }
+        
+        body.dark-mode .form-input {
+            background-color: #262626 !important;
+            color: #f5f5f5 !important;
+            border-color: #505050 !important;
+        }
+        
+        body.dark-mode .form-input:focus {
+            border-color: #6366f1 !important;
+            background-color: #2d2d2d !important;
+        }
+        
+        body.dark-mode .form-input::placeholder {
+            color: #a0a0a0 !important;
+        }
+        
+        body.dark-mode .bg-gray-50 {
+            background-color: #1f1f1f !important;
+        }
+        
+        body.dark-mode .bg-white {
+            background-color: #1a1a1a !important;
+        }
+        
+        body.dark-mode .border-gray-200 {
+            border-color: #404040 !important;
+        }
+        
+        body.dark-mode .divide-gray-200 > * + * {
+            border-color: #404040 !important;
+        }
+        
+        body.dark-mode .hover\:bg-gray-50:hover {
+            background-color: #2d2d2d !important;
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen">
+    <!-- Dark Mode Toggle -->
+    <div class="fixed top-4 right-4 z-50">
+        <button id="dark-mode-toggle" class="glass-card rounded-full p-3 hover:scale-105 transition-all duration-200" title="Toggle dark mode">
+            <svg id="sun-icon" class="w-5 h-5 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+            </svg>
+            <svg id="moon-icon" class="w-5 h-5 text-gray-800 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+            </svg>
+        </button>
+    </div>
+    <div x-data="adminApp()" x-init="init()" class="min-h-screen">
+        <!-- Login Screen -->
+        <div x-show="!isAuthenticated" class="min-h-screen flex items-center justify-center p-4">
+            <div class="glass-card rounded-2xl p-8 w-full max-w-md">
+                <div class="text-center mb-8">
+                    <h1 class="text-3xl font-bold text-gray-800 mb-2">Smart Scale</h1>
+                    <p class="text-gray-600">Admin Dashboard</p>
+                </div>
+                
+                <form @submit.prevent="login()" class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Username</label>
+                        <input 
+                            type="text" 
+                            x-model="loginForm.username"
+                            class="form-input"
+                            placeholder="Enter username"
+                            required
+                        >
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                        <input 
+                            type="password" 
+                            x-model="loginForm.password"
+                            class="form-input"
+                            placeholder="Enter password"
+                            required
+                        >
+                    </div>
+                    
+                    <button 
+                        type="submit" 
+                        class="btn-primary w-full"
+                        :disabled="isLoading"
+                    >
+                        <span x-show="!isLoading">Sign In</span>
+                        <span x-show="isLoading" class="flex items-center justify-center">
+                            <i class="fas fa-spinner fa-spin mr-2"></i>
+                            Signing In...
+                        </span>
+                    </button>
+                    
+                    <div x-show="error" class="text-red-600 text-sm text-center">
+                        <i class="fas fa-exclamation-triangle mr-1"></i>
+                        <span x-text="error"></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Dashboard -->
+        <div x-show="isAuthenticated" class="min-h-screen">
+            <!-- Header -->
+            <header class="glass-card rounded-b-2xl p-6 mb-8">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-800">Smart Scale Admin</h1>
+                        <p class="text-gray-600">Portfolio Management Dashboard</p>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-gray-600">Welcome, <span x-text="user.username"></span></span>
+                        <button @click="logout()" class="text-red-600 hover:text-red-800">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content -->
+            <div class="container mx-auto px-4 pb-8">
+                <!-- Stats Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="glass-card rounded-xl p-6 text-center">
+                        <div class="text-3xl font-bold text-indigo-600 mb-2" x-text="projects.length"></div>
+                        <div class="text-gray-600">Total Projects</div>
+                    </div>
+                    <div class="glass-card rounded-xl p-6 text-center">
+                        <div class="text-3xl font-bold text-green-600 mb-2" x-text="activeProjects.length"></div>
+                        <div class="text-gray-600">Active Projects</div>
+                    </div>
+                    <div class="glass-card rounded-xl p-6 text-center">
+                        <div class="text-3xl font-bold text-blue-600 mb-2" x-text="categories.length"></div>
+                        <div class="text-gray-600">Categories</div>
+                    </div>
+                </div>
+
+                <!-- Add Project Button -->
+                <div class="mb-6">
+                    <button @click="showAddProject()" class="btn-primary">
+                        <i class="fas fa-plus mr-2"></i>
+                        Add New Project
+                    </button>
+                </div>
+
+                <!-- Projects Table -->
+                <div class="glass-card rounded-xl overflow-hidden">
+                    <div class="p-6 border-b border-gray-200">
+                        <h2 class="text-xl font-semibold text-gray-800">Portfolio Projects</h2>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Project</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <template x-for="project in projects" :key="project.id">
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="flex-shrink-0 h-12 w-12">
+                                                    <img x-show="project.image_url" :src="project.image_url" :alt="project.image_alt" class="h-12 w-12 rounded-lg object-cover">
+                                                    <div x-show="!project.image_url" class="h-12 w-12 bg-gray-200 rounded-lg flex items-center justify-center">
+                                                        <i class="fas fa-image text-gray-400"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900" x-text="project.title"></div>
+                                                    <div class="text-sm text-gray-500" x-text="project.description.substring(0, 50) + '...'"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-indigo-100 text-indigo-800" x-text="project.category"></span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span x-show="project.is_active" class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Active</span>
+                                            <span x-show="!project.is_active" class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800">Inactive</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900" x-text="project.display_order"></td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                                            <button @click="editProject(project)" class="text-indigo-600 hover:text-indigo-900">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button @click="deleteProject(project.id)" class="text-red-600 hover:text-red-900">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project Modal -->
+        <div x-show="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div class="glass-card rounded-2xl p-8 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">
+                        <span x-show="!editingProject">Add New Project</span>
+                        <span x-show="editingProject">Edit Project</span>
+                    </h2>
+                    <button @click="closeModal()" class="text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+
+                <form @submit.prevent="saveProject()" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Project Title *</label>
+                            <input 
+                                type="text" 
+                                x-model="projectForm.title"
+                                class="form-input"
+                                placeholder="Enter project title"
+                                required
+                            >
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Category *</label>
+                            <input 
+                                type="text" 
+                                x-model="projectForm.category"
+                                class="form-input"
+                                placeholder="e.g., FINANCIAL SERVICES"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Description *</label>
+                        <textarea 
+                            x-model="projectForm.description"
+                            class="form-input"
+                            rows="3"
+                            placeholder="Enter project description"
+                            required
+                        ></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Features (comma-separated) *</label>
+                        <input 
+                            type="text" 
+                            x-model="projectForm.features"
+                            class="form-input"
+                            placeholder="Feature 1, Feature 2, Feature 3"
+                            required
+                        >
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Live URL</label>
+                            <input 
+                                type="url" 
+                                x-model="projectForm.live_url"
+                                class="form-input"
+                                placeholder="https://example.com"
+                            >
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Display Order</label>
+                            <input 
+                                type="number" 
+                                x-model="projectForm.display_order"
+                                class="form-input"
+                                placeholder="0"
+                                min="0"
+                            >
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Image Alt Text</label>
+                        <input 
+                            type="text" 
+                            x-model="projectForm.image_alt"
+                            class="form-input"
+                            placeholder="Describe the image for accessibility"
+                        >
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Project Image</label>
+                        <input 
+                            type="file" 
+                            @change="handleImageUpload($event)"
+                            accept="image/*"
+                            class="form-input"
+                        >
+                        <div x-show="projectForm.image_url" class="mt-2">
+                            <img :src="projectForm.image_url" :alt="projectForm.image_alt" class="h-32 w-auto rounded-lg object-cover">
+                        </div>
+                    </div>
+
+                    <div x-show="editingProject" class="flex items-center">
+                        <input 
+                            type="checkbox" 
+                            x-model="projectForm.is_active"
+                            id="is_active"
+                            class="mr-2"
+                        >
+                        <label for="is_active" class="text-sm font-medium text-gray-700">Active (visible on website)</label>
+                    </div>
+
+                    <div class="flex justify-end space-x-4">
+                        <button type="button" @click="closeModal()" class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">
+                            Cancel
+                        </button>
+                        <button 
+                            type="submit" 
+                            class="btn-primary"
+                            :disabled="isLoading"
+                        >
+                            <span x-show="!isLoading">
+                                <span x-show="!editingProject">Add Project</span>
+                                <span x-show="editingProject">Update Project</span>
+                            </span>
+                            <span x-show="isLoading" class="flex items-center">
+                                <i class="fas fa-spinner fa-spin mr-2"></i>
+                                Saving...
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dark Mode Toggle Functionality
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const sunIcon = document.getElementById('sun-icon');
+        const moonIcon = document.getElementById('moon-icon');
+        const body = document.body;
+        
+        // Check for saved theme preference or default to light mode
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            body.classList.add('dark-mode');
+            sunIcon.classList.remove('hidden');
+            moonIcon.classList.add('hidden');
+        } else {
+            body.classList.remove('dark-mode');
+            sunIcon.classList.add('hidden');
+            moonIcon.classList.remove('hidden');
+        }
+        
+        // Toggle dark mode
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+            } else {
+                localStorage.setItem('theme', 'light');
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+            }
+        });
+
+        function adminApp() {
+            return {
+                // Authentication
+                isAuthenticated: false,
+                user: null,
+                token: null,
+                
+                // UI State
+                isLoading: false,
+                error: null,
+                showModal: false,
+                editingProject: false,
+                
+                // Data
+                projects: [],
+                
+                // Forms
+                loginForm: {
+                    username: '',
+                    password: ''
+                },
+                
+                projectForm: {
+                    id: null,
+                    title: '',
+                    description: '',
+                    category: '',
+                    features: '',
+                    live_url: '',
+                    image_url: '',
+                    image_alt: '',
+                    display_order: 0,
+                    is_active: true
+                },
+                
+                // Computed
+                get activeProjects() {
+                    return this.projects.filter(p => p.is_active);
+                },
+                
+                get categories() {
+                    return [...new Set(this.projects.map(p => p.category))];
+                },
+                
+                // Methods
+                init() {
+                    this.token = localStorage.getItem('admin_token');
+                    if (this.token) {
+                        this.verifyToken();
+                    }
+                },
+                
+                async verifyToken() {
+                    try {
+                        const response = await fetch('/api/auth/verify', {
+                            method: 'POST',
+                            headers: {
+                                'Authorization': `Bearer ${this.token}`
+                            }
+                        });
+                        
+                        if (response.ok) {
+                            const data = await response.json();
+                            this.isAuthenticated = true;
+                            this.user = data.user;
+                            this.loadProjects();
+                        } else {
+                            this.logout();
+                        }
+                    } catch (error) {
+                        console.error('Token verification failed:', error);
+                        this.logout();
+                    }
+                },
+                
+                async login() {
+                    this.isLoading = true;
+                    this.error = null;
+                    
+                    try {
+                        const response = await fetch('/api/auth/login', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(this.loginForm)
+                        });
+                        
+                        const data = await response.json();
+                        
+                        if (response.ok) {
+                            this.token = data.token;
+                            this.user = data.user;
+                            this.isAuthenticated = true;
+                            localStorage.setItem('admin_token', this.token);
+                            this.loadProjects();
+                        } else {
+                            this.error = data.error;
+                        }
+                    } catch (error) {
+                        this.error = 'Login failed. Please try again.';
+                    } finally {
+                        this.isLoading = false;
+                    }
+                },
+                
+                logout() {
+                    this.isAuthenticated = false;
+                    this.user = null;
+                    this.token = null;
+                    localStorage.removeItem('admin_token');
+                    this.projects = [];
+                },
+                
+                async loadProjects() {
+                    try {
+                        const response = await fetch('/api/projects/admin', {
+                            headers: {
+                                'Authorization': `Bearer ${this.token}`
+                            }
+                        });
+                        
+                        if (response.ok) {
+                            this.projects = await response.json();
+                        }
+                    } catch (error) {
+                        console.error('Failed to load projects:', error);
+                    }
+                },
+                
+                showAddProject() {
+                    this.editingProject = false;
+                    this.projectForm = {
+                        id: null,
+                        title: '',
+                        description: '',
+                        category: '',
+                        features: '',
+                        live_url: '',
+                        image_url: '',
+                        image_alt: '',
+                        display_order: 0,
+                        is_active: true
+                    };
+                    this.showModal = true;
+                },
+                
+                editProject(project) {
+                    this.editingProject = true;
+                    this.projectForm = { ...project };
+                    this.showModal = true;
+                },
+                
+                closeModal() {
+                    this.showModal = false;
+                    this.editingProject = false;
+                    this.error = null;
+                },
+                
+                handleImageUpload(event) {
+                    const file = event.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            this.projectForm.image_url = e.target.result;
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                },
+                
+                async saveProject() {
+                    this.isLoading = true;
+                    this.error = null;
+                    
+                    try {
+                        const formData = new FormData();
+                        formData.append('title', this.projectForm.title);
+                        formData.append('description', this.projectForm.description);
+                        formData.append('category', this.projectForm.category);
+                        formData.append('features', this.projectForm.features);
+                        formData.append('live_url', this.projectForm.live_url || '');
+                        formData.append('image_alt', this.projectForm.image_alt || '');
+                        formData.append('display_order', this.projectForm.display_order);
+                        formData.append('is_active', this.projectForm.is_active);
+                        
+                        // Handle image upload
+                        const imageInput = document.querySelector('input[type="file"]');
+                        if (imageInput.files[0]) {
+                            formData.append('image', imageInput.files[0]);
+                        }
+                        
+                        const url = this.editingProject ? `/api/projects/${this.projectForm.id}` : '/api/projects';
+                        const method = this.editingProject ? 'PUT' : 'POST';
+                        
+                        const response = await fetch(url, {
+                            method: method,
+                            headers: {
+                                'Authorization': `Bearer ${this.token}`
+                            },
+                            body: formData
+                        });
+                        
+                        if (response.ok) {
+                            this.closeModal();
+                            this.loadProjects();
+                        } else {
+                            const data = await response.json();
+                            this.error = data.error;
+                        }
+                    } catch (error) {
+                        this.error = 'Failed to save project. Please try again.';
+                    } finally {
+                        this.isLoading = false;
+                    }
+                },
+                
+                async deleteProject(id) {
+                    if (!confirm('Are you sure you want to delete this project?')) {
+                        return;
+                    }
+                    
+                    try {
+                        const response = await fetch(`/api/projects/${id}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'Authorization': `Bearer ${this.token}`
+                            }
+                        });
+                        
+                        if (response.ok) {
+                            this.loadProjects();
+                        } else {
+                            const data = await response.json();
+                            alert(data.error);
+                        }
+                    } catch (error) {
+                        alert('Failed to delete project. Please try again.');
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
+
