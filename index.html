@@ -2924,10 +2924,11 @@
       /* Optimize hero headline background on mobile */
       .hero-headline {
         background: none !important;
-        -webkit-background-clip: text !important;
-        background-clip: text !important;
-        -webkit-text-fill-color: transparent !important;
-        text-shadow: none !important;
+        -webkit-background-clip: unset !important;
+        background-clip: unset !important;
+        -webkit-text-fill-color: #1f2937 !important;
+        color: #1f2937 !important;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
       }
       
       /* Dark mode hero headline mobile optimization */
@@ -2942,6 +2943,36 @@
         background-clip: text !important;
         -webkit-text-fill-color: transparent !important;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+      }
+      
+      /* Additional mobile text visibility fixes */
+      .hero-headline {
+        font-weight: 700 !important;
+        letter-spacing: -0.025em !important;
+        line-height: 1.1 !important;
+      }
+      
+      /* Ensure text is visible on all mobile devices */
+      @media (max-width: 480px) {
+        .hero-headline {
+          color: #111827 !important;
+          -webkit-text-fill-color: #111827 !important;
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+          font-weight: 800 !important;
+        }
+        
+        body.dark-mode .hero-headline {
+          background: linear-gradient(
+            120deg,
+            #818cf8 0%,
+            #06b6d4 50%,
+            #a78bfa 100%
+          ) !important;
+          -webkit-background-clip: text !important;
+          background-clip: text !important;
+          -webkit-text-fill-color: transparent !important;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4) !important;
+        }
       }
     }
     
