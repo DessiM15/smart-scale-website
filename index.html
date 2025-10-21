@@ -2810,6 +2810,80 @@
       .project-info p {
         font-size: 0.8rem !important;
       }
+      
+      /* Contact logo mobile optimization */
+      .contact-info-logo {
+        height: 120px !important;
+        width: auto !important;
+        max-width: 90% !important;
+        margin: 0 auto !important;
+        animation: none !important;
+        filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.4)) !important;
+      }
+      
+      /* Remove complex animations on mobile */
+      .contact-info-logo:hover {
+        transform: none !important;
+        filter: drop-shadow(0 6px 15px rgba(99, 102, 241, 0.5)) !important;
+      }
+    }
+    
+    /* Mobile logo container optimization */
+    @media (max-width: 768px) {
+      .contact-info-logo {
+        height: 150px !important;
+        max-width: 85% !important;
+        animation: contactLogoFloatMobile 4s ease-in-out infinite !important;
+      }
+      
+      @keyframes contactLogoFloatMobile {
+        0%, 100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-4px);
+        }
+      }
+      
+      /* Ensure logo container has proper spacing */
+      .mt-12.flex.justify-center {
+        padding: 1rem !important;
+        margin-top: 2rem !important;
+        overflow: visible !important;
+      }
+      
+      /* Contact section mobile optimization */
+      .bg-gradient-to-br.from-indigo-50.to-cyan-50 {
+        padding: 1.5rem !important;
+        margin: 1rem !important;
+        border-radius: 1rem !important;
+      }
+      
+      /* Ensure logo doesn't get clipped */
+      .contact-info-logo {
+        position: relative !important;
+        z-index: 10 !important;
+        overflow: visible !important;
+      }
+    }
+    
+    /* Extra small mobile devices - further logo optimization */
+    @media (max-width: 480px) {
+      .contact-info-logo {
+        height: 100px !important;
+        max-width: 80% !important;
+        animation: none !important;
+      }
+      
+      .mt-12.flex.justify-center {
+        padding: 0.75rem !important;
+        margin-top: 1.5rem !important;
+      }
+      
+      .bg-gradient-to-br.from-indigo-50.to-cyan-50 {
+        padding: 1rem !important;
+        margin: 0.5rem !important;
+      }
     }
     </style></head>
     <body class="min-h-full antialiased text-gray-900">
