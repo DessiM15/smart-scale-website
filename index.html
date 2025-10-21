@@ -2743,6 +2743,73 @@
         padding: 0.75rem 1rem !important;
         font-size: 1.125rem !important;
       }
+      
+      /* Portfolio mobile optimization */
+      .portfolio-preview {
+        height: 300px !important;
+        border-radius: 8px !important;
+      }
+      
+      .portfolio-preview img,
+      .portfolio-screenshot {
+        object-fit: contain !important;
+        object-position: top !important;
+        transform: none !important;
+        height: 100% !important;
+        width: 100% !important;
+        clip-path: none !important;
+      }
+      
+      /* Remove hover effects on mobile */
+      .portfolio-preview:hover img {
+        transform: none !important;
+      }
+      
+      /* Portfolio grid mobile spacing */
+      .grid.grid-cols-1.lg\\:grid-cols-2 {
+        gap: 1rem !important;
+      }
+      
+      /* Project info mobile optimization */
+      .project-info {
+        padding: 1rem !important;
+      }
+      
+      .project-info h3 {
+        font-size: 1.25rem !important;
+        line-height: 1.3 !important;
+      }
+      
+      .project-info p {
+        font-size: 0.875rem !important;
+        line-height: 1.4 !important;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      /* Extra small mobile portfolio optimization */
+      .portfolio-preview {
+        height: 250px !important;
+        border-radius: 6px !important;
+      }
+      
+      .portfolio-preview img,
+      .portfolio-screenshot {
+        object-fit: contain !important;
+        object-position: center top !important;
+      }
+      
+      .project-info {
+        padding: 0.75rem !important;
+      }
+      
+      .project-info h3 {
+        font-size: 1.125rem !important;
+      }
+      
+      .project-info p {
+        font-size: 0.8rem !important;
+      }
     }
     </style></head>
     <body class="min-h-full antialiased text-gray-900">
