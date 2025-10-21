@@ -2571,6 +2571,32 @@
         transition: none !important;
       }
     }
+    
+    /* Enhanced text pop styling for better visibility */
+    .enhanced-text-pop {
+      font-weight: 600 !important;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      letter-spacing: 0.025em;
+      line-height: 1.6;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 12px 20px;
+      border-radius: 12px;
+      display: inline-block;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Dark mode enhanced text pop */
+    body.dark-mode .enhanced-text-pop {
+      color: #1a1a1a !important;
+      background: rgba(255, 255, 255, 0.95) !important;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      font-weight: 600 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
     </style></head>
     <body class="min-h-full antialiased text-gray-900">
     <!-- Page Loader -->
@@ -2756,7 +2782,7 @@
               <div class="w-12 h-0.5 bg-gradient-to-r from-transparent via-indigo-300 to-transparent"></div>
                   </div>
             <h2 class="text-2xl font-bold text-gray-900 font-geist mb-4">Ready to see what we can do for your business?</h2>
-            <p class="text-lg text-gray-600 font-geist">Here's a look at some of our recent work for real businesses just like yours.</p>
+            <p class="text-lg text-gray-600 font-geist enhanced-text-pop">Here's a look at some of our recent work for real businesses just like yours.</p>
                   </div>
         </section>
 
