@@ -3070,6 +3070,88 @@
         background-position: 0% 50%;
       }
     }
+    
+    /* iPhone/iPad specific optimizations */
+    @supports (-webkit-touch-callout: none) {
+      @media (max-width: 768px) {
+        .glass-card {
+          backface-visibility: hidden !important;
+          -webkit-backface-visibility: hidden !important;
+          transform: translateZ(0) !important;
+          -webkit-transform: translateZ(0) !important;
+          perspective: 1000px !important;
+          -webkit-perspective: 1000px !important;
+          -webkit-font-smoothing: antialiased !important;
+          -moz-osx-font-smoothing: grayscale !important;
+          backdrop-filter: blur(6px) !important;
+          -webkit-backdrop-filter: blur(6px) !important;
+        }
+        
+        .hero-headline {
+          backface-visibility: hidden !important;
+          -webkit-backface-visibility: hidden !important;
+          transform: translateZ(0) !important;
+          -webkit-transform: translateZ(0) !important;
+          -webkit-font-smoothing: antialiased !important;
+          -moz-osx-font-smoothing: grayscale !important;
+          background-size: 180% 180% !important;
+          animation: gradientShift 10s ease infinite !important;
+        }
+        
+        body.dark-mode .hero-headline {
+          background-size: 180% 180% !important;
+          animation: gradientShift 10s ease infinite !important;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .glass-card {
+          backdrop-filter: blur(3px) !important;
+          -webkit-backdrop-filter: blur(3px) !important;
+          backface-visibility: hidden !important;
+          -webkit-backface-visibility: hidden !important;
+          transform: translateZ(0) !important;
+          -webkit-transform: translateZ(0) !important;
+        }
+        
+        .hero-headline {
+          background-size: 120% 120% !important;
+          animation: gradientShift 8s ease infinite !important;
+          backface-visibility: hidden !important;
+          -webkit-backface-visibility: hidden !important;
+          transform: translateZ(0) !important;
+          -webkit-transform: translateZ(0) !important;
+        }
+        
+        body.dark-mode .hero-headline {
+          background-size: 120% 120% !important;
+          animation: gradientShift 8s ease infinite !important;
+        }
+      }
+    }
+    
+    /* Safari specific optimizations */
+    @media screen and (-webkit-min-device-pixel-ratio: 2) {
+      @media (max-width: 768px) {
+        .glass-card {
+          transform: translate3d(0, 0, 0) !important;
+          -webkit-transform: translate3d(0, 0, 0) !important;
+          backface-visibility: hidden !important;
+          -webkit-backface-visibility: hidden !important;
+          perspective: 1000px !important;
+          -webkit-perspective: 1000px !important;
+        }
+        
+        .hero-headline {
+          transform: translate3d(0, 0, 0) !important;
+          -webkit-transform: translate3d(0, 0, 0) !important;
+          backface-visibility: hidden !important;
+          -webkit-backface-visibility: hidden !important;
+          background-size: 160% 160% !important;
+          animation: gradientShift 12s ease infinite !important;
+        }
+      }
+    }
     </style></head>
     <body class="min-h-full antialiased text-gray-900">
     <!-- Page Loader -->
