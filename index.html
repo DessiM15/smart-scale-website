@@ -2923,12 +2923,20 @@
       
       /* Optimize hero headline background on mobile */
       .hero-headline {
-        background: none !important;
-        -webkit-background-clip: unset !important;
-        background-clip: unset !important;
-        -webkit-text-fill-color: #1f2937 !important;
-        color: #1f2937 !important;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+        background: linear-gradient(
+          120deg,
+          #1e40af 0%,
+          #7c3aed 25%,
+          #06b6d4 50%,
+          #dc2626 75%,
+          #059669 100%
+        ) !important;
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+        background-size: 200% 200% !important;
+        animation: gradientShift 8s ease infinite !important;
       }
       
       /* Dark mode hero headline mobile optimization */
@@ -2955,10 +2963,21 @@
       /* Ensure text is visible on all mobile devices */
       @media (max-width: 480px) {
         .hero-headline {
-          color: #111827 !important;
-          -webkit-text-fill-color: #111827 !important;
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+          background: linear-gradient(
+            120deg,
+            #1e40af 0%,
+            #7c3aed 25%,
+            #06b6d4 50%,
+            #dc2626 75%,
+            #059669 100%
+          ) !important;
+          -webkit-background-clip: text !important;
+          background-clip: text !important;
+          -webkit-text-fill-color: transparent !important;
+          text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important;
           font-weight: 800 !important;
+          background-size: 150% 150% !important;
+          animation: gradientShift 6s ease infinite !important;
         }
         
         body.dark-mode .hero-headline {
@@ -2971,7 +2990,9 @@
           -webkit-background-clip: text !important;
           background-clip: text !important;
           -webkit-text-fill-color: transparent !important;
-          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4) !important;
+          text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4) !important;
+          background-size: 150% 150% !important;
+          animation: gradientShift 6s ease infinite !important;
         }
       }
     }
@@ -3019,6 +3040,19 @@
           border: 1px solid rgba(255, 255, 255, 0.2) !important;
           box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
         }
+      }
+    }
+    
+    /* Gradient animation keyframes for mobile optimization */
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
       }
     }
     </style></head>
