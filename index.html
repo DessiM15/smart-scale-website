@@ -3626,12 +3626,48 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: visible;
+      overflow: hidden;
       padding: 120px 2rem 40px;
+      /* Fallback gradient background - shown if video fails to load */
       background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 25%, #06B6D4 50%, #22D3EE 75%, #8B5CF6 100%);
       background-size: 400% 400%;
       animation: heroGradientShift 18s ease-in-out infinite;
       will-change: background-position;
+    }
+    
+    /* Video Background */
+    .hero-video-bg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      object-fit: cover;
+      opacity: 0.4;
+      transition: opacity 0.5s ease-in-out;
+    }
+    
+    /* Video Overlay for Better Text Readability */
+    .hero-video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        135deg,
+        rgba(139, 92, 246, 0.7) 0%,
+        rgba(124, 58, 237, 0.6) 25%,
+        rgba(6, 182, 212, 0.6) 50%,
+        rgba(34, 211, 238, 0.6) 75%,
+        rgba(139, 92, 246, 0.7) 100%
+      );
+      z-index: 1;
+      pointer-events: none;
     }
     
     @keyframes heroGradientShift {
@@ -3645,6 +3681,10 @@
       .smart-scale-hero {
         animation: none;
         background: linear-gradient(135deg, #8B5CF6 0%, #06B6D4 100%);
+      }
+      
+      .hero-video-bg {
+        display: none;
       }
     }
     
@@ -3771,6 +3811,45 @@
       margin: 0 auto;
       text-align: center;
       width: 100%;
+    }
+    
+    /* Mobile Video Optimization */
+    @media (max-width: 768px) {
+      .hero-video-bg {
+        opacity: 0.3;
+        /* Reduce video quality impact on mobile */
+        object-position: center;
+      }
+      
+      .hero-video-overlay {
+        background: linear-gradient(
+          135deg,
+          rgba(139, 92, 246, 0.75) 0%,
+          rgba(6, 182, 212, 0.7) 100%
+        );
+      }
+    }
+    
+    /* Small Mobile Devices - Further Optimize */
+    @media (max-width: 480px) {
+      .hero-video-bg {
+        opacity: 0.25;
+      }
+      
+      .hero-video-overlay {
+        background: linear-gradient(
+          135deg,
+          rgba(139, 92, 246, 0.8) 0%,
+          rgba(6, 182, 212, 0.75) 100%
+        );
+      }
+    }
+    
+    /* Low bandwidth / Data saver mode - hide video */
+    @media (prefers-reduced-data: reduce) {
+      .hero-video-bg {
+        display: none;
+      }
     }
     
     /* Eyebrow Text */
@@ -5328,6 +5407,22 @@
     <main style="padding-top: 80px;">
         <!-- New Smart Scale Hero Section -->
         <section id="home" class="smart-scale-hero">
+          <!-- Video Background -->
+          <video 
+            class="hero-video-bg" 
+            autoplay 
+            muted 
+            loop 
+            playsinline
+            preload="auto"
+            aria-label="Matrix-style code animation background">
+            <source src="assets/Matrix-hero.mp4" type="video/mp4">
+            <!-- Fallback for browsers that don't support video -->
+          </video>
+          
+          <!-- Video Overlay for Text Readability -->
+          <div class="hero-video-overlay"></div>
+          
           <!-- Floating Geometric Shapes -->
           <div class="hero-shape circle circle-1"></div>
           <div class="hero-shape circle circle-2"></div>
@@ -7586,6 +7681,71 @@
                     }
                 }, 250);
             }, { passive: true });
+        })();
+    </script>
+
+    <!-- Hero Video Optimization -->
+    <script>
+        (function() {
+            const heroVideo = document.querySelector('.hero-video-bg');
+            
+            if (!heroVideo) {
+                return;
+            }
+            
+            // Check for reduced motion or data saver preferences
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const prefersReducedData = window.matchMedia('(prefers-reduced-data: reduce)').matches;
+            
+            if (prefersReducedMotion || prefersReducedData) {
+                heroVideo.style.display = 'none';
+                return;
+            }
+            
+            // Handle video loading errors gracefully
+            heroVideo.addEventListener('error', function() {
+                console.warn('Hero video failed to load, using fallback background');
+                heroVideo.style.display = 'none';
+            });
+            
+            // Pause video when page is not visible (browser tab hidden)
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden) {
+                    heroVideo.pause();
+                } else {
+                    heroVideo.play().catch(function(error) {
+                        // Autoplay might be blocked, but that's okay
+                        console.log('Video autoplay prevented:', error);
+                    });
+                }
+            });
+            
+            // Optimize for mobile: lower quality on slower connections
+            if (navigator.connection) {
+                const connection = navigator.connection;
+                const isSlowConnection = connection.effectiveType === 'slow-2g' || 
+                                       connection.effectiveType === '2g' ||
+                                       connection.saveData === true;
+                
+                if (isSlowConnection && window.innerWidth <= 768) {
+                    heroVideo.style.opacity = '0.2';
+                }
+            }
+            
+            // Ensure video plays on mobile (with user interaction if needed)
+            heroVideo.addEventListener('loadeddata', function() {
+                heroVideo.play().catch(function(error) {
+                    // Autoplay might be blocked on some mobile browsers
+                    // This is expected and handled gracefully
+                });
+            });
+            
+            // Reduce video quality on mobile for better performance
+            if (window.innerWidth <= 768) {
+                heroVideo.setAttribute('playsinline', 'true');
+                // Add a subtle blur effect on mobile to reduce video processing load
+                heroVideo.style.filter = 'blur(0.5px)';
+            }
         })();
     </script>
 
