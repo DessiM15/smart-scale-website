@@ -4824,6 +4824,7 @@
       background: rgba(15, 23, 42, 0.3);
       position: relative;
       overflow: hidden;
+      scroll-margin-top: 100px; /* Account for fixed header when scrolling */
     }
     
     .meet-team-container {
@@ -6515,11 +6516,13 @@
                 
                 // Calculate offset for fixed header (80px on desktop, 60px on mobile)
                 const headerHeight = window.innerWidth <= 768 ? 60 : 80;
-                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                const rect = targetElement.getBoundingClientRect();
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const targetPosition = rect.top + scrollTop - headerHeight - 20; // Extra 20px padding
                 
                 // Smooth scroll with offset
                 window.scrollTo({
-                  top: targetPosition,
+                  top: Math.max(0, targetPosition), // Ensure we don't scroll to negative position
                   behavior: 'smooth'
                 });
                 
@@ -6529,6 +6532,11 @@
                 } else {
                   window.location.hash = targetId;
                 }
+                
+                // Debug log
+                console.log('Scrolling to:', targetId, 'at position:', targetPosition);
+              } else {
+                console.warn('Target element not found:', targetId);
               }
             });
           });
