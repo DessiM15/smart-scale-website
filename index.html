@@ -34,6 +34,7 @@
       overflow-y: auto;
       overflow-x: hidden;
       -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
     }
     
     /* Dark Mode Styles */
@@ -5237,7 +5238,7 @@
         <div class="header-container">
           <!-- Logo -->
           <div class="header-logo">
-            <a href="index.html">
+            <a href="#home">
               <img src="assets/smart-scale-logo.png" alt="Smart Scale" class="logo-img">
             </a>
           </div>
@@ -5246,22 +5247,22 @@
           <nav class="header-nav desktop-nav">
             <ul class="nav-menu">
               <li class="nav-item has-dropdown">
-                <a href="services.html" class="nav-link">
+                <a href="#services" class="nav-link">
                   Services <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none">
                     <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a href="services.html#web-design">Web Design & Development</a></li>
-                  <li><a href="services.html#web-app">Web Application Development</a></li>
-                  <li><a href="services.html#mobile-app">Mobile App Development</a></li>
+                  <li><a href="#services">Web Design & Development</a></li>
+                  <li><a href="#services">Web Application Development</a></li>
+                  <li><a href="#services">Mobile App Development</a></li>
                 </ul>
               </li>
               <li class="nav-item">
                 <a href="#recent-work" class="nav-link">Portfolio</a>
               </li>
               <li class="nav-item">
-                <a href="about.html" class="nav-link">About</a>
+                <a href="#about" class="nav-link">About</a>
               </li>
               <li class="nav-item">
                 <a href="#pricing" class="nav-link">Pricing</a>
@@ -5286,7 +5287,7 @@
         <div class="mobile-menu-overlay">
           <div class="mobile-menu-content">
             <div class="mobile-menu-header">
-              <img src="assets/smart-scale-logo.png" alt="Smart Scale" class="mobile-logo">
+              <a href="#home"><img src="assets/smart-scale-logo.png" alt="Smart Scale" class="mobile-logo"></a>
               <button class="mobile-menu-close" aria-label="Close mobile menu">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -5296,22 +5297,22 @@
             <nav class="mobile-nav">
               <ul class="mobile-menu">
                 <li class="mobile-nav-item has-mobile-dropdown">
-                  <a href="services.html" class="mobile-nav-link">
+                  <a href="#services" class="mobile-nav-link">
                     Services <svg class="mobile-dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none">
                       <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                   </a>
                   <ul class="mobile-dropdown-menu">
-                    <li><a href="services.html#web-design">Web Design & Development</a></li>
-                    <li><a href="services.html#web-app">Web Application Development</a></li>
-                    <li><a href="services.html#mobile-app">Mobile App Development</a></li>
+                    <li><a href="#services">Web Design & Development</a></li>
+                    <li><a href="#services">Web Application Development</a></li>
+                    <li><a href="#services">Mobile App Development</a></li>
                   </ul>
                 </li>
                 <li class="mobile-nav-item">
                   <a href="#recent-work" class="mobile-nav-link">Portfolio</a>
                 </li>
                 <li class="mobile-nav-item">
-                  <a href="about.html" class="mobile-nav-link">About</a>
+                  <a href="#about" class="mobile-nav-link">About</a>
                 </li>
                 <li class="mobile-nav-item">
                   <a href="#pricing" class="mobile-nav-link">Pricing</a>
@@ -5326,7 +5327,7 @@
       <!-- Main Container -->
     <main style="padding-top: 80px;">
         <!-- New Smart Scale Hero Section -->
-        <section class="smart-scale-hero">
+        <section id="home" class="smart-scale-hero">
           <!-- Floating Geometric Shapes -->
           <div class="hero-shape circle circle-1"></div>
           <div class="hero-shape circle circle-2"></div>
@@ -5567,7 +5568,7 @@
         <!-- Portfolio Preview section end -->
 
         <!-- Meet the Team Section -->
-        <section class="meet-team-section fade-in-section">
+        <section id="about" class="meet-team-section fade-in-section">
           <div class="meet-team-container">
             <div class="meet-team-header">
               <h2 class="meet-team-title">Meet Jay & Dessiah</h2>
@@ -5615,7 +5616,7 @@
                 
                 <!-- CTA Button -->
                 <div class="meet-team-cta">
-                  <a href="about.html" class="meet-team-btn">Learn More About Us →</a>
+                  <a href="#about" class="meet-team-btn">Learn More About Us →</a>
                 </div>
               </div>
             </div>
@@ -5624,7 +5625,7 @@
         <!-- Meet the Team section end -->
 
         <!-- Services Section - Auxa Template Structure -->
-        <section class="service-4 pos-rel mb-130">
+        <section id="services" class="service-4 pos-rel mb-130">
             <div class="container">
                 <div class="section-title section-title--dm mb-55">
                     <span class="sub-title mb-45 wow fadeInRight" data-wow-duration=".7s">services</span>
@@ -5638,38 +5639,38 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide dm-service">
                             <div class="xb-item--holder">
-                                <h2 class="xb-item--title"><a href="services.html">.01 <br> Custom Design</a></h2>
+                                <h2 class="xb-item--title"><a href="#services">.01 <br> Custom Design</a></h2>
                                 <div class="xb-item--content">Beautiful, strategic website designs that reflect your brand and convert visitors into customers. Starting at $2,000.</div>
                             </div>
                             <div class="xb-item--image">
                                 <!-- Service image can be added here -->
                             </div>
                             <div class="xb-item--srv_link">
-                                <a href="services.html">Learn More <span><svg width="19" height="18" viewBox="0 0 19 18" fill="none"><path d="M18.9981 2.06238C19.0325 1.51117 18.6136 1.0364 18.0624 1.00195L9.07991 0.440543C8.5287 0.406092 8.05392 0.825008 8.01947 1.37622C7.98502 1.92743 8.40394 2.4022 8.95515 2.43665L16.9396 2.93567L16.4405 10.9201C16.4061 11.4713 16.825 11.9461 17.3762 11.9805C17.9274 12.015 18.4022 11.5961 18.4366 11.0449L18.9981 2.06238ZM1.66162 17.7498L18.6616 2.74984L17.3384 1.25016L0.338378 16.2502L1.66162 17.7498Z" fill="currentColor" /></svg></span></a>
+                                <a href="#services">Learn More <span><svg width="19" height="18" viewBox="0 0 19 18" fill="none"><path d="M18.9981 2.06238C19.0325 1.51117 18.6136 1.0364 18.0624 1.00195L9.07991 0.440543C8.5287 0.406092 8.05392 0.825008 8.01947 1.37622C7.98502 1.92743 8.40394 2.4022 8.95515 2.43665L16.9396 2.93567L16.4405 10.9201C16.4061 11.4713 16.825 11.9461 17.3762 11.9805C17.9274 12.015 18.4022 11.5961 18.4366 11.0449L18.9981 2.06238ZM1.66162 17.7498L18.6616 2.74984L17.3384 1.25016L0.338378 16.2502L1.66162 17.7498Z" fill="currentColor" /></svg></span></a>
                             </div>
                         </div>
                         <div class="swiper-slide dm-service">
                             <div class="xb-item--holder">
-                                <h2 class="xb-item--title"><a href="services.html">.02 <br> Responsive Development</a></h2>
+                                <h2 class="xb-item--title"><a href="#services">.02 <br> Responsive Development</a></h2>
                                 <div class="xb-item--content">Fast, mobile-first websites built with modern technologies. Your site will look perfect on every device, from phones to desktops.</div>
                             </div>
                             <div class="xb-item--image">
                                 <!-- Service image can be added here -->
                             </div>
                             <div class="xb-item--srv_link">
-                                <a href="services.html">Learn More <span><svg width="19" height="18" viewBox="0 0 19 18" fill="none"><path d="M18.9981 2.06238C19.0325 1.51117 18.6136 1.0364 18.0624 1.00195L9.07991 0.440543C8.5287 0.406092 8.05392 0.825008 8.01947 1.37622C7.98502 1.92743 8.40394 2.4022 8.95515 2.43665L16.9396 2.93567L16.4405 10.9201C16.4061 11.4713 16.825 11.9461 17.3762 11.9805C17.9274 12.015 18.4022 11.5961 18.4366 11.0449L18.9981 2.06238ZM1.66162 17.7498L18.6616 2.74984L17.3384 1.25016L0.338378 16.2502L1.66162 17.7498Z" fill="currentColor" /></svg></span></a>
+                                <a href="#services">Learn More <span><svg width="19" height="18" viewBox="0 0 19 18" fill="none"><path d="M18.9981 2.06238C19.0325 1.51117 18.6136 1.0364 18.0624 1.00195L9.07991 0.440543C8.5287 0.406092 8.05392 0.825008 8.01947 1.37622C7.98502 1.92743 8.40394 2.4022 8.95515 2.43665L16.9396 2.93567L16.4405 10.9201C16.4061 11.4713 16.825 11.9461 17.3762 11.9805C17.9274 12.015 18.4022 11.5961 18.4366 11.0449L18.9981 2.06238ZM1.66162 17.7498L18.6616 2.74984L17.3384 1.25016L0.338378 16.2502L1.66162 17.7498Z" fill="currentColor" /></svg></span></a>
                             </div>
                         </div>
                         <div class="swiper-slide dm-service">
                             <div class="xb-item--holder">
-                                <h2 class="xb-item--title"><a href="services.html">.03 <br> SEO Optimization</a></h2>
+                                <h2 class="xb-item--title"><a href="#services">.03 <br> SEO Optimization</a></h2>
                                 <div class="xb-item--content">SEO best practices built into every site from day one. Get found by customers searching for what you offer.</div>
                             </div>
                             <div class="xb-item--image">
                                 <!-- Service image can be added here -->
                             </div>
                             <div class="xb-item--srv_link">
-                                <a href="services.html">Learn More <span><svg width="19" height="18" viewBox="0 0 19 18" fill="none"><path d="M18.9981 2.06238C19.0325 1.51117 18.6136 1.0364 18.0624 1.00195L9.07991 0.440543C8.5287 0.406092 8.05392 0.825008 8.01947 1.37622C7.98502 1.92743 8.40394 2.4022 8.95515 2.43665L16.9396 2.93567L16.4405 10.9201C16.4061 11.4713 16.825 11.9461 17.3762 11.9805C17.9274 12.015 18.4022 11.5961 18.4366 11.0449L18.9981 2.06238ZM1.66162 17.7498L18.6616 2.74984L17.3384 1.25016L0.338378 16.2502L1.66162 17.7498Z" fill="currentColor" /></svg></span></a>
+                                <a href="#services">Learn More <span><svg width="19" height="18" viewBox="0 0 19 18" fill="none"><path d="M18.9981 2.06238C19.0325 1.51117 18.6136 1.0364 18.0624 1.00195L9.07991 0.440543C8.5287 0.406092 8.05392 0.825008 8.01947 1.37622C7.98502 1.92743 8.40394 2.4022 8.95515 2.43665L16.9396 2.93567L16.4405 10.9201C16.4061 11.4713 16.825 11.9461 17.3762 11.9805C17.9274 12.015 18.4022 11.5961 18.4366 11.0449L18.9981 2.06238ZM1.66162 17.7498L18.6616 2.74984L17.3384 1.25016L0.338378 16.2502L1.66162 17.7498Z" fill="currentColor" /></svg></span></a>
                             </div>
                         </div>
                     </div>
@@ -5928,19 +5929,19 @@
             <div>
               <h5 class="text-sm font-semibold mb-3 tracking-tight font-inter">Services</h5>
               <ul class="space-y-2 text-sm font-light">
-                <li><a href="services.html" class="hover:text-indigo-600 transition-colors duration-200">Custom Design</a></li>
-                <li><a href="services.html" class="hover:text-indigo-600 transition-colors duration-200">Responsive Development</a></li>
-                <li><a href="services.html" class="hover:text-indigo-600 transition-colors duration-200">SEO Optimization</a></li>
-                <li><a href="services.html" class="hover:text-indigo-600 transition-colors duration-200">Ongoing Support</a></li>
+                <li><a href="#services" class="hover:text-indigo-600 transition-colors duration-200">Custom Design</a></li>
+                <li><a href="#services" class="hover:text-indigo-600 transition-colors duration-200">Responsive Development</a></li>
+                <li><a href="#services" class="hover:text-indigo-600 transition-colors duration-200">SEO Optimization</a></li>
+                <li><a href="#services" class="hover:text-indigo-600 transition-colors duration-200">Ongoing Support</a></li>
               </ul>
             </div>
             <div>
               <h5 class="text-sm font-semibold mb-3 tracking-tight font-inter">Company</h5>
               <ul class="space-y-2 text-sm font-light">
-                <li><a href="about.html" class="hover:text-indigo-600 transition-colors duration-200">About</a></li>
-                <li><a href="index.html#recent-work" class="hover:text-indigo-600 transition-colors duration-200">Portfolio</a></li>
-                <li><a href="services.html" class="hover:text-indigo-600 transition-colors duration-200">Process</a></li>
-                <li><a href="index.html#contact" class="hover:text-indigo-600 transition-colors duration-200">Contact</a></li>
+                <li><a href="#about" class="hover:text-indigo-600 transition-colors duration-200">About</a></li>
+                <li><a href="#recent-work" class="hover:text-indigo-600 transition-colors duration-200">Portfolio</a></li>
+                <li><a href="#services" class="hover:text-indigo-600 transition-colors duration-200">Process</a></li>
+                <li><a href="#contact" class="hover:text-indigo-600 transition-colors duration-200">Contact</a></li>
               </ul>
             </div>
             <div class="">
@@ -6400,21 +6401,41 @@
           
           console.log(`✨ Observing ${animatedElements.length} elements for scroll animations`);
           
-          // Add smooth scroll behavior for navigation links (only on same page)
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-          anchor.addEventListener('click', function (e) {
+          // Enhanced smooth scroll behavior for navigation links
+          document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
               const targetId = this.getAttribute('href');
-              if (targetId === '#') return;
+              if (targetId === '#' || targetId === '#!') return;
               
               const targetElement = document.querySelector(targetId);
               if (targetElement) {
-            e.preventDefault();
-                targetElement.scrollIntoView({
-                  behavior: 'smooth',
-                  block: 'start'
-              });
-            }
-          });
+                e.preventDefault();
+                
+                // Close mobile menu if open
+                const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+                if (mobileMenuOverlay && mobileMenuOverlay.classList.contains('active')) {
+                  mobileMenuOverlay.classList.remove('active');
+                  document.body.style.overflow = '';
+                }
+                
+                // Calculate offset for fixed header (80px on desktop, 60px on mobile)
+                const headerHeight = window.innerWidth <= 768 ? 60 : 80;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                
+                // Smooth scroll with offset
+                window.scrollTo({
+                  top: targetPosition,
+                  behavior: 'smooth'
+                });
+                
+                // Update URL hash without triggering scroll
+                if (history.pushState) {
+                  history.pushState(null, null, targetId);
+                } else {
+                  window.location.hash = targetId;
+                }
+              }
+            });
           });
           
           // Debug navigation links - simplified
@@ -7065,10 +7086,10 @@
                         <div class="footer-widget">
                             <h3 class="widget-title">About Us</h3>
                             <ul class="footer-links">
-                                <li><a href="about.html">About Us</a></li>
+                                <li><a href="#about">About Us</a></li>
                                 <li><a href="#contact">Contact</a></li>
-                                <li><a href="services.html">Services</a></li>
-                                <li><a href="tech.html">Tech Stack</a></li>
+                                <li><a href="#services">Services</a></li>
+                                <li><a href="#services">Tech Stack</a></li>
                             </ul>
                         </div>
                     </div>
@@ -7077,8 +7098,8 @@
                             <h3 class="widget-title">More Info</h3>
                             <ul class="footer-links">
                                 <li><a href="#recent-work">Portfolio</a></li>
-                                <li><a href="services.html">What We Do</a></li>
-                                <li><a href="about.html">Our Story</a></li>
+                                <li><a href="#services">What We Do</a></li>
+                                <li><a href="#about">Our Story</a></li>
                             </ul>
                         </div>
                     </div>
