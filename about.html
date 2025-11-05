@@ -5,15 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | Smart Scale | Web Design Studio</title>
     <meta name="description" content="Meet Jay and Dessiah Maldonado, founders of Smart Scale. A husband-wife team creating custom websites for businesses in Katy, Texas.">
+    <!-- Inter Font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Typography System -->
+    <link rel="stylesheet" href="assets/css/auxa/auxa-typography.css">
+    <!-- CSS Variables -->
+    <link rel="stylesheet" href="assets/css/auxa/auxa-variables.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
     body { 
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       margin: 0;
       padding: 0;
       overflow-x: hidden;
     }
-    .font-geist { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important; }
+    .font-inter { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important; }
     
     /* Dark Mode Styles */
     body.dark-mode {
@@ -217,11 +225,18 @@
       justify-content: center;
       z-index: 10000;
       transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+      opacity: 1;
+      visibility: visible;
     }
     
     .page-loader.hidden {
-      opacity: 0;
-      visibility: hidden;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none;
+    }
+    
+    .page-loader[style*="display: none"] {
+      display: none !important;
     }
     
     .loader-content {
@@ -244,7 +259,7 @@
     .loader-text {
       font-size: 1.5rem;
       font-weight: 700;
-      font-family: 'Geist', sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       margin-bottom: 2rem;
       opacity: 0;
       animation: loaderTextFade 1s ease-out 0.5s forwards;
@@ -293,6 +308,14 @@
     .page-content {
       opacity: 0;
       animation: pageFadeIn 0.8s ease-out forwards;
+    }
+    
+    /* Show content immediately if loader is hidden or not present */
+    body:not(.loading) .page-content,
+    .page-loader.hidden ~ * .page-content,
+    .page-loader[style*="display: none"] ~ * .page-content {
+      opacity: 1 !important;
+      animation: none;
     }
     
     @keyframes pageFadeIn {
@@ -615,6 +638,441 @@
                   inset 0 0 0 1px rgba(99, 102, 241, 0.2);
     }
     
+    /* Smart Scale Navigation Header - Same styles as index.html */
+    .smart-scale-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+      transition: all 0.3s ease;
+      height: 80px;
+    }
+    
+    .smart-scale-header.scrolled {
+      background: rgba(15, 23, 42, 0.95);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      height: 64px;
+    }
+    
+    .smart-scale-header.scrolled .header-container {
+      min-height: 64px;
+    }
+    
+    .smart-scale-header.scrolled .logo-img {
+      width: 120px;
+    }
+    
+    .header-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      min-height: 80px;
+      height: 100%;
+    }
+    
+    @media (max-width: 768px) {
+      .smart-scale-header {
+        height: 60px;
+      }
+      
+      .smart-scale-header.scrolled {
+        height: 56px;
+      }
+      
+      .header-container {
+        padding: 0 1.25rem;
+        min-height: 60px;
+      }
+      
+      .smart-scale-header.scrolled .header-container {
+        min-height: 56px;
+      }
+    }
+    
+    .header-logo {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo-img {
+      width: 150px;
+      height: auto;
+      filter: brightness(0) invert(1);
+      transition: transform 0.3s ease, width 0.3s ease;
+    }
+    
+    .logo-img:hover {
+      transform: scale(1.05);
+    }
+    
+    @media (max-width: 768px) {
+      .logo-img {
+        width: 120px;
+      }
+      
+      .smart-scale-header.scrolled .logo-img {
+        width: 100px;
+      }
+    }
+    
+    .desktop-nav {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      max-width: 600px;
+    }
+    
+    @media (max-width: 1024px) {
+      .desktop-nav {
+        display: none;
+      }
+    }
+    
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .nav-item {
+      position: relative;
+    }
+    
+    .nav-link {
+      color: #ffffff;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.3s ease;
+      position: relative;
+      white-space: nowrap;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #8B5CF6, #06B6D4);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after,
+    .nav-item.active .nav-link::after {
+      width: 100%;
+    }
+    
+    .nav-link:hover {
+      color: #A78BFA;
+    }
+    
+    .dropdown-arrow {
+      transition: transform 0.3s ease;
+    }
+    
+    .has-dropdown:hover .dropdown-arrow {
+      transform: rotate(180deg);
+    }
+    
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(30, 41, 59, 0.98);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      border-radius: 12px;
+      padding: 0.75rem 0;
+      min-width: 240px;
+      list-style: none;
+      margin: 0.5rem 0 0 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(-50%) translateY(-10px);
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(139, 92, 246, 0.2);
+    }
+    
+    .has-dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+    
+    .dropdown-menu li {
+      margin: 0;
+    }
+    
+    .dropdown-menu a {
+      display: block;
+      padding: 0.75rem 1.5rem;
+      color: rgba(255, 255, 255, 0.9);
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      border-left: 3px solid transparent;
+    }
+    
+    .dropdown-menu a:hover {
+      background: rgba(139, 92, 246, 0.1);
+      color: #A78BFA;
+      border-left-color: #8B5CF6;
+      padding-left: 1.75rem;
+    }
+    
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .btn-get-started {
+      background: linear-gradient(135deg, #8B5CF6 0%, #06B6D4 100%);
+      color: #ffffff;
+      padding: 0.5rem 1.25rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      height: fit-content;
+    }
+    
+    .btn-get-started:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+      background: linear-gradient(135deg, #7C3AED 0%, #22D3EE 100%);
+    }
+    
+    @media (max-width: 1024px) {
+      .btn-get-started {
+        display: none;
+      }
+    }
+    
+    .mobile-menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      z-index: 1001;
+    }
+    
+    @media (max-width: 1024px) {
+      .mobile-menu-toggle {
+        display: flex;
+      }
+    }
+    
+    .hamburger-line {
+      width: 24px;
+      height: 2px;
+      background: #ffffff;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-menu-toggle.active .hamburger-line:nth-child(1) {
+      transform: rotate(45deg) translate(7px, 7px);
+    }
+    
+    .mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+    
+    .mobile-menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.98);
+      backdrop-filter: blur(20px);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .mobile-menu-content {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+    
+    .mobile-menu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+    }
+    
+    .mobile-logo {
+      width: 120px;
+      height: auto;
+      filter: brightness(0) invert(1);
+    }
+    
+    @media (max-width: 768px) {
+      main {
+        padding-top: 60px !important;
+      }
+    }
+    
+    .mobile-menu-close {
+      background: transparent;
+      border: none;
+      color: #ffffff;
+      cursor: pointer;
+      padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .mobile-nav {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .mobile-menu {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .mobile-nav-item {
+      position: relative;
+    }
+    
+    .mobile-nav-link {
+      color: #ffffff;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      padding: 1rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-nav-link:hover {
+      color: #A78BFA;
+      padding-left: 1rem;
+    }
+    
+    .mobile-dropdown-menu {
+      list-style: none;
+      margin: 0;
+      padding: 0.5rem 0 0 1.5rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    
+    .has-mobile-dropdown.active .mobile-dropdown-menu {
+      max-height: 300px;
+    }
+    
+    .mobile-dropdown-menu a {
+      display: block;
+      padding: 0.75rem 0;
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .mobile-dropdown-menu a:hover {
+      color: #A78BFA;
+      padding-left: 0.5rem;
+    }
+    
+    .mobile-dropdown-arrow {
+      transition: transform 0.3s ease;
+    }
+    
+    .has-mobile-dropdown.active .mobile-dropdown-arrow {
+      transform: rotate(180deg);
+    }
+    
+    .btn-get-started-mobile {
+      margin-top: 2rem;
+      background: linear-gradient(135deg, #8B5CF6 0%, #06B6D4 100%);
+      color: #ffffff;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-align: center;
+      display: block;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+    }
+    
+    .btn-get-started-mobile:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+    }
+    
+    .nav-item.active .nav-link,
+    .mobile-nav-item.active .mobile-nav-link {
+      color: #A78BFA;
+    }
+    
     </style>
 </head>
     <body class="min-h-full antialiased text-gray-900">
@@ -636,58 +1094,103 @@
     <div class="gradient-overlay"></div>
     
 
-    <!-- Navigation -->
-    <header class="bg-transparent">
-        <nav class="flex max-w-7xl lg:px-8 mr-auto ml-auto pt-6 pr-4 pb-6 pl-4 items-center justify-between">
-            <div class="flex items-center">
-                <a href="index.html">
-                    <img src="assets/smart-scale-logo.png" alt="Smart Scale" class="header-logo">
-                </a>
-            </div>
-            <button id="mobile-toggle" class="lg:hidden rounded-lg p-2 hover:bg-neutral-100 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="menu" class="lucide lucide-menu w-6 h-6"><path d="M4 12h16"></path><path d="M4 18h16"></path><path d="M4 6h16"></path></svg>
-            </button>
-            <ul id="nav-links" class="fixed inset-0 z-40 hidden flex-col gap-8 lg:static lg:flex lg:flex-row lg:bg-transparent lg:gap-8 lg:backdrop-blur-none bg-white/95 backdrop-blur-md items-center justify-center">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="services.html" class="nav-link">Services</a></li>
-                <li><a href="about.html" class="nav-link active">About</a></li>
-                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
-                <li>
-                    <button id="dark-mode-toggle" class="nav-link flex items-center gap-2" title="Toggle dark mode">
-                        <svg id="sun-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                        </svg>
-                        <svg id="moon-icon" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-                        </svg>
-                    </button>
-                </li>
-                <li class="lg:hidden">
-                    <a href="index.html#contact" class="flex items-center gap-2 rounded-full bg-gradient-to-r from-indigo-600 to-cyan-600 px-6 py-3 text-sm font-medium text-white hover:from-indigo-700 hover:to-cyan-700 transition-all duration-200 font-geist">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="message-circle" class="lucide lucide-message-circle h-4 w-4"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg>
-                        Start Project
-                    </a>
-                </li>
-            </ul>
-            <a href="index.html#contact" class="hidden lg:flex gap-2 text-sm font-medium text-white font-geist rounded-full pt-3 pr-6 pb-3 pl-6 shadow-lg items-center justify-center hover:scale-105 transition-transform duration-200" style="position: relative; width: 150px; height: 55px; border-radius: 45px; border: none; background-color: rgb(151, 95, 255); box-shadow: 0px 10px 10px rgb(210, 187, 253) inset, 0px 5px 10px rgba(5, 5, 5, 0.212), 0px -10px 10px rgb(124, 54, 255) inset; cursor: pointer;">
-                Start Project
-                <span style="content: ''; position: absolute; width: 70%; height: 2px; background-color: rgba(250, 250, 250, 0.678); filter: blur(1px); top: 7px; border-radius: 50%; left: 15%; z-index: 0;"></span>
-                <span style="content: ''; position: absolute; width: 70%; height: 2px; background-color: rgba(250, 250, 250, 0.137); filter: blur(1px); bottom: 7px; border-radius: 50%; left: 15%; z-index: 0;"></span>
-            </a>
+    <!-- Smart Scale Navigation Header -->
+    <header id="smart-scale-header" class="smart-scale-header">
+      <div class="header-container">
+        <div class="header-logo">
+          <a href="index.html">
+            <img src="assets/smart-scale-logo.png" alt="Smart Scale" class="logo-img">
+          </a>
+        </div>
+
+        <nav class="header-nav desktop-nav">
+          <ul class="nav-menu">
+            <li class="nav-item has-dropdown">
+              <a href="services.html" class="nav-link">
+                Services <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="services.html#web-design">Web Design & Development</a></li>
+                <li><a href="services.html#web-app">Web Application Development</a></li>
+                <li><a href="services.html#mobile-app">Mobile App Development</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="index.html#recent-work" class="nav-link">Portfolio</a>
+            </li>
+            <li class="nav-item">
+              <a href="about.html" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+              <a href="index.html#pricing" class="nav-link">Pricing</a>
+            </li>
+          </ul>
         </nav>
+
+        <div class="header-actions">
+          <a href="index.html#contact" class="btn-get-started">Get Started</a>
+          
+          <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="mobile-menu-overlay">
+        <div class="mobile-menu-content">
+          <div class="mobile-menu-header">
+            <img src="assets/smart-scale-logo.png" alt="Smart Scale" class="mobile-logo">
+            <button class="mobile-menu-close" aria-label="Close mobile menu">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </div>
+          <nav class="mobile-nav">
+            <ul class="mobile-menu">
+              <li class="mobile-nav-item has-mobile-dropdown">
+                <a href="services.html" class="mobile-nav-link">
+                  Services <svg class="mobile-dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+                <ul class="mobile-dropdown-menu">
+                  <li><a href="services.html#web-design">Web Design & Development</a></li>
+                  <li><a href="services.html#web-app">Web Application Development</a></li>
+                  <li><a href="services.html#mobile-app">Mobile App Development</a></li>
+                </ul>
+              </li>
+              <li class="mobile-nav-item">
+                <a href="index.html#recent-work" class="mobile-nav-link">Portfolio</a>
+              </li>
+              <li class="mobile-nav-item">
+                <a href="about.html" class="mobile-nav-link">About</a>
+              </li>
+              <li class="mobile-nav-item">
+                <a href="index.html#pricing" class="mobile-nav-link">Pricing</a>
+              </li>
+            </ul>
+            <a href="index.html#contact" class="btn-get-started-mobile">Get Started</a>
+          </nav>
+        </div>
+      </div>
     </header>
 
     <!-- Main Container -->
-    <main class="page-content mx-auto max-w-7xl px-4 pb-20 lg:px-8">
+    <main class="page-content mx-auto max-w-7xl px-4 pb-20 lg:px-8" style="padding-top: 80px;">
         <!-- Hero Section -->
         <section class="glass-card rounded-3xl p-12 md:p-16 shadow-sm hover:shadow-md transition-shadow duration-300">
             <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
                 <!-- Left Column - Content -->
                 <div class="lg:col-span-2">
-                    <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 font-geist mb-6">
+                    <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 font-inter mb-6">
                         About Smart Scale
                     </h1>
-                    <h2 class="text-2xl md:text-3xl font-semibold text-indigo-600 font-geist mb-8">
+                    <h2 class="text-2xl md:text-3xl font-semibold text-indigo-600 font-inter mb-8">
                         Where Design Meets Strategy
                     </h2>
                 </div>
@@ -699,7 +1202,7 @@
                         <div class="relative">
                             <img src="assets/Office Pro.3.jpeg" alt="Jay Maldonado, co-founder of Smart Scale" class="w-full h-auto rounded-2xl shadow-lg">
                             <div class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-4 py-2">
-                                <p class="text-sm font-medium text-black font-geist name-badge" style="color: #000000 !important;">Jay Maldonado</p>
+                                <p class="text-sm font-medium text-black font-inter name-badge" style="color: #000000 !important;">Jay Maldonado</p>
                             </div>
                         </div>
                         
@@ -707,12 +1210,12 @@
                         <div class="relative">
                             <img src="assets/orig2 - 2025-08-10T032539.595.png" alt="Dessiah Maldonado, co-founder of Smart Scale" class="w-full h-auto rounded-2xl shadow-lg">
                             <div class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-4 py-2">
-                                <p class="text-sm font-medium text-black font-geist name-badge" style="color: #000000 !important;">Dessiah Maldonado</p>
+                                <p class="text-sm font-medium text-black font-inter name-badge" style="color: #000000 !important;">Dessiah Maldonado</p>
                             </div>
                         </div>
                     </div>
                     <div class="text-center mt-4">
-                        <p class="text-lg font-semibold text-gray-900 font-geist">Smart Scale Founders</p>
+                        <p class="text-lg font-semibold text-gray-900 font-inter">Smart Scale Founders</p>
                     </div>
                 </div>
             </div>
@@ -722,31 +1225,31 @@
         <section class="mt-8 glass-card rounded-3xl p-12 md:p-16 shadow-sm hover:shadow-md transition-shadow duration-300">
             <div class="max-w-4xl mx-auto">
                 <div class="prose prose-lg max-w-none">
-                    <p class="text-lg text-gray-700 font-geist leading-relaxed mb-6">
+                    <p class="text-lg text-gray-700 font-inter leading-relaxed mb-6">
                         We're Smart Scale, and we're not your typical web design agency.
                     </p>
                     
-                    <p class="text-lg text-gray-700 font-geist leading-relaxed mb-6">
+                    <p class="text-lg text-gray-700 font-inter leading-relaxed mb-6">
                         Founded by Jay and Dessiah Maldonado—a husband-and-wife team of serial entrepreneurs—Smart Scale was born from a simple frustration: too many businesses were stuck with cookie-cutter websites that didn't reflect their uniqueness or drive results.
                     </p>
                     
-                    <p class="text-lg text-gray-700 font-geist leading-relaxed mb-6">
+                    <p class="text-lg text-gray-700 font-inter leading-relaxed mb-6">
                         We've been where you are. We've built businesses, navigated growth challenges, and experienced firsthand the struggle of finding affordable, high-quality web design that actually converts. We know that your website isn't just a digital business card—it's your hardest-working employee, your 24/7 salesperson, and often the first impression you make on potential clients.
                     </p>
                     
-                    <p class="text-lg text-gray-700 font-geist leading-relaxed mb-6">
+                    <p class="text-lg text-gray-700 font-inter leading-relaxed mb-6">
                         That's why we founded Smart Scale: to provide boutique web design services that combine strategic thinking with beautiful execution. We're not a massive agency with layers of account managers. When you work with us, you work directly with the designers and developers who care about your success.
                     </p>
                     
-                    <p class="text-lg text-gray-700 font-geist leading-relaxed mb-6">
+                    <p class="text-lg text-gray-700 font-inter leading-relaxed mb-6">
                         Based in Katy, Texas, we've helped businesses across industries—from financial services to legal practices, from startups to established companies—create websites that don't just look good, but work hard. Every site we design is custom-built, conversion-focused, and optimized for the way real people browse and buy.
                     </p>
                     
-                    <p class="text-lg text-gray-700 font-geist leading-relaxed mb-6">
+                    <p class="text-lg text-gray-700 font-inter leading-relaxed mb-6">
                         We believe every business deserves a website that makes them look like they invested six figures—even if they didn't. That's the Smart Scale difference: premium design, strategic approach, and personal service at a price that makes sense.
                     </p>
                     
-                    <p class="text-xl text-indigo-600 font-semibold font-geist">
+                    <p class="text-xl text-indigo-600 font-semibold font-inter">
                         Let's build something amazing together.
                     </p>
                 </div>
@@ -756,8 +1259,8 @@
         <!-- Our Approach Section -->
         <section class="mt-8 glass-card rounded-3xl p-12 md:p-16 shadow-sm hover:shadow-md transition-shadow duration-300">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold tracking-tight text-gray-900 font-geist mb-4">Our Approach</h2>
-                <p class="text-lg text-gray-600 font-geist">How we think about web design</p>
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 font-inter mb-4">Our Approach</h2>
+                <p class="text-lg text-gray-600 font-inter">How we think about web design</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -766,8 +1269,8 @@
                     <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
                         <span class="text-2xl">🎯</span>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 font-geist mb-3">Strategy First</h3>
-                    <p class="text-gray-600 font-geist">We don't start with design—we start with understanding your business, your goals, and your customers. Every design decision is driven by strategy.</p>
+                    <h3 class="text-xl font-semibold text-gray-900 font-inter mb-3">Strategy First</h3>
+                    <p class="text-gray-600 font-inter">We don't start with design—we start with understanding your business, your goals, and your customers. Every design decision is driven by strategy.</p>
                 </div>
 
                 <!-- Card 2: Custom, Not Templates -->
@@ -775,8 +1278,8 @@
                     <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
                         <span class="text-2xl">💎</span>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 font-geist mb-3">Custom, Not Templates</h3>
-                    <p class="text-gray-600 font-geist">No WordPress themes. No cookie-cutter solutions. Every website we create is built from scratch to match your brand and business needs.</p>
+                    <h3 class="text-xl font-semibold text-gray-900 font-inter mb-3">Custom, Not Templates</h3>
+                    <p class="text-gray-600 font-inter">No WordPress themes. No cookie-cutter solutions. Every website we create is built from scratch to match your brand and business needs.</p>
                 </div>
 
                 <!-- Card 3: Built to Convert -->
@@ -784,8 +1287,8 @@
                     <div class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mb-4">
                         <span class="text-2xl">📈</span>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 font-geist mb-3">Built to Convert</h3>
-                    <p class="text-gray-600 font-geist">Beautiful design is just the beginning. We optimize every element to turn visitors into customers, clients, and leads.</p>
+                    <h3 class="text-xl font-semibold text-gray-900 font-inter mb-3">Built to Convert</h3>
+                    <p class="text-gray-600 font-inter">Beautiful design is just the beginning. We optimize every element to turn visitors into customers, clients, and leads.</p>
                 </div>
             </div>
         </section>
@@ -793,32 +1296,32 @@
         <!-- Why We're Different Section -->
         <section class="mt-8 glass-card rounded-3xl p-12 md:p-16 shadow-sm hover:shadow-md transition-shadow duration-300">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold tracking-tight text-gray-900 font-geist mb-4">Why Businesses Choose Smart Scale</h2>
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 font-inter mb-4">Why Businesses Choose Smart Scale</h2>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- 1. Boutique Service -->
                 <div class="interactive-card hover-lift rounded-xl p-6">
-                    <h3 class="text-xl font-semibold text-gray-900 font-geist mb-3">Boutique, Personal Service</h3>
-                    <p class="text-gray-600 font-geist">You're not a ticket number. You work directly with Jay and Dessiah, the founders who personally handle every project.</p>
+                    <h3 class="text-xl font-semibold text-gray-900 font-inter mb-3">Boutique, Personal Service</h3>
+                    <p class="text-gray-600 font-inter">You're not a ticket number. You work directly with Jay and Dessiah, the founders who personally handle every project.</p>
                 </div>
 
                 <!-- 2. Entrepreneurs Helping Entrepreneurs -->
                 <div class="interactive-card hover-lift rounded-xl p-6">
-                    <h3 class="text-xl font-semibold text-gray-900 font-geist mb-3">Entrepreneurs Helping Entrepreneurs</h3>
-                    <p class="text-gray-600 font-geist">We've built businesses ourselves. We understand deadlines, budgets, and the pressure to launch. We're partners, not just vendors.</p>
+                    <h3 class="text-xl font-semibold text-gray-900 font-inter mb-3">Entrepreneurs Helping Entrepreneurs</h3>
+                    <p class="text-gray-600 font-inter">We've built businesses ourselves. We understand deadlines, budgets, and the pressure to launch. We're partners, not just vendors.</p>
                 </div>
 
                 <!-- 3. Fast Without Compromising Quality -->
                 <div class="interactive-card hover-lift rounded-xl p-6">
-                    <h3 class="text-xl font-semibold text-gray-900 font-geist mb-3">Fast Without Compromising Quality</h3>
-                    <p class="text-gray-600 font-geist">Most projects are completed in 2-4 weeks. We move quickly because we respect your time and understand that speed matters in business.</p>
+                    <h3 class="text-xl font-semibold text-gray-900 font-inter mb-3">Fast Without Compromising Quality</h3>
+                    <p class="text-gray-600 font-inter">Most projects are completed in 2-4 weeks. We move quickly because we respect your time and understand that speed matters in business.</p>
                 </div>
 
                 <!-- 4. Transparent Pricing -->
                 <div class="interactive-card hover-lift rounded-xl p-6">
-                    <h3 class="text-xl font-semibold text-gray-900 font-geist mb-3">Transparent, Honest Pricing</h3>
-                    <p class="text-gray-600 font-geist">No hidden fees, no scope creep, no surprises. You'll know exactly what you're paying for and what to expect.</p>
+                    <h3 class="text-xl font-semibold text-gray-900 font-inter mb-3">Transparent, Honest Pricing</h3>
+                    <p class="text-gray-600 font-inter">No hidden fees, no scope creep, no surprises. You'll know exactly what you're paying for and what to expect.</p>
                 </div>
             </div>
         </section>
@@ -826,19 +1329,19 @@
         <!-- By The Numbers Section -->
         <section class="mt-8 glass-card rounded-3xl p-12 md:p-16 shadow-sm hover:shadow-md transition-shadow duration-300">
             <div class="text-center">
-                <h2 class="text-3xl font-bold tracking-tight text-gray-900 font-geist mb-12">By The Numbers</h2>
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 font-inter mb-12">By The Numbers</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="text-center">
-                        <div class="text-4xl font-bold text-emerald-600 font-geist mb-2">100%</div>
-                        <p class="text-gray-600 font-geist">Client Satisfaction</p>
+                        <div class="text-4xl font-bold text-emerald-600 font-inter mb-2">100%</div>
+                        <p class="text-gray-600 font-inter">Client Satisfaction</p>
                     </div>
                     <div class="text-center">
-                        <div class="text-4xl font-bold text-purple-600 font-geist mb-2">2-4</div>
-                        <p class="text-gray-600 font-geist">Week Average Timeline</p>
+                        <div class="text-4xl font-bold text-purple-600 font-inter mb-2">2-4</div>
+                        <p class="text-gray-600 font-inter">Week Average Timeline</p>
                     </div>
                     <div class="text-center">
-                        <div class="text-4xl font-bold text-cyan-600 font-geist mb-2">Katy</div>
-                        <p class="text-gray-600 font-geist">Based in Texas</p>
+                        <div class="text-4xl font-bold text-cyan-600 font-inter mb-2">Katy</div>
+                        <p class="text-gray-600 font-inter">Based in Texas</p>
                     </div>
                 </div>
             </div>
@@ -846,13 +1349,13 @@
 
         <!-- CTA Section -->
         <section class="mt-8 bg-gradient-to-r from-indigo-600 to-cyan-600 rounded-3xl p-12 md:p-16 text-center">
-            <h2 class="text-3xl font-bold text-white font-geist mb-4">Ready to Work Together?</h2>
-            <p class="text-xl text-indigo-100 font-geist mb-8">Let's build a website that works as hard as you do.</p>
+            <h2 class="text-3xl font-bold text-white font-inter mb-4">Ready to Work Together?</h2>
+            <p class="text-xl text-indigo-100 font-inter mb-8">Let's build a website that works as hard as you do.</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="index.html#contact" class="inline-flex items-center justify-center px-8 py-4 bg-white text-indigo-600 font-medium rounded-lg hover:bg-gray-50 transition-all duration-200 hover:scale-105 font-geist">
+                <a href="index.html#contact" class="inline-flex items-center justify-center px-8 py-4 bg-white text-indigo-600 font-medium rounded-lg hover:bg-gray-50 transition-all duration-200 hover:scale-105 font-inter">
                     Start Your Project
                 </a>
-                <a href="index.html#recent-work" class="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-medium rounded-lg hover:bg-white hover:text-indigo-600 transition-all duration-200 font-geist">
+                <a href="index.html#recent-work" class="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-medium rounded-lg hover:bg-white hover:text-indigo-600 transition-all duration-200 font-inter">
                     See Our Work
                 </a>
             </div>
@@ -861,7 +1364,7 @@
 
     <!-- Footer -->
     <footer class="bg-white border-t border-neutral-100 mt-12 py-12 px-6 md:px-12 rounded-3xl hover:shadow-md transition-shadow duration-300">
-        <div class="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-4 gap-8 font-geist text-neutral-700">
+        <div class="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-4 gap-8 font-inter text-neutral-700">
             <div>
                 <div class="mb-4">
                     <img src="assets/smart-scale-logo-black.png" alt="Smart Scale" class="footer-logo" id="footer-logo">
@@ -870,7 +1373,7 @@
                 <p class="mt-4 text-xs text-neutral-400 font-light">© 2024 Smart Scale. All rights reserved.</p>
             </div>
             <div>
-                <h5 class="text-sm font-semibold mb-3 tracking-tight font-geist">Services</h5>
+                <h5 class="text-sm font-semibold mb-3 tracking-tight font-inter">Services</h5>
                 <ul class="space-y-2 text-sm font-light">
                     <li><a href="services.html" class="hover:text-indigo-600 transition-colors duration-200">Custom Design</a></li>
                     <li><a href="services.html" class="hover:text-indigo-600 transition-colors duration-200">Responsive Development</a></li>
@@ -879,7 +1382,7 @@
                 </ul>
             </div>
             <div>
-                <h5 class="text-sm font-semibold mb-3 tracking-tight font-geist">Company</h5>
+                <h5 class="text-sm font-semibold mb-3 tracking-tight font-inter">Company</h5>
                 <ul class="space-y-2 text-sm font-light">
                     <li><a href="about.html" class="hover:text-indigo-600 transition-colors duration-200">About</a></li>
                     <li><a href="index.html#recent-work" class="hover:text-indigo-600 transition-colors duration-200">Portfolio</a></li>
@@ -888,7 +1391,7 @@
                 </ul>
             </div>
             <div>
-                <h5 class="text-sm font-semibold mb-3 tracking-tight font-geist">Get In Touch</h5>
+                <h5 class="text-sm font-semibold mb-3 tracking-tight font-inter">Get In Touch</h5>
                 <div class="space-y-2 text-sm font-light">
                     <p><a href="mailto:sayhi@sent.com" class="hover:text-indigo-600 transition-colors duration-200">sayhi@sent.com</a></p>
                     <p>Jay: <a href="tel:+18324070773" class="hover:text-indigo-600 transition-colors duration-200">(832) 407-0773</a></p>
@@ -1035,24 +1538,77 @@
 
 
         // Initialize page load animation
-        document.addEventListener('DOMContentLoaded', function() {
-          // Page Load Animation
+        function hidePageLoader() {
           const pageLoader = document.getElementById('page-loader');
           const pageContent = document.querySelector('.page-content');
           
-          // Show loader immediately
-          pageLoader.style.display = 'flex';
+          if (!pageLoader) {
+            console.error('Page loader element not found');
+            return;
+          }
           
           // Hide loader and show content after a delay
           setTimeout(() => {
+            try {
+              pageLoader.classList.add('hidden');
+              if (pageContent) {
+                pageContent.style.opacity = '1';
+              }
+              
+              // Remove loader from DOM after animation
+              setTimeout(() => {
+                pageLoader.style.display = 'none';
+              }, 800);
+            } catch (error) {
+              console.error('Error hiding loader:', error);
+              // Force hide as fallback
+              pageLoader.style.display = 'none';
+            }
+          }, 1500); // Show loader for 1.5 seconds
+        }
+        
+        // Initialize on DOM ready
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', function() {
+            const pageLoader = document.getElementById('page-loader');
+            if (pageLoader) {
+              pageLoader.style.display = 'flex';
+            }
+            hidePageLoader();
+          });
+        } else {
+          // DOM already loaded
+          const pageLoader = document.getElementById('page-loader');
+          if (pageLoader) {
+            pageLoader.style.display = 'flex';
+          }
+          hidePageLoader();
+        }
+        
+        // Fallback: Ensure loader is hidden after maximum time
+        setTimeout(function() {
+          const pageLoader = document.getElementById('page-loader');
+          if (pageLoader && pageLoader.style.display !== 'none') {
+            console.log('Force hiding loader (fallback)');
             pageLoader.classList.add('hidden');
-            pageContent.style.opacity = '1';
-            
-            // Remove loader from DOM after animation
             setTimeout(() => {
               pageLoader.style.display = 'none';
-            }, 800);
-          }, 1500); // Show loader for 1.5 seconds
+            }, 300);
+          }
+        }, 3000);
+        
+        // Additional window.onload fallback
+        window.addEventListener('load', function() {
+          setTimeout(function() {
+            const pageLoader = document.getElementById('page-loader');
+            if (pageLoader && !pageLoader.classList.contains('hidden')) {
+              console.log('Window load fallback - hiding loader');
+              pageLoader.classList.add('hidden');
+              setTimeout(() => {
+                pageLoader.style.display = 'none';
+              }, 300);
+            }
+          }, 500);
         });
 
         // Canvas Particle System
@@ -1338,6 +1894,105 @@
         // Initialize Particle System
         const particleSystem = new ParticleSystem();
         particleSystem.init();
+    </script>
+
+    <!-- Smart Scale Navigation JavaScript -->
+    <script>
+        (function() {
+            const header = document.getElementById('smart-scale-header');
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            const mobileOverlay = document.querySelector('.mobile-menu-overlay');
+            const mobileClose = document.querySelector('.mobile-menu-close');
+            const mobileDropdowns = document.querySelectorAll('.has-mobile-dropdown');
+            const dropdowns = document.querySelectorAll('.has-dropdown');
+            
+            if (!header) return;
+            
+            window.addEventListener('scroll', function() {
+                const currentScroll = window.pageYOffset;
+                if (currentScroll > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            if (mobileToggle) {
+                mobileToggle.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    mobileOverlay.classList.toggle('active');
+                    document.body.style.overflow = mobileOverlay.classList.contains('active') ? 'hidden' : '';
+                });
+            }
+            
+            if (mobileClose) {
+                mobileClose.addEventListener('click', function() {
+                    mobileOverlay.classList.remove('active');
+                    mobileToggle.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
+            
+            if (mobileOverlay) {
+                mobileOverlay.addEventListener('click', function(e) {
+                    if (e.target === mobileOverlay) {
+                        mobileOverlay.classList.remove('active');
+                        mobileToggle.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+            
+            mobileDropdowns.forEach(function(item) {
+                const link = item.querySelector('.mobile-nav-link');
+                if (link) {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const isActive = item.classList.contains('active');
+                        mobileDropdowns.forEach(function(otherItem) {
+                            if (otherItem !== item) {
+                                otherItem.classList.remove('active');
+                            }
+                        });
+                        item.classList.toggle('active', !isActive);
+                    });
+                }
+            });
+            
+            document.addEventListener('click', function(e) {
+                dropdowns.forEach(function(dropdown) {
+                    if (!dropdown.contains(e.target)) {
+                        const menu = dropdown.querySelector('.dropdown-menu');
+                        if (menu) {
+                            menu.style.opacity = '0';
+                            menu.style.visibility = 'hidden';
+                        }
+                    }
+                });
+            });
+            
+            function setActivePage() {
+                const currentPath = window.location.pathname;
+                document.querySelectorAll('.nav-item, .mobile-nav-item').forEach(function(item) {
+                    item.classList.remove('active');
+                });
+                
+                if (currentPath.includes('about.html')) {
+                    document.querySelectorAll('a[href*="about.html"]').forEach(function(link) {
+                        link.closest('.nav-item, .mobile-nav-item')?.classList.add('active');
+                    });
+                } else if (currentPath.includes('services.html')) {
+                    document.querySelectorAll('a[href*="services.html"]').forEach(function(link) {
+                        if (!link.closest('.dropdown-menu, .mobile-dropdown-menu')) {
+                            link.closest('.nav-item, .mobile-nav-item')?.classList.add('active');
+                        }
+                    });
+                }
+            }
+            
+            setActivePage();
+            window.addEventListener('hashchange', setActivePage);
+        })();
     </script>
 </body>
 </html>

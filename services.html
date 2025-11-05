@@ -5,15 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>What We Do | Smart Scale | Web Design Services</title>
     <meta name="description" content="Smart Scale offers custom website design, responsive development, SEO optimization, and e-commerce solutions. From strategy to launch, we handle every detail.">
+    <!-- Inter Font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Typography System -->
+    <link rel="stylesheet" href="assets/css/auxa/auxa-typography.css">
+    <!-- CSS Variables -->
+    <link rel="stylesheet" href="assets/css/auxa/auxa-variables.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
     body { 
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       margin: 0;
       padding: 0;
       overflow-x: hidden;
     }
-    .font-geist { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important; }
+    .font-inter { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important; }
     
     /* Dark Mode Styles */
     body.dark-mode {
@@ -251,7 +259,7 @@
     .loader-text {
       font-size: 1.5rem;
       font-weight: 700;
-      font-family: 'Geist', sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       margin-bottom: 2rem;
       opacity: 0;
       animation: loaderTextFade 1s ease-out 0.5s forwards;
@@ -409,10 +417,452 @@
               drop-shadow(0 0 130px rgba(129, 140, 248, 0.6));
     }
     
+    /* Smart Scale Navigation Header */
+    .smart-scale-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+      transition: all 0.3s ease;
+      height: 80px;
+    }
+    
+    .smart-scale-header.scrolled {
+      background: rgba(15, 23, 42, 0.95);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      height: 64px;
+    }
+    
+    .smart-scale-header.scrolled .header-container {
+      min-height: 64px;
+    }
+    
+    .smart-scale-header.scrolled .logo-img {
+      width: 120px;
+    }
+    
+    .header-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      min-height: 80px;
+      height: 100%;
+    }
+    
+    @media (max-width: 768px) {
+      .smart-scale-header {
+        height: 60px;
+      }
+      
+      .smart-scale-header.scrolled {
+        height: 56px;
+      }
+      
+      .header-container {
+        padding: 0 1.25rem;
+        min-height: 60px;
+      }
+      
+      .smart-scale-header.scrolled .header-container {
+        min-height: 56px;
+      }
+    }
+    
+    .header-logo {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo-img {
+      width: 150px;
+      height: auto;
+      filter: brightness(0) invert(1);
+      transition: transform 0.3s ease, width 0.3s ease;
+    }
+    
+    .logo-img:hover {
+      transform: scale(1.05);
+    }
+    
+    @media (max-width: 768px) {
+      .logo-img {
+        width: 120px;
+      }
+      
+      .smart-scale-header.scrolled .logo-img {
+        width: 100px;
+      }
+    }
+    
+    .desktop-nav {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      max-width: 600px;
+    }
+    
+    @media (max-width: 1024px) {
+      .desktop-nav {
+        display: none;
+      }
+    }
+    
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .nav-item {
+      position: relative;
+    }
+    
+    .nav-link {
+      color: #ffffff;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.3s ease;
+      position: relative;
+      background: transparent;
+      backdrop-filter: none;
+      border: none;
+      border-radius: 0;
+      text-shadow: none;
+      white-space: nowrap;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #8B5CF6, #06B6D4);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after,
+    .nav-item.active .nav-link::after {
+      width: 100%;
+    }
+    
+    .nav-link:hover {
+      color: #A78BFA;
+      transform: none;
+      background: transparent;
+      box-shadow: none;
+    }
+    
+    .dropdown-arrow {
+      transition: transform 0.3s ease;
+    }
+    
+    .has-dropdown:hover .dropdown-arrow {
+      transform: rotate(180deg);
+    }
+    
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(30, 41, 59, 0.98);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      border-radius: 12px;
+      padding: 0.75rem 0;
+      min-width: 240px;
+      list-style: none;
+      margin: 0.5rem 0 0 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(-50%) translateY(-10px);
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(139, 92, 246, 0.2);
+    }
+    
+    .has-dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+    
+    .dropdown-menu li {
+      margin: 0;
+    }
+    
+    .dropdown-menu a {
+      display: block;
+      padding: 0.75rem 1.5rem;
+      color: rgba(255, 255, 255, 0.9);
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      border-left: 3px solid transparent;
+    }
+    
+    .dropdown-menu a:hover {
+      background: rgba(139, 92, 246, 0.1);
+      color: #A78BFA;
+      border-left-color: #8B5CF6;
+      padding-left: 1.75rem;
+    }
+    
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .btn-get-started {
+      background: linear-gradient(135deg, #8B5CF6 0%, #06B6D4 100%);
+      color: #ffffff;
+      padding: 0.5rem 1.25rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      height: fit-content;
+    }
+    
+    .btn-get-started:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+      background: linear-gradient(135deg, #7C3AED 0%, #22D3EE 100%);
+    }
+    
+    @media (max-width: 1024px) {
+      .btn-get-started {
+        display: none;
+      }
+    }
+    
+    .mobile-menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      z-index: 1001;
+    }
+    
+    @media (max-width: 1024px) {
+      .mobile-menu-toggle {
+        display: flex;
+      }
+    }
+    
+    .hamburger-line {
+      width: 24px;
+      height: 2px;
+      background: #ffffff;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-menu-toggle.active .hamburger-line:nth-child(1) {
+      transform: rotate(45deg) translate(7px, 7px);
+    }
+    
+    .mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+    
+    .mobile-menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.98);
+      backdrop-filter: blur(20px);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .mobile-menu-content {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+    
+    .mobile-menu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+    }
+    
+    .mobile-logo {
+      width: 120px;
+      height: auto;
+      filter: brightness(0) invert(1);
+    }
+    
+    @media (max-width: 768px) {
+      main {
+        padding-top: 60px !important;
+      }
+    }
+    
+    .mobile-menu-close {
+      background: transparent;
+      border: none;
+      color: #ffffff;
+      cursor: pointer;
+      padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .mobile-nav {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .mobile-menu {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .mobile-nav-item {
+      position: relative;
+    }
+    
+    .mobile-nav-link {
+      color: #ffffff;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      padding: 1rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-nav-link:hover {
+      color: #A78BFA;
+      padding-left: 1rem;
+    }
+    
+    .mobile-dropdown-menu {
+      list-style: none;
+      margin: 0;
+      padding: 0.5rem 0 0 1.5rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    
+    .has-mobile-dropdown.active .mobile-dropdown-menu {
+      max-height: 300px;
+    }
+    
+    .mobile-dropdown-menu a {
+      display: block;
+      padding: 0.75rem 0;
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .mobile-dropdown-menu a:hover {
+      color: #A78BFA;
+      padding-left: 0.5rem;
+    }
+    
+    .mobile-dropdown-arrow {
+      transition: transform 0.3s ease;
+    }
+    
+    .has-mobile-dropdown.active .mobile-dropdown-arrow {
+      transform: rotate(180deg);
+    }
+    
+    .btn-get-started-mobile {
+      margin-top: 2rem;
+      background: linear-gradient(135deg, #8B5CF6 0%, #06B6D4 100%);
+      color: #ffffff;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-align: center;
+      display: block;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+    }
+    
+    .btn-get-started-mobile:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+    }
+    
+    .nav-item.active .nav-link,
+    .mobile-nav-item.active .mobile-nav-link {
+      color: #A78BFA;
+    }
+    
     /* Navigation Link Hover Effects - Enhanced Visibility */
     .nav-link {
       position: relative;
-      text-base font-bold font-geist;
       color: #1f2937;
       text-decoration: none;
       transition: all 0.3s ease;
@@ -642,53 +1092,98 @@
     
     
 
-    <!-- Navigation -->
-    <header class="bg-transparent">
-        <nav class="flex max-w-7xl lg:px-8 mr-auto ml-auto pt-6 pr-4 pb-6 pl-4 items-center justify-between">
-            <div class="flex items-center">
-                <a href="index.html">
-                    <img src="assets/smart-scale-logo.png" alt="Smart Scale" class="header-logo">
-                </a>
-            </div>
-            <button id="mobile-toggle" class="lg:hidden rounded-lg p-2 hover:bg-neutral-100 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="menu" class="lucide lucide-menu w-6 h-6"><path d="M4 12h16"></path><path d="M4 18h16"></path><path d="M4 6h16"></path></svg>
-            </button>
-            <ul id="nav-links" class="fixed inset-0 z-40 hidden flex-col gap-8 lg:static lg:flex lg:flex-row lg:bg-transparent lg:gap-8 lg:backdrop-blur-none bg-white/95 backdrop-blur-md items-center justify-center">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="services.html" class="nav-link active">Services</a></li>
-                <li><a href="about.html" class="nav-link">About</a></li>
-                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
-                <li>
-                    <button id="dark-mode-toggle" class="nav-link flex items-center gap-2" title="Toggle dark mode">
-                        <svg id="sun-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                        </svg>
-                        <svg id="moon-icon" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-                        </svg>
-                    </button>
-                </li>
-                <li class="lg:hidden">
-                    <a href="index.html#contact" class="flex items-center gap-2 rounded-full bg-gradient-to-r from-indigo-600 to-cyan-600 px-6 py-3 text-sm font-medium text-white hover:from-indigo-700 hover:to-cyan-700 transition-all duration-200 font-geist">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="message-circle" class="lucide lucide-message-circle h-4 w-4"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg>
-                        Start Project
-                    </a>
-                </li>
-            </ul>
-            <a href="index.html#contact" class="hidden lg:flex gap-2 text-sm font-medium text-white font-geist rounded-full pt-3 pr-6 pb-3 pl-6 shadow-lg items-center justify-center hover:scale-105 transition-transform duration-200" style="position: relative; width: 150px; height: 55px; border-radius: 45px; border: none; background-color: rgb(151, 95, 255); box-shadow: 0px 10px 10px rgb(210, 187, 253) inset, 0px 5px 10px rgba(5, 5, 5, 0.212), 0px -10px 10px rgb(124, 54, 255) inset; cursor: pointer;">
-                Start Project
-                <span style="content: ''; position: absolute; width: 70%; height: 2px; background-color: rgba(250, 250, 250, 0.678); filter: blur(1px); top: 7px; border-radius: 50%; left: 15%; z-index: 0;"></span>
-                <span style="content: ''; position: absolute; width: 70%; height: 2px; background-color: rgba(250, 250, 250, 0.137); filter: blur(1px); bottom: 7px; border-radius: 50%; left: 15%; z-index: 0;"></span>
-            </a>
+    <!-- Smart Scale Navigation Header -->
+    <header id="smart-scale-header" class="smart-scale-header">
+      <div class="header-container">
+        <div class="header-logo">
+          <a href="index.html">
+            <img src="assets/smart-scale-logo.png" alt="Smart Scale" class="logo-img">
+          </a>
+        </div>
+
+        <nav class="header-nav desktop-nav">
+          <ul class="nav-menu">
+            <li class="nav-item has-dropdown">
+              <a href="services.html" class="nav-link">
+                Services <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="services.html#web-design">Web Design & Development</a></li>
+                <li><a href="services.html#web-app">Web Application Development</a></li>
+                <li><a href="services.html#mobile-app">Mobile App Development</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="index.html#recent-work" class="nav-link">Portfolio</a>
+            </li>
+            <li class="nav-item">
+              <a href="about.html" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+              <a href="index.html#pricing" class="nav-link">Pricing</a>
+            </li>
+          </ul>
         </nav>
+
+        <div class="header-actions">
+          <a href="index.html#contact" class="btn-get-started">Get Started</a>
+          
+          <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="mobile-menu-overlay">
+        <div class="mobile-menu-content">
+          <div class="mobile-menu-header">
+            <img src="assets/smart-scale-logo.png" alt="Smart Scale" class="mobile-logo">
+            <button class="mobile-menu-close" aria-label="Close mobile menu">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </div>
+          <nav class="mobile-nav">
+            <ul class="mobile-menu">
+              <li class="mobile-nav-item has-mobile-dropdown">
+                <a href="services.html" class="mobile-nav-link">
+                  Services <svg class="mobile-dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+                <ul class="mobile-dropdown-menu">
+                  <li><a href="services.html#web-design">Web Design & Development</a></li>
+                  <li><a href="services.html#web-app">Web Application Development</a></li>
+                  <li><a href="services.html#mobile-app">Mobile App Development</a></li>
+                </ul>
+              </li>
+              <li class="mobile-nav-item">
+                <a href="index.html#recent-work" class="mobile-nav-link">Portfolio</a>
+              </li>
+              <li class="mobile-nav-item">
+                <a href="about.html" class="mobile-nav-link">About</a>
+              </li>
+              <li class="mobile-nav-item">
+                <a href="index.html#pricing" class="mobile-nav-link">Pricing</a>
+              </li>
+            </ul>
+            <a href="index.html#contact" class="btn-get-started-mobile">Get Started</a>
+          </nav>
+        </div>
+      </div>
     </header>
 
     <!-- Main Container -->
-    <main class="page-content mx-auto max-w-7xl px-4 pb-20 lg:px-8">
+    <main class="page-content mx-auto max-w-7xl px-4 pb-20 lg:px-8" style="padding-top: 80px;">
         <!-- Hero Section -->
         <section class="bg-gradient-to-r from-indigo-600 to-cyan-600 rounded-3xl p-12 md:p-16 text-center">
-            <h1 class="text-4xl md:text-5xl font-bold text-white font-geist mb-6">What We Do</h1>
-            <p class="text-xl text-indigo-100 font-geist max-w-3xl mx-auto">From strategy to launch, we handle every detail of bringing your website to life.</p>
+            <h1 class="text-4xl md:text-5xl font-bold text-white font-inter mb-6">What We Do</h1>
+            <p class="text-xl text-indigo-100 font-inter max-w-3xl mx-auto">From strategy to launch, we handle every detail of bringing your website to life.</p>
         </section>
 
         <!-- Core Services Section -->
@@ -699,8 +1194,8 @@
                     <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2064&q=80" alt="Custom website design mockups and wireframes" class="w-full h-auto rounded-2xl shadow-lg">
                 </div>
                 <div class="order-1 lg:order-2">
-                    <h2 class="text-3xl font-bold text-gray-900 font-geist mb-6">Custom Website Design</h2>
-                    <p class="text-lg text-gray-600 font-geist mb-6 leading-relaxed">
+                    <h2 class="text-3xl font-bold text-gray-900 font-inter mb-6">Custom Website Design</h2>
+                    <p class="text-lg text-gray-600 font-inter mb-6 leading-relaxed">
                         Your business is unique—your website should be too. We design completely custom websites tailored to your brand, your goals, and your customers. No templates. No shortcuts. Just strategic design that makes you stand out.
                     </p>
                     <div class="space-y-3 mb-6">
@@ -708,42 +1203,42 @@
                             <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-gray-700 font-geist">Custom design concepts</span>
+                            <span class="text-gray-700 font-inter">Custom design concepts</span>
                         </div>
                         <div class="flex items-center">
                             <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-gray-700 font-geist">Brand-aligned visual identity</span>
+                            <span class="text-gray-700 font-inter">Brand-aligned visual identity</span>
                         </div>
                         <div class="flex items-center">
                             <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-gray-700 font-geist">Responsive design (mobile, tablet, desktop)</span>
+                            <span class="text-gray-700 font-inter">Responsive design (mobile, tablet, desktop)</span>
                         </div>
                         <div class="flex items-center">
                             <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-gray-700 font-geist">User experience (UX) optimization</span>
+                            <span class="text-gray-700 font-inter">User experience (UX) optimization</span>
                         </div>
                         <div class="flex items-center">
                             <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-gray-700 font-geist">Conversion-focused layout</span>
+                            <span class="text-gray-700 font-inter">Conversion-focused layout</span>
                         </div>
                     </div>
-                    <p class="text-sm text-indigo-600 font-medium font-geist">Best For: Businesses launching a new website or ready for a complete redesign</p>
+                    <p class="text-sm text-indigo-600 font-medium font-inter">Best For: Businesses launching a new website or ready for a complete redesign</p>
                 </div>
             </div>
 
             <!-- Service 2: Responsive Development -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
                 <div>
-                    <h2 class="text-3xl font-bold text-gray-900 font-geist mb-6">Responsive Development</h2>
-                    <p class="text-lg text-gray-600 font-geist mb-6 leading-relaxed">
+                    <h2 class="text-3xl font-bold text-gray-900 font-inter mb-6">Responsive Development</h2>
+                    <p class="text-lg text-gray-600 font-inter mb-6 leading-relaxed">
                         Over 60% of web traffic comes from mobile devices. We build websites that look stunning and function flawlessly on every screen size, ensuring you never lose a potential customer due to a poor mobile experience.
                     </p>
                     <div class="space-y-3 mb-6">
@@ -751,34 +1246,34 @@
                             <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-gray-700 font-geist">Mobile-first development approach</span>
+                            <span class="text-gray-700 font-inter">Mobile-first development approach</span>
                         </div>
                         <div class="flex items-center">
                             <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-gray-700 font-geist">Cross-browser compatibility</span>
+                            <span class="text-gray-700 font-inter">Cross-browser compatibility</span>
                         </div>
                         <div class="flex items-center">
                             <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-gray-700 font-geist">Fast loading speeds (optimized performance)</span>
+                            <span class="text-gray-700 font-inter">Fast loading speeds (optimized performance)</span>
                         </div>
                         <div class="flex items-center">
                             <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-gray-700 font-geist">Clean, semantic code</span>
+                            <span class="text-gray-700 font-inter">Clean, semantic code</span>
                         </div>
                         <div class="flex items-center">
                             <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-gray-700 font-geist">Touch-friendly navigation</span>
+                            <span class="text-gray-700 font-inter">Touch-friendly navigation</span>
                         </div>
                     </div>
-                    <p class="text-sm text-indigo-600 font-medium font-geist">Best For: Every business—responsive design is non-negotiable in 2025</p>
+                    <p class="text-sm text-indigo-600 font-medium font-inter">Best For: Every business—responsive design is non-negotiable in 2025</p>
                 </div>
                 <div>
                     <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80" alt="Website displayed on multiple devices - laptop, tablet, and phone" class="w-full h-auto rounded-2xl shadow-lg">
@@ -791,8 +1286,8 @@
                     <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Analytics dashboard showing search rankings and performance metrics" class="w-full h-auto rounded-2xl shadow-lg">
                 </div>
                 <div class="order-1 lg:order-2">
-                    <h2 class="text-3xl font-bold text-gray-900 font-geist mb-6">SEO Optimization</h2>
-                    <p class="text-lg text-gray-600 font-geist mb-6 leading-relaxed">
+                    <h2 class="text-3xl font-bold text-gray-900 font-inter mb-6">SEO Optimization</h2>
+                    <p class="text-lg text-gray-600 font-inter mb-6 leading-relaxed">
                         A beautiful website means nothing if your customers can't find it. We build SEO best practices into every site from day one, giving you a head start in search rankings and organic visibility.
                     </p>
                     <div class="space-y-3 mb-6">
@@ -800,42 +1295,42 @@
                             <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-gray-700 font-geist">SEO-friendly site structure</span>
+                            <span class="text-gray-700 font-inter">SEO-friendly site structure</span>
                         </div>
                         <div class="flex items-center">
                             <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-gray-700 font-geist">Optimized page titles and meta descriptions</span>
+                            <span class="text-gray-700 font-inter">Optimized page titles and meta descriptions</span>
                         </div>
                         <div class="flex items-center">
                             <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-gray-700 font-geist">Fast page load speeds (Core Web Vitals)</span>
+                            <span class="text-gray-700 font-inter">Fast page load speeds (Core Web Vitals)</span>
                         </div>
                         <div class="flex items-center">
                             <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-gray-700 font-geist">Mobile optimization</span>
+                            <span class="text-gray-700 font-inter">Mobile optimization</span>
                         </div>
                         <div class="flex items-center">
                             <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-gray-700 font-geist">Schema markup and technical SEO</span>
+                            <span class="text-gray-700 font-inter">Schema markup and technical SEO</span>
                         </div>
                     </div>
-                    <p class="text-sm text-indigo-600 font-medium font-geist">Best For: Businesses that want to be found on Google and attract organic traffic</p>
+                    <p class="text-sm text-indigo-600 font-medium font-inter">Best For: Businesses that want to be found on Google and attract organic traffic</p>
                 </div>
             </div>
 
             <!-- Service 4: E-commerce Solutions -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
                 <div>
-                    <h2 class="text-3xl font-bold text-gray-900 font-geist mb-6">E-Commerce Solutions</h2>
-                    <p class="text-lg text-gray-600 font-geist mb-6 leading-relaxed">
+                    <h2 class="text-3xl font-bold text-gray-900 font-inter mb-6">E-Commerce Solutions</h2>
+                    <p class="text-lg text-gray-600 font-inter mb-6 leading-relaxed">
                         Ready to sell online? We build beautiful, user-friendly e-commerce websites that make it easy for customers to browse, buy, and check out—increasing your conversion rates and growing your revenue.
                     </p>
                     <div class="space-y-3 mb-6">
@@ -843,34 +1338,34 @@
                             <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-gray-700 font-geist">Custom online store design</span>
+                            <span class="text-gray-700 font-inter">Custom online store design</span>
                         </div>
                         <div class="flex items-center">
                             <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-gray-700 font-geist">Product catalog and management</span>
+                            <span class="text-gray-700 font-inter">Product catalog and management</span>
                         </div>
                         <div class="flex items-center">
                             <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-gray-700 font-geist">Secure payment processing</span>
+                            <span class="text-gray-700 font-inter">Secure payment processing</span>
                         </div>
                         <div class="flex items-center">
                             <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-gray-700 font-geist">Inventory management</span>
+                            <span class="text-gray-700 font-inter">Inventory management</span>
                         </div>
                         <div class="flex items-center">
                             <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-gray-700 font-geist">Shopping cart optimization</span>
+                            <span class="text-gray-700 font-inter">Shopping cart optimization</span>
                         </div>
                     </div>
-                    <p class="text-sm text-indigo-600 font-medium font-geist">Best For: Retailers, product-based businesses, and service providers selling online</p>
+                    <p class="text-sm text-indigo-600 font-medium font-inter">Best For: Retailers, product-based businesses, and service providers selling online</p>
                 </div>
                 <div>
                     <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80" alt="Online store interface with shopping cart and product catalog" class="w-full h-auto rounded-2xl shadow-lg">
@@ -883,8 +1378,8 @@
                     <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80" alt="Website maintenance and support services" class="w-full h-auto rounded-2xl shadow-lg">
                 </div>
                 <div class="order-1 lg:order-2">
-                    <h2 class="text-3xl font-bold text-gray-900 font-geist mb-6">Ongoing Support</h2>
-                    <p class="text-lg text-gray-600 font-geist mb-6 leading-relaxed">
+                    <h2 class="text-3xl font-bold text-gray-900 font-inter mb-6">Ongoing Support</h2>
+                    <p class="text-lg text-gray-600 font-inter mb-6 leading-relaxed">
                         Your website is a living part of your business. We're here after launch to handle updates, changes, security, and growth as your business evolves.
                     </p>
                     <div class="space-y-3 mb-6">
@@ -892,34 +1387,34 @@
                             <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-gray-700 font-geist">Regular updates and backups</span>
+                            <span class="text-gray-700 font-inter">Regular updates and backups</span>
                         </div>
                         <div class="flex items-center">
                             <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-gray-700 font-geist">Security monitoring</span>
+                            <span class="text-gray-700 font-inter">Security monitoring</span>
                         </div>
                         <div class="flex items-center">
                             <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-gray-700 font-geist">Content updates and changes</span>
+                            <span class="text-gray-700 font-inter">Content updates and changes</span>
                         </div>
                         <div class="flex items-center">
                             <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-gray-700 font-geist">Performance optimization</span>
+                            <span class="text-gray-700 font-inter">Performance optimization</span>
                         </div>
                         <div class="flex items-center">
                             <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-gray-700 font-geist">Technical support</span>
+                            <span class="text-gray-700 font-inter">Technical support</span>
                         </div>
                     </div>
-                    <p class="text-sm text-indigo-600 font-medium font-geist">Best For: Businesses that want peace of mind and a long-term partner</p>
+                    <p class="text-sm text-indigo-600 font-medium font-inter">Best For: Businesses that want peace of mind and a long-term partner</p>
                 </div>
             </div>
         </section>
@@ -927,8 +1422,8 @@
         <!-- Add-On Services Section -->
         <section class="mt-8 glass-card rounded-3xl p-12 md:p-16 shadow-sm hover:shadow-md transition-shadow duration-300">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold tracking-tight text-gray-900 font-geist mb-4">Additional Services</h2>
-                <p class="text-lg text-gray-600 font-geist">Enhance your website with these specialty offerings</p>
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 font-inter mb-4">Additional Services</h2>
+                <p class="text-lg text-gray-600 font-inter">Enhance your website with these specialty offerings</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -937,8 +1432,8 @@
                     <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                         <span class="text-2xl">🎨</span>
                     </div>
-                    <h3 class="text-lg font-semibold text-gray-900 font-geist mb-3">Logo & Brand Design</h3>
-                    <p class="text-gray-600 font-geist text-sm">Need a logo or visual identity? We can help establish your brand alongside your website.</p>
+                    <h3 class="text-lg font-semibold text-gray-900 font-inter mb-3">Logo & Brand Design</h3>
+                    <p class="text-gray-600 font-inter text-sm">Need a logo or visual identity? We can help establish your brand alongside your website.</p>
                 </div>
 
                 <!-- Content Writing -->
@@ -946,8 +1441,8 @@
                     <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                         <span class="text-2xl">✍️</span>
                     </div>
-                    <h3 class="text-lg font-semibold text-gray-900 font-geist mb-3">Content Writing</h3>
-                    <p class="text-gray-600 font-geist text-sm">Not sure what to say? We can write compelling copy that converts visitors into customers.</p>
+                    <h3 class="text-lg font-semibold text-gray-900 font-inter mb-3">Content Writing</h3>
+                    <p class="text-gray-600 font-inter text-sm">Not sure what to say? We can write compelling copy that converts visitors into customers.</p>
                 </div>
 
                 <!-- Analytics Setup -->
@@ -955,8 +1450,8 @@
                     <div class="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                         <span class="text-2xl">📊</span>
                     </div>
-                    <h3 class="text-lg font-semibold text-gray-900 font-geist mb-3">Analytics Setup</h3>
-                    <p class="text-gray-600 font-geist text-sm">Track what matters with Google Analytics, conversion tracking, and performance monitoring.</p>
+                    <h3 class="text-lg font-semibold text-gray-900 font-inter mb-3">Analytics Setup</h3>
+                    <p class="text-gray-600 font-inter text-sm">Track what matters with Google Analytics, conversion tracking, and performance monitoring.</p>
                 </div>
             </div>
         </section>
@@ -964,62 +1459,62 @@
         <!-- Process Overview Section -->
         <section class="mt-8 glass-card rounded-3xl p-12 md:p-16 shadow-sm hover:shadow-md transition-shadow duration-300">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold tracking-tight text-gray-900 font-geist mb-4">How We Work</h2>
-                <p class="text-lg text-gray-600 font-geist">Our proven process from concept to launch</p>
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 font-inter mb-4">How We Work</h2>
+                <p class="text-lg text-gray-600 font-inter">Our proven process from concept to launch</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Step 1 -->
                 <div class="text-center">
                     <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="text-2xl font-bold text-indigo-600 font-geist">1</span>
+                        <span class="text-2xl font-bold text-indigo-600 font-inter">1</span>
                     </div>
-                    <h3 class="text-lg font-semibold text-gray-900 font-geist mb-3">Discovery & Strategy</h3>
-                    <p class="text-sm text-gray-600 font-geist mb-2 font-medium">Week 1</p>
-                    <p class="text-gray-600 font-geist text-sm">We start by understanding your business, goals, audience, and competitors. This strategic foundation guides every design decision.</p>
+                    <h3 class="text-lg font-semibold text-gray-900 font-inter mb-3">Discovery & Strategy</h3>
+                    <p class="text-sm text-gray-600 font-inter mb-2 font-medium">Week 1</p>
+                    <p class="text-gray-600 font-inter text-sm">We start by understanding your business, goals, audience, and competitors. This strategic foundation guides every design decision.</p>
                 </div>
 
                 <!-- Step 2 -->
                 <div class="text-center">
                     <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="text-2xl font-bold text-purple-600 font-geist">2</span>
+                        <span class="text-2xl font-bold text-purple-600 font-inter">2</span>
                     </div>
-                    <h3 class="text-lg font-semibold text-gray-900 font-geist mb-3">Design & Feedback</h3>
-                    <p class="text-sm text-gray-600 font-geist mb-2 font-medium">Week 1-2</p>
-                    <p class="text-gray-600 font-geist text-sm">We create custom design concepts and work with you to refine them until they're perfect. Your feedback drives the process.</p>
+                    <h3 class="text-lg font-semibold text-gray-900 font-inter mb-3">Design & Feedback</h3>
+                    <p class="text-sm text-gray-600 font-inter mb-2 font-medium">Week 1-2</p>
+                    <p class="text-gray-600 font-inter text-sm">We create custom design concepts and work with you to refine them until they're perfect. Your feedback drives the process.</p>
                 </div>
 
                 <!-- Step 3 -->
                 <div class="text-center">
                     <div class="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="text-2xl font-bold text-emerald-600 font-geist">3</span>
+                        <span class="text-2xl font-bold text-emerald-600 font-inter">3</span>
                     </div>
-                    <h3 class="text-lg font-semibold text-gray-900 font-geist mb-3">Development & Testing</h3>
-                    <p class="text-sm text-gray-600 font-geist mb-2 font-medium">Week 2-3</p>
-                    <p class="text-gray-600 font-geist text-sm">We build your site with clean code, optimize for performance, and test on all devices and browsers.</p>
+                    <h3 class="text-lg font-semibold text-gray-900 font-inter mb-3">Development & Testing</h3>
+                    <p class="text-sm text-gray-600 font-inter mb-2 font-medium">Week 2-3</p>
+                    <p class="text-gray-600 font-inter text-sm">We build your site with clean code, optimize for performance, and test on all devices and browsers.</p>
                 </div>
 
                 <!-- Step 4 -->
                 <div class="text-center">
                     <div class="w-16 h-16 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="text-2xl font-bold text-cyan-600 font-geist">4</span>
+                        <span class="text-2xl font-bold text-cyan-600 font-inter">4</span>
                     </div>
-                    <h3 class="text-lg font-semibold text-gray-900 font-geist mb-3">Launch & Support</h3>
-                    <p class="text-sm text-gray-600 font-geist mb-2 font-medium">Week 3-4</p>
-                    <p class="text-gray-600 font-geist text-sm">We handle all technical details of going live, provide training, and stay available for ongoing support.</p>
+                    <h3 class="text-lg font-semibold text-gray-900 font-inter mb-3">Launch & Support</h3>
+                    <p class="text-sm text-gray-600 font-inter mb-2 font-medium">Week 3-4</p>
+                    <p class="text-gray-600 font-inter text-sm">We handle all technical details of going live, provide training, and stay available for ongoing support.</p>
                 </div>
             </div>
         </section>
 
         <!-- CTA Section -->
         <section class="mt-8 bg-gradient-to-r from-indigo-600 to-cyan-600 rounded-3xl p-12 md:p-16 text-center">
-            <h2 class="text-3xl font-bold text-white font-geist mb-4">Ready to Get Started?</h2>
-            <p class="text-xl text-indigo-100 font-geist mb-8">Let's build a website that works as hard as you do.</p>
+            <h2 class="text-3xl font-bold text-white font-inter mb-4">Ready to Get Started?</h2>
+            <p class="text-xl text-indigo-100 font-inter mb-8">Let's build a website that works as hard as you do.</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="index.html#contact" class="inline-flex items-center justify-center px-8 py-4 bg-white text-indigo-600 font-medium rounded-lg hover:bg-gray-50 transition-all duration-200 hover:scale-105 font-geist">
+                <a href="index.html#contact" class="inline-flex items-center justify-center px-8 py-4 bg-white text-indigo-600 font-medium rounded-lg hover:bg-gray-50 transition-all duration-200 hover:scale-105 font-inter">
                     Start Your Project
                 </a>
-                <a href="index.html#recent-work" class="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-medium rounded-lg hover:bg-white hover:text-indigo-600 transition-all duration-200 font-geist">
+                <a href="index.html#recent-work" class="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-medium rounded-lg hover:bg-white hover:text-indigo-600 transition-all duration-200 font-inter">
                     See Our Work
                 </a>
             </div>
@@ -1028,7 +1523,7 @@
 
     <!-- Footer -->
     <footer class="bg-white border-t border-neutral-100 mt-12 py-12 px-6 md:px-12 rounded-3xl hover:shadow-md transition-shadow duration-300">
-        <div class="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-4 gap-8 font-geist text-neutral-700">
+        <div class="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-4 gap-8 font-inter text-neutral-700">
             <div>
                 <div class="mb-4">
                     <img src="assets/smart-scale-logo-black.png" alt="Smart Scale" class="footer-logo" id="footer-logo">
@@ -1037,7 +1532,7 @@
                 <p class="mt-4 text-xs text-neutral-400 font-light">© 2024 Smart Scale. All rights reserved.</p>
             </div>
             <div>
-                <h5 class="text-sm font-semibold mb-3 tracking-tight font-geist">Services</h5>
+                <h5 class="text-sm font-semibold mb-3 tracking-tight font-inter">Services</h5>
                 <ul class="space-y-2 text-sm font-light">
                     <li><a href="services.html" class="hover:text-indigo-600 transition-colors duration-200">Custom Design</a></li>
                     <li><a href="services.html" class="hover:text-indigo-600 transition-colors duration-200">Responsive Development</a></li>
@@ -1046,7 +1541,7 @@
                 </ul>
             </div>
             <div>
-                <h5 class="text-sm font-semibold mb-3 tracking-tight font-geist">Company</h5>
+                <h5 class="text-sm font-semibold mb-3 tracking-tight font-inter">Company</h5>
                 <ul class="space-y-2 text-sm font-light">
                     <li><a href="about.html" class="hover:text-indigo-600 transition-colors duration-200">About</a></li>
                     <li><a href="index.html#recent-work" class="hover:text-indigo-600 transition-colors duration-200">Portfolio</a></li>
@@ -1055,7 +1550,7 @@
                 </ul>
             </div>
             <div>
-                <h5 class="text-sm font-semibold mb-3 tracking-tight font-geist">Get In Touch</h5>
+                <h5 class="text-sm font-semibold mb-3 tracking-tight font-inter">Get In Touch</h5>
                 <div class="space-y-2 text-sm font-light">
                     <p><a href="mailto:sayhi@sent.com" class="hover:text-indigo-600 transition-colors duration-200">sayhi@sent.com</a></p>
                     <p>Jay: <a href="tel:+18324070773" class="hover:text-indigo-600 transition-colors duration-200">(832) 407-0773</a></p>
@@ -1504,6 +1999,105 @@
         // Initialize Particle System
         const particleSystem = new ParticleSystem();
         particleSystem.init();
+    </script>
+
+    <!-- Smart Scale Navigation JavaScript -->
+    <script>
+        (function() {
+            const header = document.getElementById('smart-scale-header');
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            const mobileOverlay = document.querySelector('.mobile-menu-overlay');
+            const mobileClose = document.querySelector('.mobile-menu-close');
+            const mobileDropdowns = document.querySelectorAll('.has-mobile-dropdown');
+            const dropdowns = document.querySelectorAll('.has-dropdown');
+            
+            if (!header) return;
+            
+            window.addEventListener('scroll', function() {
+                const currentScroll = window.pageYOffset;
+                if (currentScroll > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            if (mobileToggle) {
+                mobileToggle.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    mobileOverlay.classList.toggle('active');
+                    document.body.style.overflow = mobileOverlay.classList.contains('active') ? 'hidden' : '';
+                });
+            }
+            
+            if (mobileClose) {
+                mobileClose.addEventListener('click', function() {
+                    mobileOverlay.classList.remove('active');
+                    mobileToggle.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
+            
+            if (mobileOverlay) {
+                mobileOverlay.addEventListener('click', function(e) {
+                    if (e.target === mobileOverlay) {
+                        mobileOverlay.classList.remove('active');
+                        mobileToggle.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+            
+            mobileDropdowns.forEach(function(item) {
+                const link = item.querySelector('.mobile-nav-link');
+                if (link) {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const isActive = item.classList.contains('active');
+                        mobileDropdowns.forEach(function(otherItem) {
+                            if (otherItem !== item) {
+                                otherItem.classList.remove('active');
+                            }
+                        });
+                        item.classList.toggle('active', !isActive);
+                    });
+                }
+            });
+            
+            document.addEventListener('click', function(e) {
+                dropdowns.forEach(function(dropdown) {
+                    if (!dropdown.contains(e.target)) {
+                        const menu = dropdown.querySelector('.dropdown-menu');
+                        if (menu) {
+                            menu.style.opacity = '0';
+                            menu.style.visibility = 'hidden';
+                        }
+                    }
+                });
+            });
+            
+            function setActivePage() {
+                const currentPath = window.location.pathname;
+                document.querySelectorAll('.nav-item, .mobile-nav-item').forEach(function(item) {
+                    item.classList.remove('active');
+                });
+                
+                if (currentPath.includes('about.html')) {
+                    document.querySelectorAll('a[href*="about.html"]').forEach(function(link) {
+                        link.closest('.nav-item, .mobile-nav-item')?.classList.add('active');
+                    });
+                } else if (currentPath.includes('services.html')) {
+                    document.querySelectorAll('a[href*="services.html"]').forEach(function(link) {
+                        if (!link.closest('.dropdown-menu, .mobile-dropdown-menu')) {
+                            link.closest('.nav-item, .mobile-nav-item')?.classList.add('active');
+                        }
+                    });
+                }
+            }
+            
+            setActivePage();
+            window.addEventListener('hashchange', setActivePage);
+        })();
     </script>
 </body>
 </html>
