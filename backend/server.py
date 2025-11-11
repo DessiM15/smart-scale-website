@@ -80,7 +80,7 @@ def init_database():
         password_hash = hashlib.sha256(ADMIN_PASSWORD.encode()).hexdigest()
         cursor.execute('INSERT INTO admin_users (username, password_hash) VALUES (?, ?)', 
                       (ADMIN_USERNAME, password_hash))
-        print(f"✅ Default admin user created: {ADMIN_USERNAME}")
+        print(f"[INFO] Default admin user created: {ADMIN_USERNAME}")
     
     # Check if projects exist
     cursor.execute('SELECT COUNT(*) FROM projects')
@@ -119,11 +119,11 @@ def init_database():
                 project['image_alt'], project['display_order']
             ))
         
-        print("✅ Sample projects inserted")
+        print("[INFO] Sample projects inserted")
     
     conn.commit()
     conn.close()
-    print("✅ Database initialized successfully")
+    print("[INFO] Database initialized successfully")
 
 def verify_token(token):
     """Simple token verification (in production, use proper JWT)"""
@@ -396,12 +396,12 @@ def admin_dashboard():
     return send_from_directory('..', 'admin/index.html')
 
 if __name__ == '__main__':
-    print("🚀 Starting Smart Scale Backend...")
+    print("[START] Smart Scale Backend")
     init_database()
-    print("🌟 Smart Scale Backend running on http://localhost:3001")
-    print("📊 Health check: http://localhost:3001/api/health")
-    print("🔐 Admin login: http://localhost:3001/admin")
-    print("📁 Upload directory: uploads/")
+    print("[INFO] Smart Scale Backend running on http://localhost:3001")
+    print("[INFO] Health check: http://localhost:3001/api/health")
+    print("[INFO] Admin login: http://localhost:3001/admin")
+    print("[INFO] Upload directory: uploads/")
     app.run(host='0.0.0.0', port=3001, debug=True)
 
 

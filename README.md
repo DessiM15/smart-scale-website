@@ -2,7 +2,7 @@
 
 A complete backend admin system for managing portfolio projects with a modern, responsive frontend.
 
-## 🚀 Features
+## Features
 
 ### Backend Admin System
 - **Secure Authentication** - JWT-based admin login
@@ -18,7 +18,7 @@ A complete backend admin system for managing portfolio projects with a modern, r
 - **Loading States** - Professional loading and error handling
 - **Real-time Updates** - Changes appear immediately on website
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 Project 1/
@@ -41,7 +41,7 @@ Project 1/
 └── README.md              # This file
 ```
 
-## 🛠️ Setup Instructions
+## Setup Instructions
 
 ### 1. Install Backend Dependencies
 
@@ -69,7 +69,7 @@ http://localhost:3001/admin
 - Username: `admin`
 - Password: `smartscale2024`
 
-⚠️ **Important:** Change these credentials in production!
+**Important:** Change these credentials in production!
 
 ### 4. View Your Website
 
@@ -80,7 +80,7 @@ http://localhost:3000/index.html
 
 The portfolio section will now load projects dynamically from the API.
 
-## 🔧 Configuration
+## Configuration
 
 ### Backend Configuration
 
@@ -112,7 +112,7 @@ module.exports = {
 - `PUT /api/projects/:id` - Update project
 - `DELETE /api/projects/:id` - Delete project
 
-## 📊 Database Schema
+## Database Schema
 
 ### Projects Table
 ```sql
@@ -143,7 +143,7 @@ CREATE TABLE admin_users (
 );
 ```
 
-## 🎨 Admin Dashboard Features
+## Admin Dashboard Features
 
 ### Project Management
 - **Add Projects** - Upload images, set details, configure display order
@@ -165,7 +165,7 @@ CREATE TABLE admin_users (
 - **File Type Checking** - Only images allowed
 - **CORS Protection** - Configured for your domain
 
-## 🔄 Adding New Projects
+## Adding New Projects
 
 1. **Login to Admin Dashboard**
    - Go to `http://localhost:3001/admin`
@@ -181,7 +181,7 @@ CREATE TABLE admin_users (
    - Project appears immediately on your website
    - No need to edit HTML files
 
-## 🚀 Deployment
+## Deployment
 
 ### Production Setup
 
@@ -221,7 +221,7 @@ Update the API URL in your frontend:
 const API_BASE_URL = 'https://yourdomain.com/api';
 ```
 
-## 🛡️ Security Best Practices
+## Security Best Practices
 
 1. **Change Default Passwords** - Never use default credentials in production
 2. **Use HTTPS** - Always use SSL certificates in production
@@ -229,14 +229,14 @@ const API_BASE_URL = 'https://yourdomain.com/api';
 4. **Monitor Logs** - Keep an eye on server logs
 5. **Update Dependencies** - Keep packages up to date
 
-## 📱 Mobile Responsive
+## Mobile Responsive
 
 The admin dashboard is fully responsive and works on:
 - Desktop computers
 - Tablets
 - Mobile phones
 
-## 🎯 Future Enhancements
+## Future Enhancements
 
 - [ ] Drag & drop project reordering
 - [ ] Bulk project operations
@@ -246,7 +246,7 @@ The admin dashboard is fully responsive and works on:
 - [ ] Project templates
 - [ ] SEO optimization tools
 
-## 🆘 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 

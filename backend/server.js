@@ -76,39 +76,39 @@ app.use('*', (req, res) => {
 // Initialize database and start server
 async function startServer() {
   try {
-    console.log('🚀 Starting Smart Scale Backend...');
+    console.log('[START] Smart Scale Backend');
     
     // Initialize database
     await initDatabase();
-    console.log('✅ Database initialized');
+    console.log('[INFO] Database initialized');
     
     // Insert sample projects
     await insertSampleProjects();
-    console.log('✅ Sample data ready');
+    console.log('[INFO] Sample data ready');
     
     // Start server
     const PORT = config.PORT;
     app.listen(PORT, () => {
-      console.log(`🌟 Smart Scale Backend running on port ${PORT}`);
-      console.log(`📊 Health check: http://localhost:${PORT}/api/health`);
-      console.log(`🔐 Admin login: http://localhost:${PORT}/admin`);
-      console.log(`📁 Upload directory: ${path.resolve(config.UPLOAD_PATH)}`);
+      console.log(`[INFO] Smart Scale Backend running on port ${PORT}`);
+      console.log(`[INFO] Health check: http://localhost:${PORT}/api/health`);
+      console.log(`[INFO] Admin login: http://localhost:${PORT}/admin`);
+      console.log(`[INFO] Upload directory: ${path.resolve(config.UPLOAD_PATH)}`);
     });
     
   } catch (error) {
-    console.error('❌ Failed to start server:', error);
+    console.error('[ERROR] Failed to start server:', error);
     process.exit(1);
   }
 }
 
 // Handle graceful shutdown
 process.on('SIGINT', () => {
-  console.log('\n🛑 Shutting down Smart Scale Backend...');
+  console.log('\n[STOP] Shutting down Smart Scale Backend...');
   process.exit(0);
 });
 
 process.on('SIGTERM', () => {
-  console.log('\n🛑 Shutting down Smart Scale Backend...');
+  console.log('\n[STOP] Shutting down Smart Scale Backend...');
   process.exit(0);
 });
 

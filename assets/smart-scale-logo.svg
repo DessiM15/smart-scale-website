@@ -1,0 +1,16 @@
+<svg width="180" height="44" viewBox="0 0 180 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient" x1="0" y1="0" x2="180" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8B5CF6"/>
+      <stop offset="1" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="176" height="40" rx="12" fill="rgba(15, 12, 40, 0.85)" stroke="url(#gradient)" stroke-width="2"/>
+  <text x="90" y="27" fill="#FFFFFF" text-anchor="middle" font-family="Playfair Display, 'Times New Roman', serif" font-size="18" font-weight="600">
+    SMART SCALE
+  </text>
+  <text x="90" y="37" fill="url(#gradient)" text-anchor="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="10" letter-spacing="0.35em">
+    STUDIO
+  </text>
+</svg>
+

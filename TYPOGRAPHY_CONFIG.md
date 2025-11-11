@@ -1,11 +1,11 @@
 # Smart Scale Typography Configuration
 
-## ✅ Typography System Complete
+## Typography System Complete
 
 ### Font Family
-- **Primary Font:** Inter (from Google Fonts)
-- **Backup Fonts:** -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif
-- **Font Weights:** 400 (regular), 600 (semi-bold), 700 (bold)
+- **Primary Font:** Zen Dots (from Google Fonts)
+- **Backup Fonts:** "Segoe UI", sans-serif
+- **Font Weights:** 400 (rendered weight; Zen Dots provides a single weight and respects semantic classes)
 
 ### Typography Scale
 
@@ -18,6 +18,8 @@
 | Body | 1rem (16px) | 400 | 1.6 | 0 |
 | Large Text | 1.125rem (18px) | 400 | 1.6 | 0 |
 | Small Text | 0.875rem (14px) | 400 | 1.6 | 0 |
+
+> **Note:** Zen Dots is available in a single weight. Semantic weight tokens remain for consistency but render with the font's default appearance.
 
 ### Mobile Responsive Sizes
 
@@ -36,19 +38,19 @@
 
 ### Files Updated
 
-1. ✅ **assets/css/auxa/auxa-typography.css** - Complete typography system
-2. ✅ **assets/css/auxa/auxa-variables.css** - Updated font variables
-3. ✅ **index.html** - Added Inter font, typography CSS, updated all font references
-4. ✅ **about.html** - Added Inter font, typography CSS, updated all font references
-5. ✅ **services.html** - Added Inter font, typography CSS, updated all font references
-6. ✅ **tech.html** - Added Inter font, typography CSS, updated all font references
+1. Complete: **assets/css/auxa/auxa-typography.css** - Complete typography system
+2. Complete: **assets/css/auxa/auxa-variables.css** - Updated font variables
+3. Complete: **index.html** - Updated to Zen Dots font and refreshed font references
+4. Complete: **about.html** - Updated to Zen Dots font and refreshed font references
+5. Complete: **services.html** - Updated to Zen Dots font and refreshed font references
+6. Complete: **tech.html** - Updated to Zen Dots font and refreshed font references
 
 ### Removed Fonts
 
-- ❌ Removed: Geist (playful font)
-- ❌ Removed: Outfit (from Auxa template)
-- ❌ Removed: Marcellus (serif font from Auxa)
-- ❌ Removed: All rounded/playful font references
+- Removed: Geist (playful font)
+- Removed: Outfit (from Auxa template)
+- Removed: Marcellus (serif font from Auxa)
+- Removed: All rounded/playful font references
 
 ### CSS Classes Available
 
@@ -77,7 +79,7 @@
 
 ```html
 <h1 class="text-h1 font-bold tracking-tight">Professional Heading</h1>
-<p class="text-body font-regular">Body text with professional Inter font.</p>
+<p class="text-body font-regular">Body text with the Zen Dots display font.</p>
 <span class="text-small font-semibold">Small professional text</span>
 ```
 
@@ -86,13 +88,13 @@
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
 ```
 
 ### CSS Variables
 
 ```css
---font-primary: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+--font-primary: 'Zen Dots', 'Segoe UI', sans-serif;
 --font-weight-regular: 400;
 --font-weight-semibold: 600;
 --font-weight-bold: 700;
@@ -100,7 +102,7 @@
 
 ---
 
-**Status:** ✅ Complete - All pages now use Inter professional font
+**Status:** Complete - All primary pages now use the Zen Dots display font
 **Last Updated:** 2025-01-XX
 
 

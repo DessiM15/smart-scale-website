@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Scale | Custom Software Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #060415;
+      --surface-dark: rgba(12, 10, 30, 0.85);
+      --surface-light: #0f0b2a;
+      --purple: #8b5cf6;
+      --purple-light: #a78bfa;
+      --cyan: #06b6d4;
+      --text-primary: #f5f6ff;
+      --text-secondary: rgba(229, 231, 235, 0.72);
+      --border-subtle: rgba(139, 92, 246, 0.25);
+      --gradient-primary: linear-gradient(135deg, rgba(124, 58, 237, 0.9), rgba(7, 89, 133, 0.9));
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Zen Dots', 'Segoe UI', sans-serif;
+      font-weight: 400;
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: linear-gradient(180deg, rgba(6, 4, 21, 0.92) 0%, rgba(6, 4, 21, 0.75) 100%);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .inner {
+      width: min(1140px, 92vw);
+      margin: 0 auto;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 0;
+      gap: 1.5rem;
+    }
+
+    .nav__brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .nav__brand img {
+      width: 132px;
+      height: auto;
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+
+    .nav__links a {
+      padding: 0.4rem 0.2rem;
+      border-radius: 999px;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav__links a:hover,
+    .nav__links a:focus-visible {
+      color: var(--purple-light);
+      transform: translateY(-2px);
+    }
+
+    .nav__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.55rem 1.35rem;
+      background: var(--gradient-primary);
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #fff;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .nav__cta:hover,
+    .nav__cta:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(124, 58, 237, 0.25);
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      padding: 0.35rem;
+      cursor: pointer;
+      color: var(--text-primary);
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6rem;
+      padding-bottom: 6rem;
+    }
+
+    section {
+      width: 100%;
+    }
+
+    .hero {
+      padding: 6rem 0 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -25% -10% auto;
+      height: 70%;
+      background: radial-gradient(circle at top, rgba(139, 92, 246, 0.35), transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero__grid {
+      display: grid;
+      gap: 3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: rgba(139, 92, 246, 0.16);
+      color: var(--purple-light);
+    }
+
+    .hero__title {
+      font-size: clamp(2.5rem, 5vw, 3.75rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin: 1rem 0;
+    }
+
+    .hero__subtitle {
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      color: var(--text-secondary);
+      max-width: 600px;
+      line-height: 1.65;
+    }
+
+    .hero__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 2.5rem 0 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.9rem 2.1rem;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      font-weight: 600;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn--primary {
+      background: var(--gradient-primary);
+      color: #fff;
+      box-shadow: 0 20px 40px rgba(124, 58, 237, 0.28);
+    }
+
+    .btn--primary:hover,
+    .btn--primary:focus-visible {
+      transform: translateY(-3px);
+      box-shadow: 0 26px 50px rgba(124, 58, 237, 0.35);
+    }
+
+    .btn--ghost {
+      background: rgba(139, 92, 246, 0.08);
+      color: var(--purple-light);
+      border-color: rgba(139, 92, 246, 0.25);
+    }
+
+    .btn--ghost:hover,
+    .btn--ghost:focus-visible {
+      border-color: rgba(139, 92, 246, 0.6);
+      transform: translateY(-3px);
+    }
+
+    .hero__trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2.5rem;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .hero__trust span {
+      padding: 0.6rem 0.9rem;
+      border-radius: 12px;
+      background: rgba(15, 11, 41, 0.7);
+      border: 1px solid rgba(139, 92, 246, 0.15);
+    }
+
+    .section {
+      padding: 0;
+    }
+
+    .section__heading {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+
+    .section__heading span {
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      font-size: 0.75rem;
+      color: rgba(167, 139, 250, 0.85);
+    }
+
+    .section__heading h2 {
+      margin: 0;
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      letter-spacing: -0.02em;
+    }
+
+    .card-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--surface-dark);
+      border: 1px solid rgba(139, 92, 246, 0.12);
+      border-radius: 20px;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(17, 12, 50, 0.35);
+      border-color: rgba(139, 92, 246, 0.3);
+    }
+
+    .card__icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 14px;
+      background: rgba(139, 92, 246, 0.12);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--purple-light);
+      font-size: 1.5rem;
+    }
+
+    .card__title {
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    .card__body {
+      margin: 0;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    .services .card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0.6rem;
+      color: var(--text-secondary);
+    }
+
+    .services .card ul li {
+      display: flex;
+      gap: 0.55rem;
+      align-items: flex-start;
+    }
+
+    .services .card ul li::before {
+      content: "•";
+      color: var(--purple-light);
+      margin-top: -0.1rem;
+    }
+
+    .services .card__footer {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .price-tag {
+      font-weight: 600;
+      color: var(--purple-light);
+    }
+
+    .link-arrow {
+      color: var(--cyan);
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .why .card {
+      background: linear-gradient(160deg, rgba(14, 10, 40, 0.9), rgba(10, 8, 32, 0.8));
+    }
+
+    .portfolio-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .portfolio-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px solid rgba(139, 92, 246, 0.14);
+      background: rgba(13, 10, 35, 0.8);
+      display: flex;
+      flex-direction: column;
+      min-height: 260px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .portfolio-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 22px 40px rgba(19, 14, 55, 0.46);
+    }
+
+    .portfolio-card__image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-bottom: 1px solid rgba(139, 92, 246, 0.12);
+    }
+
+    .portfolio-card__body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      flex: 1;
+    }
+
+    .portfolio-card__name {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .portfolio-card__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+
+    .portfolio-card__badge {
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(139, 92, 246, 0.18);
+      color: var(--purple-light);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .contact {
+      background: rgba(13, 10, 35, 0.75);
+      border: 1px solid var(--border-subtle);
+      border-radius: 24px;
+      padding: 3rem;
+      display: grid;
+      gap: 2.5rem;
+    }
+
+    .contact__grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    form {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    label {
+      font-size: 0.85rem;
+      color: rgba(209, 213, 219, 0.9);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    input,
+    select,
+    textarea {
+      background: rgba(17, 12, 45, 0.85);
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      border-radius: 12px;
+      padding: 0.85rem 1rem;
+      color: var(--text-primary);
+      font-size: 1rem;
+      font-family: inherit;
+      outline: none;
+      transition: border 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: rgba(139, 92, 246, 0.6);
+      box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.25);
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .contact-info {
+      display: grid;
+      gap: 1rem;
+      color: var(--text-secondary);
+    }
+
+    .contact-info strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .footer {
+      border-top: 1px solid rgba(139, 92, 246, 0.16);
+      background: rgba(10, 7, 26, 0.92);
+      padding: 2.5rem 0;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .footer__grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer__links {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .final-cta {
+      text-align: center;
+      padding: 3.5rem;
+      border-radius: 24px;
+      background: linear-gradient(140deg, rgba(15, 11, 41, 0.95), rgba(20, 16, 52, 0.85));
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .final-cta p {
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    @media (min-width: 700px) {
+      .hero__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: center;
+      }
+
+      .card-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .why .card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .portfolio-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .contact__grid {
+        grid-template-columns: 1.2fr 0.8fr;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .nav__links {
+        display: none;
+      }
+
+      .mobile-toggle {
+        display: inline-flex;
+      }
+
+      .hero {
+        padding-top: 4.5rem;
+      }
+
+      .hero__actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .nav__cta {
+        display: none;
+      }
+    }
+
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      background: rgba(6, 4, 21, 0.96);
+      backdrop-filter: blur(14px);
+      display: none;
+      flex-direction: column;
+      gap: 2rem;
+      padding: 1.5rem;
+      z-index: 15;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu__links {
+      display: grid;
+      gap: 1.25rem;
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="inner nav">
+      <a class="nav__brand" href="#home">
+        <img src="assets/smart-scale-logo.png" alt="Smart Scale logo">
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#recent-work">Portfolio</a>
+        <a href="about.html">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="nav__cta" href="#contact">Schedule a Call</a>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <div class="inner" style="display:flex; justify-content: space-between; align-items:center;">
+        <img src="assets/smart-scale-logo.png" alt="Smart Scale logo" style="width:132px;">
+        <button class="mobile-toggle" data-close aria-label="Close menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <div class="inner mobile-menu__links">
+        <a href="#services">Services</a>
+        <a href="#recent-work">Portfolio</a>
+        <a href="about.html">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="inner" style="display:flex;">
+        <a class="nav__cta" href="#contact" style="width:100%; justify-content:center;">Schedule a Call</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="inner hero__grid">
+        <div>
+          <span class="hero__badge">Boutique Software Studio</span>
+          <h1 class="hero__title">Custom software built by people who care</h1>
+          <p class="hero__subtitle">Husband-wife development team crafting websites, web apps, and mobile apps for growing businesses. Based in Katy, Texas—always within reach, always personal.</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#contact">Start your project</a>
+            <a class="btn btn--ghost" href="#recent-work">See our work</a>
+          </div>
+          <div class="hero__trust">
+            <span>5+ projects delivered</span>
+            <span>Owner-led communication</span>
+            <span>AI-enhanced quality control</span>
+          </div>
+        </div>
+        <div class="card" style="background: rgba(13, 10, 35, 0.72);">
+          <div class="card__icon">Idea</div>
+          <h3 class="card__title">Your success, our focus</h3>
+          <p class="card__body">We translate business goals into clean, reliable products your customers love. Strategy, design, development & maintenance—all handled by the two people whose names are on the company.</p>
+          <div class="card__body" style="color: var(--purple-light); font-weight:600;">Your success with our unmatched experience</div>
+          <p class="card__body">We specialize in modern stacks (Next.js, Node.js, React Native) and pair them with practical project management, crystal-clear communication, and proactive support.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="inner">
+        <div class="section__heading">
+          <span>What we build</span>
+          <h2>Software that solves real problems</h2>
+          <p style="color: var(--text-secondary); max-width:640px; margin:0 auto;">From marketing sites to custom platforms, everything we build is intentional, scalable, and designed to move your business forward.</p>
+        </div>
+        <div class="card-grid services">
+          <article class="card">
+            <div class="card__icon">Web</div>
+            <h3 class="card__title">Web Design &amp; Development</h3>
+            <p class="card__body">Custom websites that convert visitors into customers—never templates, always thoughtful experiences.</p>
+            <ul>
+              <li>Brand-specific UI systems</li>
+              <li>SEO-ready structure &amp; performance</li>
+              <li>CMS setup &amp; content strategy</li>
+              <li>E-commerce &amp; lead funnels</li>
+              <li>Analytics &amp; launch support</li>
+            </ul>
+            <div class="services card__footer">
+              <span class="price-tag">Starting at $1,500</span>
+              <a class="link-arrow" href="services/web-design.html">Learn more →</a>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card__icon">Build</div>
+            <h3 class="card__title">Web Application Development</h3>
+            <p class="card__body">Dashboards, portals, and SaaS products—custom functionality tailored to how your business actually works.</p>
+            <ul>
+              <li>Secure, scalable architecture</li>
+              <li>Custom dashboards &amp; automation</li>
+              <li>API &amp; 3rd-party integrations</li>
+              <li>Database design &amp; maintenance</li>
+              <li>Long-term feature roadmap support</li>
+            </ul>
+            <div class="services card__footer">
+              <span class="price-tag">Starting at $2,200</span>
+              <a class="link-arrow" href="services/web-apps.html">Learn more →</a>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card__icon">Mobile</div>
+            <h3 class="card__title">Mobile App Development</h3>
+            <p class="card__body">Cross-platform experiences built with React Native, delivered to both app stores without twice the work.</p>
+            <ul>
+              <li>iOS &amp; Android from a single codebase</li>
+              <li>App Store / Play Store submission</li>
+              <li>Push notifications &amp; real-time data</li>
+              <li>Maintenance &amp; feature releases</li>
+              <li>Product strategy &amp; analytics</li>
+            </ul>
+            <div class="services card__footer">
+              <span class="price-tag">Starting at $2,500</span>
+              <a class="link-arrow" href="services.html#mobile-app">Learn more →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section why">
+      <div class="inner">
+        <div class="section__heading">
+          <span>Why smart scale</span>
+          <h2>We’re the team you call when details matter</h2>
+        </div>
+        <div class="card-grid">
+          <article class="card">
+            <h3 class="card__title">Direct owner communication</h3>
+            <p class="card__body">Work directly with Jay &amp; Dessiah—the developers actually shipping your project. No layers, no handoffs, just fast answers and momentum.</p>
+          </article>
+          <article class="card">
+            <h3 class="card__title">Modern development process</h3>
+            <p class="card__body">We blend AI-assisted QA, code reviews, and automation with human craftsmanship to deliver reliable builds on predictable timelines.</p>
+          </article>
+          <article class="card">
+            <h3 class="card__title">Texas-based partnership</h3>
+            <p class="card__body">Located in Katy, TX and serving clients nationwide. We’re in your time zone, available for real conversations, and invested in lasting relationships.</p>
+          </article>
+          <article class="card">
+            <h3 class="card__title">Clear process &amp; pricing</h3>
+            <p class="card__body">Every engagement starts with a scoped plan, transparent budget, and agreed timeline. You’ll always know what’s happening and what’s next.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="recent-work">
+      <div class="inner">
+        <div class="section__heading">
+          <span>Recent work</span>
+          <h2>Real projects. Real results.</h2>
+          <p style="color: var(--text-secondary); max-width:640px; margin:0 auto;">A snapshot of the brands we support. Want to see more? Reach out and we’ll curate examples specific to your industry.</p>
+        </div>
+        <div class="portfolio-grid" id="portfolio-grid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="inner contact">
+        <div class="contact__grid">
+          <form action="mailto:sayhi@sent.com" method="post">
+            <h2 style="margin:0; font-size:1.6rem;">Let’s build something together</h2>
+            <p style="color: var(--text-secondary); margin:0;">Tell us about your product or idea and we’ll follow up within one business day.</p>
+            <div class="form-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+              <div class="form-group">
+                <label for="name">Your name *</label>
+                <input id="name" name="name" required>
+              </div>
+              <div class="form-group">
+                <label for="company">Company *</label>
+                <input id="company" name="company" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input id="email" name="email" type="email" required>
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" type="tel">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="project-type">Project type *</label>
+              <select id="project-type" name="project-type" required>
+                <option value="">Choose one</option>
+                <option value="new-website">New website</option>
+                <option value="web-app">Custom web app</option>
+                <option value="mobile-app">Mobile app</option>
+                <option value="branding">Branding &amp; website</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Tell us about the project *</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="budget">Estimated budget</label>
+              <select id="budget" name="budget">
+                <option value="">Select a range</option>
+                <option value="2000-5000">$2,000 – $5,000</option>
+                <option value="5000-10000">$5,000 – $10,000</option>
+                <option value="10000+">$10,000+</option>
+                <option value="not-sure">Still figuring it out</option>
+              </select>
+            </div>
+            <button class="btn btn--primary" type="submit">Send my project details</button>
+          </form>
+          <div class="contact-info">
+            <h3 style="margin:0; font-size:1.2rem;">Prefer to talk first?</h3>
+            <p>We respond to all inquiries within 24 hours. Shoot us a message or call:</p>
+            <div>
+              <strong>Jay Maldonado</strong><br>
+              <a href="tel:+18324070773">(832) 407-0773</a>
+            </div>
+            <div>
+              <strong>Dessiah Maldonado</strong><br>
+              <a href="tel:+18327905001">(832) 790-5001</a>
+            </div>
+            <p>Based in Katy, Texas • Serving clients nationwide</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="inner final-cta">
+      <h2 style="margin:0; font-size:2rem;">Ready to get started?</h2>
+      <p>We’ll map out your goals, recommend the best path, and give you a transparent quote—no pressure, no fluff.</p>
+      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+        <a class="btn btn--primary" href="#contact">Schedule a Consultation</a>
+        <a class="btn btn--ghost" href="#services">Explore Services</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="inner footer__grid">
+      <span>© 2024 Smart Scale. All rights reserved.</span>
+      <div class="footer__links">
+        <a href="#services">Services</a>
+        <a href="#recent-work">Portfolio</a>
+        <a href="tech.html">Tech Stack</a>
+        <a href="about.html">About</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const mobileMenu = document.getElementById('mobile-menu');
+    const openBtn = document.querySelector('.mobile-toggle');
+    const closeBtn = document.querySelector('.mobile-toggle[data-close]');
+
+    function toggleMenu(explicit) {
+      const isOpen = explicit !== undefined ? explicit : !mobileMenu.classList.contains('open');
+      mobileMenu.classList.toggle('open', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    }
+
+    if (openBtn) openBtn.addEventListener('click', () => toggleMenu(true));
+    if (closeBtn) closeBtn.addEventListener('click', () => toggleMenu(false));
+    mobileMenu?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+
+    const portfolioProjects = [
+      {
+        id: 1,
+        name: "Arbor Cove Funding",
+        url: "https://arborcove-capital-connect.lovable.app",
+        industry: "Financial Services",
+        serviceType: "Website Design",
+        shortDescription: "Modern financial services experience with lead capture and trust signals",
+        technologies: "Next.js, Lovable",
+        imageUrl: "assets/arbor-cove-screenshot.png"
+      },
+      {
+        id: 2,
+        name: "Law Office of Sylvester R. Jaime",
+        url: "https://sylvester-jaime-website.lovable.app",
+        industry: "Legal Services",
+        serviceType: "Website Design",
+        shortDescription: "Full-service law firm website with client education and intake",
+        technologies: "Next.js, Lovable",
+        imageUrl: "assets/sylvester-jaime-screenshot.png"
+      },
+      {
+        id: 3,
+        name: "Angels Churros N Chocolate",
+        url: "https://angels-churros-website.vercel.app",
+        industry: "Restaurant",
+        serviceType: "Website Design",
+        shortDescription: "Vibrant menu experience with online ordering integrations",
+        technologies: "Next.js, Vercel",
+        imageUrl: ""
+      },
+      {
+        id: 4,
+        name: "Mex Taco House",
+        url: "https://mex-taco-house-website.vercel.app",
+        industry: "Restaurant",
+        serviceType: "Website Design",
+        shortDescription: "Bold restaurant site featuring menus, locations, and online ordering",
+        technologies: "Next.js, Vercel",
+        imageUrl: ""
+      }
+    ];
+
+    function renderPortfolio() {
+      const grid = document.getElementById('portfolio-grid');
+      if (!grid) return;
+      grid.innerHTML = '';
+
+      portfolioProjects.forEach(project => {
+        const card = document.createElement('article');
+        card.className = 'portfolio-card';
+        card.innerHTML = `
+          ${project.imageUrl ? `<img class="portfolio-card__image" src="${project.imageUrl}" alt="${project.name}">` : ''}
+          <div class="portfolio-card__body">
+            <div class="portfolio-card__name">${project.name}</div>
+            <div class="portfolio-card__meta">
+              <span>${project.industry}</span>
+              <span class="portfolio-card__badge">${project.serviceType}</span>
+            </div>
+            <p class="card__body">${project.shortDescription}</p>
+            <a class="link-arrow" href="${project.url}" target="_blank" rel="noopener">View project →</a>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    renderPortfolio();
+  </script>
+</body>
+</html>
+

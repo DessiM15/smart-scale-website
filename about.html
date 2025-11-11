@@ -1,1998 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Smart Scale | Web Design Studio</title>
-    <meta name="description" content="Meet Jay and Dessiah Maldonado, founders of Smart Scale. A husband-wife team creating custom websites for businesses in Katy, Texas.">
-    <!-- Inter Font from Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Typography System -->
-    <link rel="stylesheet" href="assets/css/auxa/auxa-typography.css">
-    <!-- CSS Variables -->
-    <link rel="stylesheet" href="assets/css/auxa/auxa-variables.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-    body { 
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-    }
-    .font-inter { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important; }
-    
-    /* Dark Mode Styles */
-    body.dark-mode {
-      background-color: #0a0a0a;
-    }
-    
-    body.dark-mode .bg-white {
-      background-color: #1a1a1a !important;
-      color: #f5f5f5;
-    }
-    
-    body.dark-mode .text-gray-600 {
-      color: #d1d1d1 !important;
-    }
-    
-    body.dark-mode .text-gray-700 {
-      color: #e8e8e8 !important;
-    }
-    
-    body.dark-mode .text-gray-800 {
-      color: #f5f5f5 !important;
-    }
-    
-    body.dark-mode .text-gray-900,
-    body.dark-mode .text-black {
-      color: #ffffff !important;
-    }
-    
-    /* Keep name badges black even in dark mode - more specific selector */
-    body.dark-mode p.name-badge,
-    body.dark-mode .name-badge {
-      color: #000000 !important;
-    }
-    
-    body.dark-mode .border-gray-200,
-    body.dark-mode .border-neutral-200 {
-      border-color: #404040 !important;
-    }
-    
-    body.dark-mode input,
-    body.dark-mode textarea,
-    body.dark-mode select {
-      background-color: #262626 !important;
-      color: #f5f5f5 !important;
-      border-color: #505050 !important;
-    }
-    
-    body.dark-mode input::placeholder,
-    body.dark-mode textarea::placeholder,
-    body.dark-mode select::placeholder {
-      color: #a0a0a0 !important;
-    }
-    
-    body.dark-mode input:focus,
-    body.dark-mode textarea:focus,
-    body.dark-mode select:focus {
-      border-color: #8b5cf6 !important;
-      background-color: #2d2d2d !important;
-    }
-    
-    /* Enhanced text visibility for specific elements */
-    body.dark-mode p,
-    body.dark-mode li,
-    body.dark-mode span {
-      color: #e0e0e0 !important;
-    }
-    
-    body.dark-mode h1,
-    body.dark-mode h2,
-    body.dark-mode h3,
-    body.dark-mode h4,
-    body.dark-mode h5,
-    body.dark-mode h6 {
-      color: #ffffff !important;
-    }
-    
-    body.dark-mode a {
-      color: #a5b4fc !important;
-    }
-    
-    body.dark-mode a:hover {
-      color: #c7d2fe !important;
-    }
-    
-    /* Navigation in dark mode */
-    body.dark-mode nav a {
-      color: #f5f5f5 !important;
-    }
-    
-    body.dark-mode nav a:hover {
-      color: #a5b4fc !important;
-    }
-    
-    /* Button text visibility */
-    body.dark-mode button {
-      color: inherit;
-    }
-    
-    /* Labels and small text */
-    body.dark-mode label,
-    body.dark-mode .text-sm {
-      color: #d4d4d4 !important;
-    }
-    
-    /* Footer text */
-    body.dark-mode footer {
-      color: #e0e0e0;
-    }
-    
-    body.dark-mode footer h3,
-    body.dark-mode footer h4 {
-      color: #ffffff !important;
-    }
-    
-    /* Dark mode gradient adjustment */
-    body.dark-mode .animated-gradient {
-      background: linear-gradient(-45deg, #1e1b4b, #0e7490, #1e1b4b, #831843);
-      background-size: 400% 400%;
-    }
-    
-    /* Enhanced card visibility in dark mode */
-    body.dark-mode .bg-white.rounded-3xl,
-    body.dark-mode .bg-white.rounded-2xl,
-    body.dark-mode .bg-white.rounded-xl {
-      background-color: #1f1f1f !important;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
-    }
-    
-    /* Stats and numbers visibility */
-    body.dark-mode .text-4xl,
-    body.dark-mode .text-5xl,
-    body.dark-mode .text-6xl {
-      color: #ffffff !important;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    }
-    
-    /* Badge/tag visibility */
-    body.dark-mode .bg-indigo-100,
-    body.dark-mode .bg-purple-100,
-    body.dark-mode .bg-cyan-100 {
-      background-color: #312e81 !important;
-      color: #c7d2fe !important;
-    }
-    
-    /* Animated Gradient Background */
-    .animated-gradient {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background: linear-gradient(-45deg, #6366f1, #06b6d4, #4c1d95, #ec4899);
-      background-size: 400% 400%;
-      animation: gradientShift 7s ease infinite;
-      transition: background-position 0.3s ease-out;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Smart Scale</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #060415;
+      --surface-dark: rgba(12, 10, 30, 0.85);
+      --surface-alt: rgba(15, 11, 41, 0.8);
+      --purple: #8b5cf6;
+      --purple-light: #a78bfa;
+      --text-primary: #f5f6ff;
+      --text-secondary: rgba(229, 231, 235, 0.72);
+      --border-subtle: rgba(139, 92, 246, 0.2);
+      --gradient-primary: linear-gradient(135deg, rgba(124, 58, 237, 0.95), rgba(7, 89, 133, 0.95));
     }
 
-    @keyframes gradientShift {
-      0% {
-        background-position: 0% 50%;
-      }
-      25% {
-        background-position: 100% 50%;
-      }
-      50% {
-        background-position: 100% 100%;
-      }
-      75% {
-        background-position: 0% 100%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family:'Zen Dots', 'Segoe UI', sans-serif; font-weight:400; background:var(--bg-dark); color:var(--text-primary); display:flex; flex-direction:column; min-height:100vh; }
+    a { color:inherit; text-decoration:none; }
+
+    header { position:relative; z-index:20; background:none; border:none; backdrop-filter:none; box-shadow:none; }
+    .inner { width:min(1040px, 92vw); margin:0 auto; }
+    .nav { display:flex; align-items:center; justify-content:space-between; gap:1.5rem; padding:1.25rem 0; }
+    .nav__brand img { width:128px; }
+    .nav__links { display:flex; gap:1.5rem; color:var(--text-secondary); font-size:0.95rem; }
+    .nav__links a { position:relative; padding-bottom:0.2rem; }
+    .nav__links a::after { content:""; position:absolute; left:0; bottom:0; height:2px; width:0; background:var(--purple); transition:width 0.2s; }
+    .nav__links a:hover::after, .nav__links a:focus-visible::after, .nav__links a.active::after { width:100%; }
+    .nav__cta { display:inline-flex; align-items:center; gap:0.4rem; padding:0.55rem 1.35rem; border-radius:999px; background:var(--gradient-primary); color:#fff; font-weight:600; font-size:0.9rem; }
+    .mobile-toggle { display:none; background:none; border:none; color:var(--text-primary); cursor:pointer; }
+
+    main { flex:1; display:flex; flex-direction:column; gap:5rem; padding-bottom:5rem; }
+    .hero { padding:6rem 0 3rem; margin-top:-120px; position:relative; overflow:hidden; }
+    .hero::before { content:""; position:absolute; top:-60vh; left:-20%; right:-20%; height:140vh; background:radial-gradient(circle at top, rgba(139,92,246,0.3), transparent 70%); pointer-events:none; }
+    .hero__inner { position:relative; z-index:1; display:grid; gap:2.5rem; }
+    .hero__badge { display:inline-flex; letter-spacing:0.12em; text-transform:uppercase; font-size:0.75rem; padding:0.35rem 0.9rem; border-radius:999px; background: rgba(139,92,246,0.18); color:var(--purple-light); }
+    .hero__title { font-size:clamp(2.4rem,4vw,3.3rem); margin:0.75rem 0; letter-spacing:-0.025em; }
+    .hero__copy { color:var(--text-secondary); line-height:1.7; max-width:660px; }
+
+    .split { display:grid; gap:2rem; }
+    .card { background:var(--surface-dark); border-radius:22px; border:1px solid rgba(139,92,246,0.14); padding:2rem; display:grid; gap:1rem; }
+    .card h3 { margin:0; font-size:1.25rem; }
+    .card p { margin:0; color:var(--text-secondary); line-height:1.65; }
+
+    .list { display:grid; gap:1.5rem; }
+    .list-item { background:var(--surface-alt); border-radius:20px; border:1px solid rgba(139,92,246,0.12); padding:1.6rem; display:grid; gap:0.5rem; }
+    .list-item strong { font-size:1.1rem; }
+
+    .timeline { display:grid; gap:1.25rem; }
+    .timeline-item { border-left:3px solid rgba(139,92,246,0.35); padding-left:1.25rem; display:grid; gap:0.4rem; }
+    .timeline-item span { color:var(--purple-light); font-weight:600; font-size:0.85rem; letter-spacing:0.08em; text-transform:uppercase; }
+
+    .cta-banner { margin-top:3.5rem; padding:3rem; border-radius:24px; background:linear-gradient(140deg, rgba(16,12,48,0.92), rgba(12,10,40,0.85)); border:1px solid rgba(139,92,246,0.2); display:grid; gap:1.5rem; text-align:center; }
+
+    footer { border-top:1px solid rgba(139,92,246,0.16); background:rgba(10,7,26,0.92); padding:2.5rem 0; color:var(--text-secondary); font-size:0.9rem; }
+    .footer__grid { display:flex; gap:1.5rem; flex-wrap:wrap; justify-content:space-between; align-items:center; }
+
+    @media (min-width: 720px) {
+      .hero__inner { grid-template-columns: repeat(2, minmax(0,1fr)); align-items:center; }
+      .split.two { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .split.three { grid-template-columns: repeat(3, minmax(0,1fr)); }
     }
 
-    /* Add subtle overlay for better text readability */
-    .gradient-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(0.5px);
+    @media (max-width: 900px) {
+      .nav__links, .nav__cta { display:none; }
+      .mobile-toggle { display:inline-flex; }
     }
 
-    
-    
-    /* Page Loader */
-    .page-loader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 10000;
-      transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
-      opacity: 1;
-      visibility: visible;
-    }
-    
-    .page-loader.hidden {
-      opacity: 0 !important;
-      visibility: hidden !important;
-      pointer-events: none;
-    }
-    
-    .page-loader[style*="display: none"] {
-      display: none !important;
-    }
-    
-    .loader-content {
-      text-align: center;
-      color: white;
-    }
-    
-    .loader-logo {
-      margin-bottom: 2rem;
-    }
-    
-    .loader-logo-img {
-      width: 400px;
-      height: 400px;
-      object-fit: contain;
-      filter: brightness(0) invert(1);
-      animation: loaderLogoFloat 2s ease-in-out infinite;
-    }
-    
-    .loader-text {
-      font-size: 1.5rem;
-      font-weight: 700;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      margin-bottom: 2rem;
-      opacity: 0;
-      animation: loaderTextFade 1s ease-out 0.5s forwards;
-    }
-    
-    .loader-spinner {
-      width: 40px;
-      height: 40px;
-      border: 3px solid rgba(255, 255, 255, 0.3);
-      border-top: 3px solid white;
-      border-radius: 50%;
-      margin: 0 auto;
-      animation: loaderSpin 1s linear infinite;
-    }
-    
-    @keyframes loaderLogoFloat {
-      0%, 100% {
-        transform: translateY(0px);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
-    }
-    
-    @keyframes loaderTextFade {
-      0% {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    @keyframes loaderSpin {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-    
-    /* Page Load Animation */
-    .page-content {
-      opacity: 0;
-      animation: pageFadeIn 0.8s ease-out forwards;
-    }
-    
-    /* Show content immediately if loader is hidden or not present */
-    body:not(.loading) .page-content,
-    .page-loader.hidden ~ * .page-content,
-    .page-loader[style*="display: none"] ~ * .page-content {
-      opacity: 1 !important;
-      animation: none;
-    }
-    
-    @keyframes pageFadeIn {
-      0% {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    
-    /* Header Logo Styling */
-    .header-logo {
-      height: 240px;
-      width: auto;
-      opacity: 1;
-      filter: drop-shadow(0 4px 15px rgba(99, 102, 241, 0.6))
-              drop-shadow(0 0 25px rgba(6, 182, 212, 0.4))
-              drop-shadow(0 0 40px rgba(139, 92, 246, 0.3));
-      transition: all 0.3s ease;
-      mix-blend-mode: screen;
-    }
-    
-    .header-logo:hover {
-      opacity: 1;
-      filter: drop-shadow(0 6px 20px rgba(99, 102, 241, 0.8))
-              drop-shadow(0 0 35px rgba(6, 182, 212, 0.6))
-              drop-shadow(0 0 60px rgba(139, 92, 246, 0.5));
-      transform: scale(1.05);
-    }
-    
-    /* Dark mode header logo - Enhanced visibility */
-    body.dark-mode .header-logo {
-      opacity: 1;
-      filter: drop-shadow(0 4px 20px rgba(129, 140, 248, 0.8))
-              drop-shadow(0 0 35px rgba(34, 211, 238, 0.6))
-              drop-shadow(0 0 50px rgba(167, 139, 250, 0.5))
-              drop-shadow(0 0 70px rgba(129, 140, 248, 0.3));
-      mix-blend-mode: screen;
-    }
-    
-    body.dark-mode .header-logo:hover {
-      opacity: 1;
-      filter: drop-shadow(0 6px 25px rgba(129, 140, 248, 1))
-              drop-shadow(0 0 45px rgba(34, 211, 238, 0.8))
-              drop-shadow(0 0 70px rgba(167, 139, 250, 0.7))
-              drop-shadow(0 0 100px rgba(129, 140, 248, 0.4));
-    }
-    
-    /* Footer Logo Styling - Enhanced for Light Mode */
-    .footer-logo {
-      height: 240px;
-      width: auto;
-      opacity: 1;
-      filter: drop-shadow(0 6px 20px rgba(99, 102, 241, 0.7))
-              drop-shadow(0 0 35px rgba(6, 182, 212, 0.5))
-              drop-shadow(0 0 50px rgba(139, 92, 246, 0.4))
-              drop-shadow(0 0 70px rgba(99, 102, 241, 0.3));
-      transition: all 0.3s ease;
-      mix-blend-mode: screen;
-    }
-    
-    .footer-logo:hover {
-      opacity: 1;
-      filter: drop-shadow(0 8px 25px rgba(99, 102, 241, 0.9))
-              drop-shadow(0 0 45px rgba(6, 182, 212, 0.7))
-              drop-shadow(0 0 70px rgba(139, 92, 246, 0.6))
-              drop-shadow(0 0 100px rgba(99, 102, 241, 0.4));
-      transform: scale(1.08);
-    }
-    
-    /* Light mode footer logo - Maximum emphasis */
-    body:not(.dark-mode) .footer-logo {
-      opacity: 1;
-      filter: drop-shadow(0 6px 25px rgba(99, 102, 241, 0.8))
-              drop-shadow(0 0 40px rgba(6, 182, 212, 0.6))
-              drop-shadow(0 0 60px rgba(139, 92, 246, 0.5))
-              drop-shadow(0 0 80px rgba(99, 102, 241, 0.3));
-      mix-blend-mode: screen;
-    }
-    
-    body:not(.dark-mode) .footer-logo:hover {
-      filter: drop-shadow(0 8px 30px rgba(99, 102, 241, 1))
-              drop-shadow(0 0 50px rgba(6, 182, 212, 0.8))
-              drop-shadow(0 0 80px rgba(139, 92, 246, 0.7))
-              drop-shadow(0 0 120px rgba(99, 102, 241, 0.5));
-    }
-    
-    /* Dark mode footer logo - Enhanced visibility */
-    body.dark-mode .footer-logo {
-      opacity: 1;
-      filter: drop-shadow(0 6px 25px rgba(129, 140, 248, 0.9))
-              drop-shadow(0 0 45px rgba(34, 211, 238, 0.7))
-              drop-shadow(0 0 70px rgba(167, 139, 250, 0.6))
-              drop-shadow(0 0 100px rgba(129, 140, 248, 0.4));
-      mix-blend-mode: screen;
-    }
-    
-    body.dark-mode .footer-logo:hover {
-      opacity: 1;
-      filter: drop-shadow(0 8px 30px rgba(129, 140, 248, 1))
-              drop-shadow(0 0 55px rgba(34, 211, 238, 0.9))
-              drop-shadow(0 0 90px rgba(167, 139, 250, 0.8))
-              drop-shadow(0 0 130px rgba(129, 140, 248, 0.6));
-    }
-    
-    /* Navigation Link Hover Effects - Enhanced Visibility */
-    .nav-link {
-      position: relative;
-      font-size: 1rem;
-      font-weight: 700;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      color: #1f2937;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      padding: 0.5rem 0.75rem;
-      display: block;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(10px);
-      border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      font-weight: 700;
-      letter-spacing: 0.025em;
-    }
-    
-    .nav-link::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, #06b6d4 0%, #22d3ee 50%, #06b6d4 100%);
-      transition: width 0.3s ease;
-      border-radius: 1px;
-    }
-    
-    .nav-link:hover {
-      color: #ffffff;
-      background: rgba(99, 102, 241, 0.9);
-      transform: translateY(-2px);
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
-      border-color: rgba(99, 102, 241, 0.5);
-    }
-    
-    .nav-link:hover::before {
-      width: 100%;
-    }
-    
-    .nav-link.active {
-      color: #ffffff;
-      background: rgba(6, 182, 212, 0.9);
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-      box-shadow: 0 4px 12px rgba(6, 182, 212, 0.4);
-      border-color: rgba(6, 182, 212, 0.5);
-    }
-    
-    .nav-link.active::before {
-      width: 100%;
-    }
-    
-    /* Dark mode navigation links - Enhanced Visibility */
-    body.dark-mode .nav-link {
-      color: #f9fafb;
-      background: rgba(15, 23, 42, 0.9);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(129, 140, 248, 0.3);
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    }
-    
-    body.dark-mode .nav-link:hover {
-      color: #ffffff;
-      background: rgba(129, 140, 248, 0.9);
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
-      box-shadow: 0 4px 12px rgba(129, 140, 248, 0.5);
-      border-color: rgba(129, 140, 248, 0.6);
-    }
-    
-    body.dark-mode .nav-link.active {
-      color: #ffffff;
-      background: rgba(34, 211, 238, 0.9);
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
-      box-shadow: 0 4px 12px rgba(34, 211, 238, 0.5);
-      border-color: rgba(34, 211, 238, 0.6);
-    }
-    
-    /* Card Hover Lift Effect */
-    .hover-lift {
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    
-    .hover-lift:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-    }
-    
-    /* Glassmorphism effect for cards - Less transparent with more blur for readability */
-    .glass-card {
-      background: rgba(255, 255, 255, 0.75) !important;
-      backdrop-filter: blur(30px) saturate(180%) brightness(1.1);
-      -webkit-backdrop-filter: blur(30px) saturate(180%) brightness(1.1);
-      border: 1px solid rgba(255, 255, 255, 0.4) !important;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 
-                  0 0 60px rgba(6, 182, 212, 0.08),
-                  0 0 0 1px rgba(255, 255, 255, 0.3) inset !important;
-    }
-    
-    .glass-card:hover {
-      background: rgba(255, 255, 255, 0.85) !important;
-      border: 1px solid rgba(255, 255, 255, 0.5) !important;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15),
-                  0 0 60px rgba(6, 182, 212, 0.15),
-                  0 0 0 1px rgba(255, 255, 255, 0.4) inset !important;
-    }
-    
-    /* Dark mode glassmorphism - Less transparent with more blur */
-    body.dark-mode .glass-card {
-      background: rgba(15, 23, 42, 0.75) !important;
-      backdrop-filter: blur(30px) saturate(180%) brightness(0.9);
-      -webkit-backdrop-filter: blur(30px) saturate(180%) brightness(0.9);
-      border: 1px solid rgba(255, 255, 255, 0.2) !important;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 
-                  0 0 60px rgba(6, 182, 212, 0.15),
-                  0 0 0 1px rgba(255, 255, 255, 0.1) inset !important;
-    }
-    
-    body.dark-mode .glass-card:hover {
-      background: rgba(15, 23, 42, 0.85) !important;
-      border: 1px solid rgba(255, 255, 255, 0.3) !important;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4),
-                  0 0 80px rgba(6, 182, 212, 0.25),
-                  0 0 0 1px rgba(255, 255, 255, 0.15) inset !important;
-    }
-    
-    /* Enhanced hover effects for interactive cards - Elevated with Glow */
-    .interactive-card {
-      cursor: pointer;
-      position: relative;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      transform: translateY(0);
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid rgba(99, 102, 241, 0.3);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6),
-                  0 0 80px rgba(99, 102, 241, 0.15),
-                  inset 0 0 0 1px rgba(99, 102, 241, 0.1);
-    }
-    
-    /* Corner accent */
-    .interactive-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 3px;
-      height: 40px;
-      background: linear-gradient(180deg, rgba(99, 102, 241, 0.8) 0%, rgba(6, 182, 212, 0.8) 100%);
-      border-radius: 0 0 3px 0;
-      opacity: 0.7;
-      transition: all 0.3s ease;
-    }
-    
-    .interactive-card:hover::before {
-      opacity: 1;
-      box-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
-    }
-    
-    .interactive-card:hover {
-      transform: translateY(-8px);
-      background: rgba(15, 23, 42, 0.98);
-      border: 1px solid rgba(99, 102, 241, 0.6);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 
-                  0 0 60px rgba(99, 102, 241, 0.3),
-                  0 0 80px rgba(6, 182, 212, 0.4),
-                  inset 0 0 0 1px rgba(99, 102, 241, 0.2);
-    }
-    
-    /* Light mode - keep elevated look */
-    body:not(.dark-mode) .interactive-card {
-      background: rgba(255, 255, 255, 0.95);
-      border: 1px solid rgba(99, 102, 241, 0.2);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12),
-                  0 0 80px rgba(99, 102, 241, 0.08),
-                  inset 0 0 0 1px rgba(99, 102, 241, 0.05);
-    }
-    
-    body:not(.dark-mode) .interactive-card::before {
-      background: linear-gradient(180deg, rgba(99, 102, 241, 0.6) 0%, rgba(6, 182, 212, 0.6) 100%);
-    }
-    
-    body:not(.dark-mode) .interactive-card:hover {
-      background: rgba(255, 255, 255, 0.98);
-      border: 1px solid rgba(99, 102, 241, 0.4);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 
-                  0 0 60px rgba(99, 102, 241, 0.2),
-                  0 0 80px rgba(6, 182, 212, 0.3),
-                  inset 0 0 0 1px rgba(99, 102, 241, 0.1);
-    }
-    
-    /* Dark mode interactive cards - Premium elevated look */
-    body.dark-mode .interactive-card {
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid rgba(99, 102, 241, 0.3);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6),
-                  0 0 80px rgba(99, 102, 241, 0.15),
-                  inset 0 0 0 1px rgba(99, 102, 241, 0.1);
-    }
-    
-    body.dark-mode .interactive-card:hover {
-      background: rgba(15, 23, 42, 0.98);
-      border: 1px solid rgba(99, 102, 241, 0.6);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 
-                  0 0 60px rgba(99, 102, 241, 0.4),
-                  0 0 80px rgba(6, 182, 212, 0.5),
-                  inset 0 0 0 1px rgba(99, 102, 241, 0.2);
-    }
-    
-    /* Smart Scale Navigation Header - Same styles as index.html */
-    .smart-scale-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(15, 23, 42, 0.8);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(139, 92, 246, 0.1);
-      transition: all 0.3s ease;
-      height: 80px;
-    }
-    
-    .smart-scale-header.scrolled {
-      background: rgba(15, 23, 42, 0.95);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-      height: 64px;
-    }
-    
-    .smart-scale-header.scrolled .header-container {
-      min-height: 64px;
-    }
-    
-    .smart-scale-header.scrolled .logo-img {
-      width: 120px;
-    }
-    
-    .header-container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 2rem;
-      min-height: 80px;
-      height: 100%;
-    }
-    
-    @media (max-width: 768px) {
-      .smart-scale-header {
-        height: 60px;
-      }
-      
-      .smart-scale-header.scrolled {
-        height: 56px;
-      }
-      
-      .header-container {
-        padding: 0 1.25rem;
-        min-height: 60px;
-      }
-      
-      .smart-scale-header.scrolled .header-container {
-        min-height: 56px;
-      }
-    }
-    
-    .header-logo {
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-    }
-    
-    .logo-img {
-      width: 150px;
-      height: auto;
-      filter: brightness(0) invert(1);
-      transition: transform 0.3s ease, width 0.3s ease;
-    }
-    
-    .logo-img:hover {
-      transform: scale(1.05);
-    }
-    
-    @media (max-width: 768px) {
-      .logo-img {
-        width: 120px;
-      }
-      
-      .smart-scale-header.scrolled .logo-img {
-        width: 100px;
-      }
-    }
-    
-    .desktop-nav {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      max-width: 600px;
-    }
-    
-    @media (max-width: 1024px) {
-      .desktop-nav {
-        display: none;
-      }
-    }
-    
-    .nav-menu {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-    
-    .nav-item {
-      position: relative;
-    }
-    
-    .nav-link {
-      color: #ffffff;
-      text-decoration: none;
-      font-family: 'Inter', sans-serif;
-      font-size: 16px;
-      font-weight: 500;
-      padding: 0.5rem 0;
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-      transition: all 0.3s ease;
-      position: relative;
-      white-space: nowrap;
-    }
-    
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, #8B5CF6, #06B6D4);
-      transition: width 0.3s ease;
-    }
-    
-    .nav-link:hover::after,
-    .nav-item.active .nav-link::after {
-      width: 100%;
-    }
-    
-    .nav-link:hover {
-      color: #A78BFA;
-    }
-    
-    .dropdown-arrow {
-      transition: transform 0.3s ease;
-    }
-    
-    .has-dropdown:hover .dropdown-arrow {
-      transform: rotate(180deg);
-    }
-    
-    .dropdown-menu {
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(30, 41, 59, 0.98);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(139, 92, 246, 0.3);
-      border-radius: 12px;
-      padding: 0.75rem 0;
-      min-width: 240px;
-      list-style: none;
-      margin: 0.5rem 0 0 0;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateX(-50%) translateY(-10px);
-      transition: all 0.3s ease;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(139, 92, 246, 0.2);
-    }
-    
-    .has-dropdown:hover .dropdown-menu {
-      opacity: 1;
-      visibility: visible;
-      transform: translateX(-50%) translateY(0);
-    }
-    
-    .dropdown-menu li {
-      margin: 0;
-    }
-    
-    .dropdown-menu a {
-      display: block;
-      padding: 0.75rem 1.5rem;
-      color: rgba(255, 255, 255, 0.9);
-      text-decoration: none;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.9rem;
-      transition: all 0.2s ease;
-      border-left: 3px solid transparent;
-    }
-    
-    .dropdown-menu a:hover {
-      background: rgba(139, 92, 246, 0.1);
-      color: #A78BFA;
-      border-left-color: #8B5CF6;
-      padding-left: 1.75rem;
-    }
-    
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    
-    .btn-get-started {
-      background: linear-gradient(135deg, #8B5CF6 0%, #06B6D4 100%);
-      color: #ffffff;
-      padding: 0.5rem 1.25rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-family: 'Inter', sans-serif;
-      font-size: 15px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
-      white-space: nowrap;
-      display: flex;
-      align-items: center;
-      height: fit-content;
-    }
-    
-    .btn-get-started:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
-      background: linear-gradient(135deg, #7C3AED 0%, #22D3EE 100%);
-    }
-    
-    @media (max-width: 1024px) {
-      .btn-get-started {
-        display: none;
-      }
-    }
-    
-    .mobile-menu-toggle {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      padding: 0.5rem;
-      z-index: 1001;
-    }
-    
-    @media (max-width: 1024px) {
-      .mobile-menu-toggle {
-        display: flex;
-      }
-    }
-    
-    .hamburger-line {
-      width: 24px;
-      height: 2px;
-      background: #ffffff;
-      border-radius: 2px;
-      transition: all 0.3s ease;
-    }
-    
-    .mobile-menu-toggle.active .hamburger-line:nth-child(1) {
-      transform: rotate(45deg) translate(7px, 7px);
-    }
-    
-    .mobile-menu-toggle.active .hamburger-line:nth-child(2) {
-      opacity: 0;
-    }
-    
-    .mobile-menu-toggle.active .hamburger-line:nth-child(3) {
-      transform: rotate(-45deg) translate(7px, -7px);
-    }
-    
-    .mobile-menu-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      background: rgba(15, 23, 42, 0.98);
-      backdrop-filter: blur(20px);
-      z-index: 999;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-    }
-    
-    .mobile-menu-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-    
-    .mobile-menu-content {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      padding: 2rem;
-      overflow-y: auto;
-    }
-    
-    .mobile-menu-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 3rem;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid rgba(139, 92, 246, 0.2);
-    }
-    
-    .mobile-logo {
-      width: 120px;
-      height: auto;
-      filter: brightness(0) invert(1);
-    }
-    
-    @media (max-width: 768px) {
-      main {
-        padding-top: 60px !important;
-      }
-    }
-    
-    .mobile-menu-close {
-      background: transparent;
-      border: none;
-      color: #ffffff;
-      cursor: pointer;
-      padding: 0.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .mobile-nav {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .mobile-menu {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    
-    .mobile-nav-item {
-      position: relative;
-    }
-    
-    .mobile-nav-link {
-      color: #ffffff;
-      text-decoration: none;
-      font-family: 'Inter', sans-serif;
-      font-size: 1.25rem;
-      font-weight: 500;
-      padding: 1rem 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
-    }
-    
-    .mobile-nav-link:hover {
-      color: #A78BFA;
-      padding-left: 1rem;
-    }
-    
-    .mobile-dropdown-menu {
-      list-style: none;
-      margin: 0;
-      padding: 0.5rem 0 0 1.5rem;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-    }
-    
-    .has-mobile-dropdown.active .mobile-dropdown-menu {
-      max-height: 300px;
-    }
-    
-    .mobile-dropdown-menu a {
-      display: block;
-      padding: 0.75rem 0;
-      color: rgba(255, 255, 255, 0.8);
-      text-decoration: none;
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    
-    .mobile-dropdown-menu a:hover {
-      color: #A78BFA;
-      padding-left: 0.5rem;
-    }
-    
-    .mobile-dropdown-arrow {
-      transition: transform 0.3s ease;
-    }
-    
-    .has-mobile-dropdown.active .mobile-dropdown-arrow {
-      transform: rotate(180deg);
-    }
-    
-    .btn-get-started-mobile {
-      margin-top: 2rem;
-      background: linear-gradient(135deg, #8B5CF6 0%, #06B6D4 100%);
-      color: #ffffff;
-      padding: 1rem 2rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-family: 'Inter', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 600;
-      text-align: center;
-      display: block;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
-    }
-    
-    .btn-get-started-mobile:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
-    }
-    
-    .nav-item.active .nav-link,
-    .mobile-nav-item.active .mobile-nav-link {
-      color: #A78BFA;
-    }
-    
-    </style>
+    .mobile-menu { position:fixed; inset:0; background:rgba(6,4,21,0.96); backdrop-filter:blur(14px); display:none; flex-direction:column; gap:2rem; padding:1.5rem; z-index:15; }
+    .mobile-menu.open { display:flex; }
+    .mobile-menu__links { display:grid; gap:1.25rem; font-size:1.1rem; color:var(--text-secondary); }
+  </style>
 </head>
-    <body class="min-h-full antialiased text-gray-900">
-    <!-- Particle System Canvas -->
-    <canvas id="particle-canvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
-    
-    <!-- Page Loader -->
-    <div id="page-loader" class="page-loader">
-      <div class="loader-content">
-        <div class="loader-logo">
-          <img src="assets/smart-scale-logo.png" alt="Smart Scale" class="loader-logo-img">
-        </div>
-        <div class="loader-spinner"></div>
+<body>
+  <header>
+    <div class="inner nav">
+      <a class="nav__brand" href="index.html"><img src="assets/smart-scale-logo.png" alt="Smart Scale logo"></a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="index.html#services">Home</a>
+        <a href="services.html">Services</a>
+        <a href="index.html#portfolio-section">Portfolio</a>
+        <a class="active" href="about.html">About</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <a class="nav__cta" href="index.html#contact">Schedule a Call</a>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <div class="inner" style="display:flex; justify-content:space-between; align-items:center;">
+        <img src="assets/smart-scale-logo.png" alt="Smart Scale logo" style="width:128px;">
+        <button class="mobile-toggle" data-close aria-label="Close menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <div class="inner mobile-menu__links">
+        <a href="index.html#services">Home</a>
+        <a href="services.html">Services</a>
+        <a href="index.html#portfolio-section">Portfolio</a>
+        <a href="about.html">About</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <div class="inner" style="display:flex;">
+        <a class="nav__cta" href="index.html#contact" style="width:100%; justify-content:center;">Schedule a Call</a>
       </div>
     </div>
-    
-    <!-- Animated Gradient Background -->
-    <div class="animated-gradient"></div>
-    <div class="gradient-overlay"></div>
-    
+  </header>
 
-    <!-- Smart Scale Navigation Header -->
-    <header id="smart-scale-header" class="smart-scale-header">
-      <div class="header-container">
-        <div class="header-logo">
-          <a href="index.html">
-            <img src="assets/smart-scale-logo.png" alt="Smart Scale" class="logo-img">
-          </a>
+  <main>
+    <section class="hero">
+      <div class="inner hero__inner">
+        <div>
+          <span class="hero__badge">Our story</span>
+          <h1 class="hero__title">A husband-wife team building software with care</h1>
+          <p class="hero__copy">Smart Scale is Dessiah and Jay Maldonado—a designer and engineer duo who believe software is most successful when the people building it are personally invested in the outcome.</p>
         </div>
-
-        <nav class="header-nav desktop-nav">
-          <ul class="nav-menu">
-            <li class="nav-item has-dropdown">
-              <a href="services.html" class="nav-link">
-                Services <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none">
-                  <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a href="services.html#web-design">Web Design & Development</a></li>
-                <li><a href="services.html#web-app">Web Application Development</a></li>
-                <li><a href="services.html#mobile-app">Mobile App Development</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="index.html#recent-work" class="nav-link">Portfolio</a>
-            </li>
-            <li class="nav-item">
-              <a href="about.html" class="nav-link">About</a>
-            </li>
-            <li class="nav-item">
-              <a href="index.html#pricing" class="nav-link">Pricing</a>
-            </li>
-          </ul>
-        </nav>
-
-        <div class="header-actions">
-          <a href="index.html#contact" class="btn-get-started">Get Started</a>
-          
-          <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-          </button>
-        </div>
-      </div>
-
-      <div class="mobile-menu-overlay">
-        <div class="mobile-menu-content">
-          <div class="mobile-menu-header">
-            <img src="assets/smart-scale-logo.png" alt="Smart Scale" class="mobile-logo">
-            <button class="mobile-menu-close" aria-label="Close mobile menu">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-            </button>
+        <div class="card" style="background:rgba(11,8,28,0.78);">
+          <h3>What this means for you</h3>
+          <p>We stay close to the work. You always talk to the people writing the code, crafting the strategy, and designing the interface. It’s a partnership built on transparency, velocity, and shared ownership.</p>
+          <div class="timeline">
+            <div class="timeline-item">
+              <span>2019</span>
+              <strong>Started collaborating on client work</strong>
+              <p>From freelance projects to long-term contracts, we discovered we were at our best when building together.</p>
+            </div>
+            <div class="timeline-item">
+              <span>2023</span>
+              <strong>Launched Smart Scale</strong>
+              <p>Focused on serving growing brands that need senior-level product expertise without agency overhead.</p>
+            </div>
           </div>
-          <nav class="mobile-nav">
-            <ul class="mobile-menu">
-              <li class="mobile-nav-item has-mobile-dropdown">
-                <a href="services.html" class="mobile-nav-link">
-                  Services <svg class="mobile-dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </a>
-                <ul class="mobile-dropdown-menu">
-                  <li><a href="services.html#web-design">Web Design & Development</a></li>
-                  <li><a href="services.html#web-app">Web Application Development</a></li>
-                  <li><a href="services.html#mobile-app">Mobile App Development</a></li>
-                </ul>
-              </li>
-              <li class="mobile-nav-item">
-                <a href="index.html#recent-work" class="mobile-nav-link">Portfolio</a>
-              </li>
-              <li class="mobile-nav-item">
-                <a href="about.html" class="mobile-nav-link">About</a>
-              </li>
-              <li class="mobile-nav-item">
-                <a href="index.html#pricing" class="mobile-nav-link">Pricing</a>
-              </li>
-            </ul>
-            <a href="index.html#contact" class="btn-get-started-mobile">Get Started</a>
-          </nav>
         </div>
       </div>
-    </header>
+    </section>
 
-    <!-- Main Container -->
-    <main class="page-content mx-auto max-w-7xl px-4 pb-20 lg:px-8" style="padding-top: 80px;">
-        <!-- Hero Section -->
-        <section class="glass-card rounded-3xl p-12 md:p-16 shadow-sm hover:shadow-md transition-shadow duration-300">
-            <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
-                <!-- Left Column - Content -->
-                <div class="lg:col-span-2">
-                    <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 font-inter mb-6">
-                        About Smart Scale
-                    </h1>
-                    <h2 class="text-2xl md:text-3xl font-semibold text-indigo-600 font-inter mb-8">
-                        Where Design Meets Strategy
-                    </h2>
-                </div>
-                
-                <!-- Right Column - Photos -->
-                <div class="lg:col-span-3">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Jay's Photo -->
-                        <div class="relative">
-                            <img src="assets/Office Pro.3.jpeg" alt="Jay Maldonado, co-founder of Smart Scale" class="w-full h-auto rounded-2xl shadow-lg">
-                            <div class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-4 py-2">
-                                <p class="text-sm font-medium text-black font-inter name-badge" style="color: #000000 !important;">Jay Maldonado</p>
-                            </div>
-                        </div>
-                        
-                        <!-- Dessiah's Photo -->
-                        <div class="relative">
-                            <img src="assets/orig2 - 2025-08-10T032539.595.png" alt="Dessiah Maldonado, co-founder of Smart Scale" class="w-full h-auto rounded-2xl shadow-lg">
-                            <div class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-4 py-2">
-                                <p class="text-sm font-medium text-black font-inter name-badge" style="color: #000000 !important;">Dessiah Maldonado</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-center mt-4">
-                        <p class="text-lg font-semibold text-gray-900 font-inter">Smart Scale Founders</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <section>
+      <div class="inner split two">
+        <article class="card">
+          <h3>Dessiah Maldonado · Product experience</h3>
+          <p>Dessiah translates business goals into compelling user journeys. She leads discovery, content architecture, and design systems that make complex ideas feel simple.</p>
+          <ul class="list" style="margin:0; padding-left:1.1rem; color:var(--text-secondary);">
+            <li>Messaging &amp; brand voice</li>
+            <li>UX research &amp; prototyping</li>
+            <li>Design systems &amp; component libraries</li>
+            <li>Conversion copywriting</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Jay Maldonado · Engineering &amp; strategy</h3>
+          <p>Jay leads architecture, development, and deployment. He’s obsessed with writing clean, maintainable code and building reliable systems that scale.</p>
+          <ul class="list" style="margin:0; padding-left:1.1rem; color:var(--text-secondary);">
+            <li>Next.js, Node.js, React Native</li>
+            <li>API design, integrations, DevOps</li>
+            <li>Performance, security, testing</li>
+            <li>Product roadmaps &amp; technical planning</li>
+          </ul>
+        </article>
+      </div>
+    </section>
 
-        <!-- Main Bio Section -->
-        <section class="mt-8 glass-card rounded-3xl p-12 md:p-16 shadow-sm hover:shadow-md transition-shadow duration-300">
-            <div class="max-w-4xl mx-auto">
-                <div class="prose prose-lg max-w-none">
-                    <p class="text-lg text-gray-700 font-inter leading-relaxed mb-6">
-                        We're Smart Scale, and we're not your typical web design agency.
-                    </p>
-                    
-                    <p class="text-lg text-gray-700 font-inter leading-relaxed mb-6">
-                        Founded by Jay and Dessiah Maldonado—a husband-and-wife team of serial entrepreneurs—Smart Scale was born from a simple frustration: too many businesses were stuck with cookie-cutter websites that didn't reflect their uniqueness or drive results.
-                    </p>
-                    
-                    <p class="text-lg text-gray-700 font-inter leading-relaxed mb-6">
-                        We've been where you are. We've built businesses, navigated growth challenges, and experienced firsthand the struggle of finding affordable, high-quality web design that actually converts. We know that your website isn't just a digital business card—it's your hardest-working employee, your 24/7 salesperson, and often the first impression you make on potential clients.
-                    </p>
-                    
-                    <p class="text-lg text-gray-700 font-inter leading-relaxed mb-6">
-                        That's why we founded Smart Scale: to provide boutique web design services that combine strategic thinking with beautiful execution. We're not a massive agency with layers of account managers. When you work with us, you work directly with the designers and developers who care about your success.
-                    </p>
-                    
-                    <p class="text-lg text-gray-700 font-inter leading-relaxed mb-6">
-                        Based in Katy, Texas, we've helped businesses across industries—from financial services to legal practices, from startups to established companies—create websites that don't just look good, but work hard. Every site we design is custom-built, conversion-focused, and optimized for the way real people browse and buy.
-                    </p>
-                    
-                    <p class="text-lg text-gray-700 font-inter leading-relaxed mb-6">
-                        We believe every business deserves a website that makes them look like they invested six figures—even if they didn't. That's the Smart Scale difference: premium design, strategic approach, and personal service at a price that makes sense.
-                    </p>
-                    
-                    <p class="text-xl text-indigo-600 font-semibold font-inter">
-                        Let's build something amazing together.
-                    </p>
-                </div>
+    <section>
+      <div class="inner">
+        <div class="card">
+          <h3>How we work</h3>
+          <div class="list">
+            <div class="list-item">
+              <strong>One project at a time</strong>
+              <p>You get our full attention. We only start new engagements when we have the capacity to deliver at a high level.</p>
             </div>
-        </section>
-
-        <!-- Our Approach Section -->
-        <section class="mt-8 glass-card rounded-3xl p-12 md:p-16 shadow-sm hover:shadow-md transition-shadow duration-300">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold tracking-tight text-gray-900 font-inter mb-4">Our Approach</h2>
-                <p class="text-lg text-gray-600 font-inter">How we think about web design</p>
+            <div class="list-item">
+              <strong>Weekly communication</strong>
+              <p>Transparent updates, async loom walkthroughs, and shared backlogs so you always know what’s happening.</p>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Card 1: Strategy First -->
-                <div class="interactive-card hover-lift rounded-xl p-6">
-                    <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
-                        <span class="text-2xl">🎯</span>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 font-inter mb-3">Strategy First</h3>
-                    <p class="text-gray-600 font-inter">We don't start with design—we start with understanding your business, your goals, and your customers. Every design decision is driven by strategy.</p>
-                </div>
-
-                <!-- Card 2: Custom, Not Templates -->
-                <div class="interactive-card hover-lift rounded-xl p-6">
-                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                        <span class="text-2xl">💎</span>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 font-inter mb-3">Custom, Not Templates</h3>
-                    <p class="text-gray-600 font-inter">No WordPress themes. No cookie-cutter solutions. Every website we create is built from scratch to match your brand and business needs.</p>
-                </div>
-
-                <!-- Card 3: Built to Convert -->
-                <div class="interactive-card hover-lift rounded-xl p-6">
-                    <div class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mb-4">
-                        <span class="text-2xl">📈</span>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 font-inter mb-3">Built to Convert</h3>
-                    <p class="text-gray-600 font-inter">Beautiful design is just the beginning. We optimize every element to turn visitors into customers, clients, and leads.</p>
-                </div>
+            <div class="list-item">
+              <strong>Practical tooling</strong>
+              <p>Figma, Linear, GitHub, Notion—tools that keep everything accessible, searchable, and collaborative.</p>
             </div>
-        </section>
-
-        <!-- Why We're Different Section -->
-        <section class="mt-8 glass-card rounded-3xl p-12 md:p-16 shadow-sm hover:shadow-md transition-shadow duration-300">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold tracking-tight text-gray-900 font-inter mb-4">Why Businesses Choose Smart Scale</h2>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- 1. Boutique Service -->
-                <div class="interactive-card hover-lift rounded-xl p-6">
-                    <h3 class="text-xl font-semibold text-gray-900 font-inter mb-3">Boutique, Personal Service</h3>
-                    <p class="text-gray-600 font-inter">You're not a ticket number. You work directly with Jay and Dessiah, the founders who personally handle every project.</p>
-                </div>
-
-                <!-- 2. Entrepreneurs Helping Entrepreneurs -->
-                <div class="interactive-card hover-lift rounded-xl p-6">
-                    <h3 class="text-xl font-semibold text-gray-900 font-inter mb-3">Entrepreneurs Helping Entrepreneurs</h3>
-                    <p class="text-gray-600 font-inter">We've built businesses ourselves. We understand deadlines, budgets, and the pressure to launch. We're partners, not just vendors.</p>
-                </div>
-
-                <!-- 3. Fast Without Compromising Quality -->
-                <div class="interactive-card hover-lift rounded-xl p-6">
-                    <h3 class="text-xl font-semibold text-gray-900 font-inter mb-3">Fast Without Compromising Quality</h3>
-                    <p class="text-gray-600 font-inter">Most projects are completed in 2-4 weeks. We move quickly because we respect your time and understand that speed matters in business.</p>
-                </div>
-
-                <!-- 4. Transparent Pricing -->
-                <div class="interactive-card hover-lift rounded-xl p-6">
-                    <h3 class="text-xl font-semibold text-gray-900 font-inter mb-3">Transparent, Honest Pricing</h3>
-                    <p class="text-gray-600 font-inter">No hidden fees, no scope creep, no surprises. You'll know exactly what you're paying for and what to expect.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- By The Numbers Section -->
-        <section class="mt-8 glass-card rounded-3xl p-12 md:p-16 shadow-sm hover:shadow-md transition-shadow duration-300">
-            <div class="text-center">
-                <h2 class="text-3xl font-bold tracking-tight text-gray-900 font-inter mb-12">By The Numbers</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="text-center">
-                        <div class="text-4xl font-bold text-emerald-600 font-inter mb-2">100%</div>
-                        <p class="text-gray-600 font-inter">Client Satisfaction</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-4xl font-bold text-purple-600 font-inter mb-2">2-4</div>
-                        <p class="text-gray-600 font-inter">Week Average Timeline</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-4xl font-bold text-cyan-600 font-inter mb-2">Katy</div>
-                        <p class="text-gray-600 font-inter">Based in Texas</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="mt-8 bg-gradient-to-r from-indigo-600 to-cyan-600 rounded-3xl p-12 md:p-16 text-center">
-            <h2 class="text-3xl font-bold text-white font-inter mb-4">Ready to Work Together?</h2>
-            <p class="text-xl text-indigo-100 font-inter mb-8">Let's build a website that works as hard as you do.</p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="index.html#contact" class="inline-flex items-center justify-center px-8 py-4 bg-white text-indigo-600 font-medium rounded-lg hover:bg-gray-50 transition-all duration-200 hover:scale-105 font-inter">
-                    Start Your Project
-                </a>
-                <a href="index.html#recent-work" class="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-medium rounded-lg hover:bg-white hover:text-indigo-600 transition-all duration-200 font-inter">
-                    See Our Work
-                </a>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-white border-t border-neutral-100 mt-12 py-12 px-6 md:px-12 rounded-3xl hover:shadow-md transition-shadow duration-300">
-        <div class="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-4 gap-8 font-inter text-neutral-700">
-            <div>
-                <div class="mb-4">
-                    <img src="assets/smart-scale-logo-black.png" alt="Smart Scale" class="footer-logo" id="footer-logo">
-                </div>
-                <p class="text-sm font-light max-w-xs">Boutique web design for businesses and entrepreneurs who want to stand out online.</p>
-                <p class="mt-4 text-xs text-neutral-400 font-light">© 2024 Smart Scale. All rights reserved.</p>
-            </div>
-            <div>
-                <h5 class="text-sm font-semibold mb-3 tracking-tight font-inter">Services</h5>
-                <ul class="space-y-2 text-sm font-light">
-                    <li><a href="services.html" class="hover:text-indigo-600 transition-colors duration-200">Custom Design</a></li>
-                    <li><a href="services.html" class="hover:text-indigo-600 transition-colors duration-200">Responsive Development</a></li>
-                    <li><a href="services.html" class="hover:text-indigo-600 transition-colors duration-200">SEO Optimization</a></li>
-                    <li><a href="services.html" class="hover:text-indigo-600 transition-colors duration-200">Ongoing Support</a></li>
-                </ul>
-            </div>
-            <div>
-                <h5 class="text-sm font-semibold mb-3 tracking-tight font-inter">Company</h5>
-                <ul class="space-y-2 text-sm font-light">
-                    <li><a href="about.html" class="hover:text-indigo-600 transition-colors duration-200">About</a></li>
-                    <li><a href="index.html#recent-work" class="hover:text-indigo-600 transition-colors duration-200">Portfolio</a></li>
-                    <li><a href="services.html" class="hover:text-indigo-600 transition-colors duration-200">Process</a></li>
-                    <li><a href="index.html#contact" class="hover:text-indigo-600 transition-colors duration-200">Contact</a></li>
-                </ul>
-            </div>
-            <div>
-                <h5 class="text-sm font-semibold mb-3 tracking-tight font-inter">Get In Touch</h5>
-                <div class="space-y-2 text-sm font-light">
-                    <p><a href="mailto:sayhi@sent.com" class="hover:text-indigo-600 transition-colors duration-200">sayhi@sent.com</a></p>
-                    <p>Jay: <a href="tel:+18324070773" class="hover:text-indigo-600 transition-colors duration-200">(832) 407-0773</a></p>
-                    <p>Dessiah: <a href="tel:+18327905001" class="hover:text-indigo-600 transition-colors duration-200">(832) 790-5001</a></p>
-                    <p>Katy, Texas</p>
-                </div>
-            </div>
+          </div>
         </div>
-    </footer>
+      </div>
+    </section>
 
-    <script>
-        // Dark Mode Toggle Functionality
-        const darkModeToggle = document.getElementById('dark-mode-toggle');
-        const sunIcon = document.getElementById('sun-icon');
-        const moonIcon = document.getElementById('moon-icon');
-        const body = document.body;
-        
-        // Check for saved theme preference or default to light mode
-        const savedTheme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-        body.classList.add('dark-mode');
-        sunIcon.classList.remove('hidden');
-        moonIcon.classList.add('hidden');
-    } else {
-        body.classList.remove('dark-mode');
-        sunIcon.classList.add('hidden');
-        moonIcon.classList.remove('hidden');
+    <section>
+      <div class="inner split two">
+        <article class="card">
+          <h3>What we believe</h3>
+          <p>Great products are built on empathy, curiosity, and craftsmanship. We hold space for exploration but stay ruthless about shipping value quickly.</p>
+        </article>
+        <article class="card">
+          <h3>Who we serve</h3>
+          <p>Boutique agencies, founders, operators, and marketing teams who need senior-level expertise without agency overhead or long onboarding cycles.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="inner cta-banner">
+      <h2 style="margin:0; font-size:2rem;">Let’s collaborate</h2>
+      <p style="margin:0; color:var(--text-secondary);">We’re here to help you move faster—whether that’s shaping a new concept or levelling up something you already have.</p>
+      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+        <a class="nav__cta" href="index.html#contact">Start a conversation</a>
+        <a class="nav__cta" style="background:rgba(139,92,246,0.16); color:var(--purple-light);" href="mailto:sayhi@sent.com">Email Jay &amp; Dessiah</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="inner footer__grid">
+      <span>© 2024 Smart Scale. Based in Katy, Texas.</span>
+      <div style="display:flex; gap:1.25rem; flex-wrap:wrap;">
+        <a href="index.html#services">Home</a>
+        <a href="services.html">Services</a>
+        <a href="index.html#portfolio-section">Portfolio</a>
+        <a href="tech.html">Tech stack</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menu = document.getElementById('mobile-menu');
+    const openBtn = document.querySelector('.mobile-toggle');
+    const closeBtn = document.querySelector('.mobile-toggle[data-close]');
+
+    function toggleMenu(explicit) {
+      const isOpen = explicit !== undefined ? explicit : !menu.classList.contains('open');
+      menu.classList.toggle('open', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
     }
-    
-    // Set initial footer logo based on theme
-    updateFooterLogo();
-        
-    // Function to update footer logo based on theme
-    function updateFooterLogo() {
-        const footerLogo = document.getElementById('footer-logo');
-        if (footerLogo) {
-            if (body.classList.contains('dark-mode')) {
-                footerLogo.src = 'assets/smart-scale-logo.png';
-            } else {
-                footerLogo.src = 'assets/smart-scale-logo-black.png';
-            }
-        }
-    }
 
-    // Toggle dark mode
-    darkModeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-
-        if (body.classList.contains('dark-mode')) {
-            localStorage.setItem('theme', 'dark');
-            sunIcon.classList.remove('hidden');
-            moonIcon.classList.add('hidden');
-        } else {
-            localStorage.setItem('theme', 'light');
-            sunIcon.classList.add('hidden');
-            moonIcon.classList.remove('hidden');
-        }
-        
-        // Update footer logo when theme changes
-        updateFooterLogo();
-    });
-
-        // Mobile menu toggle
-        const mobileToggle = document.getElementById('mobile-toggle');
-        const navLinks = document.getElementById('nav-links');
-        const mobileClose = document.getElementById('mobile-close');
-
-        mobileToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('hidden');
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!navLinks.contains(e.target) && !mobileToggle.contains(e.target)) {
-                navLinks.classList.add('hidden');
-            }
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Mouse tracking variables
-        let mouseX = window.innerWidth / 2;
-        let mouseY = window.innerHeight / 2;
-        let targetMouseX = mouseX;
-        let targetMouseY = mouseY;
-
-        // Mouse movement functions
-        function updateMousePosition(e) {
-            targetMouseX = e.clientX;
-            targetMouseY = e.clientY;
-        }
-
-        function updateGradientPosition() {
-            const gradient = document.querySelector('.animated-gradient');
-            if (!gradient) return;
-            
-            // Calculate offset based on mouse position (subtle effect)
-            const centerX = window.innerWidth / 2;
-            const centerY = window.innerHeight / 2;
-            
-            const offsetX = ((mouseX - centerX) / centerX) * 15; // 15% max offset
-            const offsetY = ((mouseY - centerY) / centerY) * 15; // 15% max offset
-            
-            // Apply offset to gradient background position
-            const baseX = 50 + offsetX;
-            const baseY = 50 + offsetY;
-            
-            gradient.style.backgroundPosition = `${baseX}% ${baseY}%`;
-        }
-
-        function animate() {
-            // Smooth mouse position interpolation
-            mouseX += (targetMouseX - mouseX) * 0.1;
-            mouseY += (targetMouseY - mouseY) * 0.1;
-            
-            // Update effects
-            updateGradientPosition();
-            
-            // Continue animation
-            requestAnimationFrame(animate);
-        }
-
-        // Initialize when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add mouse event listeners
-            document.addEventListener('mousemove', updateMousePosition);
-            
-            // Start animation loop
-            animate();
-        });
-
-
-        // Initialize page load animation
-        function hidePageLoader() {
-          const pageLoader = document.getElementById('page-loader');
-          const pageContent = document.querySelector('.page-content');
-          
-          if (!pageLoader) {
-            console.error('Page loader element not found');
-            return;
-          }
-          
-          // Hide loader and show content after a delay
-          setTimeout(() => {
-            try {
-              pageLoader.classList.add('hidden');
-              if (pageContent) {
-                pageContent.style.opacity = '1';
-              }
-              
-              // Remove loader from DOM after animation
-              setTimeout(() => {
-                pageLoader.style.display = 'none';
-              }, 800);
-            } catch (error) {
-              console.error('Error hiding loader:', error);
-              // Force hide as fallback
-              pageLoader.style.display = 'none';
-            }
-          }, 1500); // Show loader for 1.5 seconds
-        }
-        
-        // Initialize on DOM ready
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', function() {
-            const pageLoader = document.getElementById('page-loader');
-            if (pageLoader) {
-              pageLoader.style.display = 'flex';
-            }
-            hidePageLoader();
-          });
-        } else {
-          // DOM already loaded
-          const pageLoader = document.getElementById('page-loader');
-          if (pageLoader) {
-            pageLoader.style.display = 'flex';
-          }
-          hidePageLoader();
-        }
-        
-        // Fallback: Ensure loader is hidden after maximum time
-        setTimeout(function() {
-          const pageLoader = document.getElementById('page-loader');
-          if (pageLoader && pageLoader.style.display !== 'none') {
-            console.log('Force hiding loader (fallback)');
-            pageLoader.classList.add('hidden');
-            setTimeout(() => {
-              pageLoader.style.display = 'none';
-            }, 300);
-          }
-        }, 3000);
-        
-        // Additional window.onload fallback
-        window.addEventListener('load', function() {
-          setTimeout(function() {
-            const pageLoader = document.getElementById('page-loader');
-            if (pageLoader && !pageLoader.classList.contains('hidden')) {
-              console.log('Window load fallback - hiding loader');
-              pageLoader.classList.add('hidden');
-              setTimeout(() => {
-                pageLoader.style.display = 'none';
-              }, 300);
-            }
-          }, 500);
-        });
-
-        // Canvas Particle System
-        class ParticleSystem {
-          constructor() {
-            this.canvas = document.getElementById('particle-canvas');
-            this.ctx = this.canvas.getContext('2d');
-            this.particles = [];
-            this.ripples = [];
-            this.mouseX = window.innerWidth / 2;
-            this.mouseY = window.innerHeight / 2;
-            this.targetMouseX = this.mouseX;
-            this.targetMouseY = this.mouseY;
-            this.lastMouseX = this.mouseX;
-            this.lastMouseY = this.mouseY;
-            
-            // Performance settings
-            this.particleCount = window.innerWidth < 768 ? 30 : 60;
-            this.maxDistance = 100;
-            this.mouseInfluenceDistance = 200;
-            
-            // Gradient reference
-            this.gradient = document.querySelector('.animated-gradient');
-            
-            // Animation timing
-            this.time = 0;
-          }
-          
-          init() {
-            console.log('Initializing particle system...');
-            console.log('Canvas found:', this.canvas);
-            console.log('Gradient found:', this.gradient);
-            
-            this.resizeCanvas();
-            this.createParticles();
-            this.bindEvents();
-            this.animate();
-            
-            console.log('Particle system initialized with', this.particles.length, 'particles');
-          }
-          
-          resizeCanvas() {
-            this.canvas.width = window.innerWidth;
-            this.canvas.height = window.innerHeight;
-          }
-          
-          createParticles() {
-            this.particles = [];
-            for (let i = 0; i < this.particleCount; i++) {
-              this.particles.push({
-                x: Math.random() * this.canvas.width,
-                y: Math.random() * this.canvas.height,
-                size: Math.random() * 3 + 2, // 2-5px (more visible)
-                opacity: Math.random() * 0.4 + 0.3, // 0.3-0.7 (more visible)
-                velocityY: Math.random() * 0.3 + 0.1, // Slower upward movement (was 0.8 + 0.3)
-                velocityX: (Math.random() - 0.5) * 0.2, // Gentle horizontal drift
-                baseSize: Math.random() * 3 + 2,
-                fadeSpeed: Math.random() * 0.02 + 0.01,
-                fadeDirection: Math.random() > 0.5 ? 1 : -1,
-                pulseSpeed: Math.random() * 0.03 + 0.01, // Slower pulse (was 0.05 + 0.02)
-                orbitRadius: Math.random() * 50 + 10,
-                orbitSpeed: (Math.random() - 0.5) * 0.01, // Slower orbit (was 0.02)
-                orbitCenter: { x: Math.random() * this.canvas.width, y: Math.random() * this.canvas.height }
-              });
-            }
-          }
-          
-          bindEvents() {
-            // Mouse tracking
-            document.addEventListener('mousemove', (e) => {
-              this.lastMouseX = this.targetMouseX;
-              this.lastMouseY = this.targetMouseY;
-              this.targetMouseX = e.clientX;
-              this.targetMouseY = e.clientY;
-              
-              // Create ripples on fast movement
-              const speed = Math.sqrt(
-                Math.pow(this.targetMouseX - this.lastMouseX, 2) + 
-                Math.pow(this.targetMouseY - this.lastMouseY, 2)
-              );
-              
-              if (speed > 10) {
-                this.createRipple(e.clientX, e.clientY, 20);
-              }
-            });
-            
-            // Click interactions
-            document.addEventListener('click', (e) => {
-              this.createRipple(e.clientX, e.clientY, 80);
-              this.createParticleBurst(e.clientX, e.clientY, 15);
-            });
-            
-            // Window resize
-            window.addEventListener('resize', () => {
-              this.resizeCanvas();
-              this.createParticles();
-            });
-          }
-          
-          createRipple(x, y, maxRadius) {
-            this.ripples.push({
-              x: x,
-              y: y,
-              radius: 0,
-              maxRadius: maxRadius,
-              opacity: 0.6,
-              speed: 2
-            });
-          }
-          
-          createParticleBurst(x, y, count) {
-            for (let i = 0; i < count; i++) {
-              const angle = (Math.PI * 2 * i) / count;
-              const speed = 3 + Math.random() * 4;
-              this.particles.push({
-                x: x,
-                y: y,
-                size: Math.random() * 2 + 1,
-                opacity: 1,
-                velocityY: Math.sin(angle) * speed,
-                velocityX: Math.cos(angle) * speed,
-                baseSize: Math.random() * 2 + 1,
-                fadeSpeed: 0.05,
-                fadeDirection: -1,
-                pulseSpeed: 0.1,
-                orbitRadius: 0,
-                orbitSpeed: 0,
-                orbitCenter: { x: x, y: y },
-                burst: true
-              });
-            }
-          }
-          
-          updateGradientPosition() {
-            if (this.gradient) {
-              const scrollY = window.scrollY;
-              const windowHeight = window.innerHeight;
-              const documentHeight = document.documentElement.scrollHeight;
-              const scrollPercent = scrollY / (documentHeight - windowHeight);
-              
-              // Move gradient based on scroll
-              this.gradient.style.transform = `translateY(${scrollPercent * 50}px)`;
-            }
-          }
-          
-          updateRipples() {
-            for (let i = this.ripples.length - 1; i >= 0; i--) {
-              const ripple = this.ripples[i];
-              ripple.radius += ripple.speed;
-              ripple.opacity = 0.6 * (1 - ripple.radius / ripple.maxRadius);
-              
-              if (ripple.radius >= ripple.maxRadius) {
-                this.ripples.splice(i, 1);
-              }
-            }
-          }
-          
-          updateParticles() {
-            this.time += 0.016; // Approximate 60fps
-            
-            // Smooth mouse interpolation
-            this.mouseX += (this.targetMouseX - this.mouseX) * 0.1;
-            this.mouseY += (this.targetMouseY - this.mouseY) * 0.1;
-            
-            // Update gradient position
-            this.updateGradientPosition();
-            
-            // Update ripples and trail
-            this.updateRipples();
-            
-            this.particles.forEach((particle, index) => {
-              // Enhanced animations
-              if (!particle.burst) {
-                // Pulsing size animation
-                particle.size = particle.baseSize + Math.sin(this.time * particle.pulseSpeed) * 1;
-                
-                // Orbital motion
-                if (particle.orbitRadius > 0) {
-                  const orbitX = Math.cos(this.time * particle.orbitSpeed) * particle.orbitRadius;
-                  const orbitY = Math.sin(this.time * particle.orbitSpeed) * particle.orbitRadius;
-                  particle.orbitCenter.x += orbitX * 0.01;
-                  particle.orbitCenter.y += orbitY * 0.01;
-                }
-              }
-              
-              // Update position
-              particle.y -= particle.velocityY;
-              particle.x += particle.velocityX;
-              
-              // Mouse attraction for nearby particles
-              const dx = this.mouseX - particle.x;
-              const dy = this.mouseY - particle.y;
-              const distance = Math.sqrt(dx * dx + dy * dy);
-              
-              if (distance < this.mouseInfluenceDistance) {
-                const force = (this.mouseInfluenceDistance - distance) / this.mouseInfluenceDistance;
-                // Enhanced influence with smooth easing
-                const attraction = force * force * 0.003; // Quadratic easing
-                particle.x += dx * attraction;
-                particle.y += dy * attraction;
-              }
-              
-              // Remove burst particles that have faded out
-              if (particle.burst && particle.opacity <= 0) {
-                this.particles.splice(index, 1);
-                return;
-              }
-              
-              // Reset particle when it goes off screen
-              if (particle.y < -10) {
-                particle.y = this.canvas.height + 10;
-                particle.x = Math.random() * this.canvas.width;
-              }
-              
-              // Horizontal boundary check
-              if (particle.x < 0) particle.x = this.canvas.width;
-              if (particle.x > this.canvas.width) particle.x = 0;
-              
-              // Fade in/out effect
-              particle.opacity += particle.fadeSpeed * particle.fadeDirection;
-              if (particle.opacity <= 0.05) particle.fadeDirection = 1;
-              if (particle.opacity >= 0.7) particle.fadeDirection = -1;
-            });
-          }
-          
-          drawParticles() {
-            this.particles.forEach(particle => {
-              this.ctx.beginPath();
-              this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-              this.ctx.fillStyle = `rgba(255, 255, 255, ${particle.opacity})`;
-              this.ctx.fill();
-            });
-          }
-          
-          drawRipples() {
-            this.ripples.forEach(ripple => {
-              this.ctx.beginPath();
-              this.ctx.arc(ripple.x, ripple.y, ripple.radius, 0, Math.PI * 2);
-              this.ctx.strokeStyle = `rgba(255, 255, 255, ${ripple.opacity})`;
-              this.ctx.lineWidth = 2;
-              this.ctx.stroke();
-            });
-          }
-          
-          drawConnections() {
-            for (let i = 0; i < this.particles.length; i++) {
-              for (let j = i + 1; j < this.particles.length; j++) {
-                const particle1 = this.particles[i];
-                const particle2 = this.particles[j];
-                
-                const dx = particle1.x - particle2.x;
-                const dy = particle1.y - particle2.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-                
-                if (distance < this.maxDistance) {
-                  const opacity = (this.maxDistance - distance) / this.maxDistance * 0.2; // More visible lines
-                  this.ctx.beginPath();
-                  this.ctx.moveTo(particle1.x, particle1.y);
-                  this.ctx.lineTo(particle2.x, particle2.y);
-                  this.ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
-                  this.ctx.lineWidth = 1;
-                  this.ctx.stroke();
-                }
-              }
-            }
-          }
-          
-          animate() {
-            // Clear canvas
-            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-            
-            // Update and draw in order (background to foreground)
-            this.updateParticles();
-            this.drawConnections();
-            this.drawRipples();
-            this.drawParticles();
-            
-            // Continue animation
-            requestAnimationFrame(() => this.animate());
-          }
-        }
-
-        // Initialize Particle System
-        const particleSystem = new ParticleSystem();
-        particleSystem.init();
-    </script>
-
-    <!-- Smart Scale Navigation JavaScript -->
-    <script>
-        (function() {
-            const header = document.getElementById('smart-scale-header');
-            const mobileToggle = document.querySelector('.mobile-menu-toggle');
-            const mobileOverlay = document.querySelector('.mobile-menu-overlay');
-            const mobileClose = document.querySelector('.mobile-menu-close');
-            const mobileDropdowns = document.querySelectorAll('.has-mobile-dropdown');
-            const dropdowns = document.querySelectorAll('.has-dropdown');
-            
-            if (!header) return;
-            
-            window.addEventListener('scroll', function() {
-                const currentScroll = window.pageYOffset;
-                if (currentScroll > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
-            
-            if (mobileToggle) {
-                mobileToggle.addEventListener('click', function() {
-                    this.classList.toggle('active');
-                    mobileOverlay.classList.toggle('active');
-                    document.body.style.overflow = mobileOverlay.classList.contains('active') ? 'hidden' : '';
-                });
-            }
-            
-            if (mobileClose) {
-                mobileClose.addEventListener('click', function() {
-                    mobileOverlay.classList.remove('active');
-                    mobileToggle.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
-            }
-            
-            if (mobileOverlay) {
-                mobileOverlay.addEventListener('click', function(e) {
-                    if (e.target === mobileOverlay) {
-                        mobileOverlay.classList.remove('active');
-                        mobileToggle.classList.remove('active');
-                        document.body.style.overflow = '';
-                    }
-                });
-            }
-            
-            mobileDropdowns.forEach(function(item) {
-                const link = item.querySelector('.mobile-nav-link');
-                if (link) {
-                    link.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        const isActive = item.classList.contains('active');
-                        mobileDropdowns.forEach(function(otherItem) {
-                            if (otherItem !== item) {
-                                otherItem.classList.remove('active');
-                            }
-                        });
-                        item.classList.toggle('active', !isActive);
-                    });
-                }
-            });
-            
-            document.addEventListener('click', function(e) {
-                dropdowns.forEach(function(dropdown) {
-                    if (!dropdown.contains(e.target)) {
-                        const menu = dropdown.querySelector('.dropdown-menu');
-                        if (menu) {
-                            menu.style.opacity = '0';
-                            menu.style.visibility = 'hidden';
-                        }
-                    }
-                });
-            });
-            
-            function setActivePage() {
-                const currentPath = window.location.pathname;
-                document.querySelectorAll('.nav-item, .mobile-nav-item').forEach(function(item) {
-                    item.classList.remove('active');
-                });
-                
-                if (currentPath.includes('about.html')) {
-                    document.querySelectorAll('a[href*="about.html"]').forEach(function(link) {
-                        link.closest('.nav-item, .mobile-nav-item')?.classList.add('active');
-                    });
-                } else if (currentPath.includes('services.html')) {
-                    document.querySelectorAll('a[href*="services.html"]').forEach(function(link) {
-                        if (!link.closest('.dropdown-menu, .mobile-dropdown-menu')) {
-                            link.closest('.nav-item, .mobile-nav-item')?.classList.add('active');
-                        }
-                    });
-                }
-            }
-            
-            setActivePage();
-            window.addEventListener('hashchange', setActivePage);
-        })();
-    </script>
+    openBtn?.addEventListener('click', () => toggleMenu(true));
+    closeBtn?.addEventListener('click', () => toggleMenu(false));
+    menu?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+  </script>
 </body>
 </html>
+

@@ -63,13 +63,13 @@ function initDatabase() {
               if (err) {
                 reject(err);
               } else {
-                console.log('✅ Default admin user created');
+                console.log('[INFO] Default admin user created');
                 resolve();
               }
             }
           );
         } else {
-          console.log('✅ Database initialized successfully');
+          console.log('[INFO] Database initialized successfully');
           resolve();
         }
       });
@@ -132,7 +132,7 @@ function insertSampleProjects() {
           if (err) {
             reject(err);
           } else {
-            console.log('✅ Sample projects inserted');
+            console.log('[INFO] Sample projects inserted');
             resolve();
           }
         });

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile App Development | Smart Scale</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #060415;
+      --surface-dark: rgba(12, 10, 30, 0.85);
+      --surface-light: rgba(15, 11, 41, 0.85);
+      --purple: #8b5cf6;
+      --purple-light: #a78bfa;
+      --cyan: #06b6d4;
+      --text-primary: #f5f6ff;
+      --text-secondary: rgba(229, 231, 235, 0.72);
+      --border-subtle: rgba(139, 92, 246, 0.25);
+      --gradient-primary: linear-gradient(135deg, rgba(124, 58, 237, 0.95), rgba(7, 89, 133, 0.95));
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Zen Dots', 'Segoe UI', sans-serif;
+      font-weight: 400;
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    header { position:relative; z-index:20; background:none; border:none; backdrop-filter:none; box-shadow:none; }
+    .inner { width: min(1100px, 92vw); margin: 0 auto; }
+    .nav { display:flex; align-items:center; justify-content:space-between; gap:1.5rem; padding:1.25rem 0; }
+    .nav__brand img { width:128px; }
+    .nav__links { display:flex; gap:1.5rem; color:var(--text-secondary); font-size:0.95rem; }
+    .nav__links a { position:relative; padding-bottom:0.2rem; }
+    .nav__links a::after { content:""; position:absolute; left:0; bottom:0; height:2px; width:0; background:var(--purple); transition:width 0.2s; }
+    .nav__links a:hover::after, .nav__links a:focus-visible::after, .nav__links a.active::after { width:100%; }
+    .nav__cta { display:inline-flex; align-items:center; gap:0.4rem; padding:0.55rem 1.35rem; border-radius:999px; background:var(--gradient-primary); color:#fff; font-weight:600; font-size:0.9rem; }
+    .mobile-toggle { display:none; background:none; border:none; color:var(--text-primary); cursor:pointer; }
+
+    main { flex:1; display:flex; flex-direction:column; gap:5rem; padding-bottom:5rem; }
+    .hero { padding:6rem 0 3rem; margin-top:-120px; position:relative; overflow:hidden; }
+    .hero::before { content:""; position:absolute; top:-60vh; left:-15%; right:-15%; height:140vh; background:radial-gradient(circle at top, rgba(139,92,246,0.32), transparent 70%); pointer-events:none; }
+    .hero__inner { position:relative; z-index:1; display:grid; gap:2.5rem; }
+    .hero__badge { display:inline-flex; letter-spacing:0.14em; text-transform:uppercase; font-size:0.75rem; padding:0.35rem 0.9rem; border-radius:999px; background: rgba(139,92,246,0.18); color:var(--purple-light); }
+    .hero__title { font-size:clamp(2.4rem, 4vw, 3.3rem); margin:0.75rem 0; letter-spacing:-0.02em; }
+    .hero__copy { color:var(--text-secondary); line-height:1.7; max-width:660px; }
+
+    .section { width:100%; }
+    .section-heading { display:grid; gap:0.5rem; margin-bottom:2.75rem; }
+    .section-heading span { letter-spacing:0.26em; text-transform:uppercase; font-size:0.75rem; color:rgba(167,139,250,0.85); }
+    .section-heading h2 { margin:0; font-size:clamp(2rem,3vw,2.5rem); letter-spacing:-0.02em; }
+    .section-heading p { margin:0; color:var(--text-secondary); max-width:640px; }
+
+    .card-grid { display:grid; gap:1.5rem; }
+    .card { background:var(--surface-dark); border-radius:22px; border:1px solid rgba(139,92,246,0.14); padding:2rem; display:grid; gap:1rem; }
+    .card h3 { margin:0; font-size:1.3rem; }
+    .card p { margin:0; color:var(--text-secondary); line-height:1.65; }
+    .card ul { margin:0; padding-left:1.1rem; color:var(--text-secondary); line-height:1.65; }
+    .tag { display:inline-flex; padding:0.4rem 0.9rem; border-radius:999px; background:rgba(139,92,246,0.16); font-size:0.75rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--purple-light); }
+
+    .stats { display:grid; gap:1.25rem; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+    .stat-card { background:rgba(15,11,41,0.75); border-radius:20px; border:1px solid rgba(139,92,246,0.16); padding:1.75rem; display:grid; gap:0.5rem; }
+    .stat-card strong { font-size:2rem; font-weight:600; color:#fff; }
+    .stat-card span { color:var(--text-secondary); }
+
+    .process-list { display:grid; gap:1.25rem; }
+    .process-item { padding:1.5rem; border-radius:18px; background:rgba(12,10,34,0.82); border:1px solid rgba(139,92,246,0.12); display:grid; gap:0.4rem; }
+    .process-item strong { color:var(--purple-light); font-weight:600; }
+
+    .cta-banner { margin-top:3.5rem; padding:3rem; border-radius:24px; background:linear-gradient(140deg, rgba(16,12,48,0.92), rgba(12,10,40,0.85)); border:1px solid rgba(139,92,246,0.2); display:grid; gap:1.5rem; text-align:center; }
+    footer { border-top:1px solid rgba(139,92,246,0.16); background:rgba(10,7,26,0.92); padding:2.5rem 0; color:var(--text-secondary); font-size:0.9rem; }
+    .footer__grid { display:flex; gap:1.5rem; flex-wrap:wrap; justify-content:space-between; align-items:center; }
+
+    @media (min-width: 720px) {
+      .hero__inner { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items:center; }
+      .card-grid.columns-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+
+    @media (max-width: 900px) {
+      .nav__links, .nav__cta { display:none; }
+      .mobile-toggle { display:inline-flex; }
+    }
+
+    .mobile-menu { position:fixed; inset:0; background:rgba(6,4,21,0.96); backdrop-filter:blur(14px); display:none; flex-direction:column; gap:2rem; padding:1.5rem; z-index:15; }
+    .mobile-menu.open { display:flex; }
+    .mobile-menu__links { display:grid; gap:1.25rem; font-size:1.1rem; color:var(--text-secondary); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="inner nav">
+      <a class="nav__brand" href="../index.html"><img class="smart-scale-logo" src="../assets/smart-scale-logo.png" alt="Smart Scale logo"></a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="../index.html#services">Home</a>
+        <a class="active" href="../services.html">Services</a>
+        <a href="../index.html#portfolio-section">Portfolio</a>
+        <a href="../about.html">About</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+      <a class="nav__cta" href="../index.html#contact">Schedule a Call</a>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <div class="inner" style="display:flex; justify-content:space-between; align-items:center;">
+        <img class="smart-scale-logo" src="../assets/smart-scale-logo.png" alt="Smart Scale logo" style="width:128px;">
+        <button class="mobile-toggle" data-close aria-label="Close menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <div class="inner mobile-menu__links">
+        <a href="../index.html#services">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../index.html#portfolio-section">Portfolio</a>
+        <a href="../about.html">About</a>
+        <a href="../index.html#contact">Contact</a>
+      </div>
+      <div class="inner" style="display:flex;">
+        <a class="nav__cta" href="../index.html#contact" style="width:100%; justify-content:center;">Schedule a Call</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="inner hero__inner">
+        <div>
+          <span class="hero__badge">Mobile apps</span>
+          <h1 class="hero__title">Native mobile apps built for performance and delight</h1>
+          <p class="hero__copy">We design and develop iOS and Android applications that feel at home on every device, leverage modern platform capabilities, and deliver measurable business value.</p>
+        </div>
+        <div class="card" style="background:rgba(11,8,28,0.78);">
+          <h3>What success looks like</h3>
+          <p>Strong product fit, smooth interactions, and maintainable codebases. We pair thoughtful UX with performant native implementations.</p>
+          <div class="stats">
+            <div class="stat-card">
+              <strong>3-6 mos</strong>
+              <span>Typical launch window for MVP to public release</span>
+            </div>
+            <div class="stat-card">
+              <strong>100%</strong>
+              <span>Owner-led product, design, and engineering</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="inner">
+        <div class="section-heading">
+          <span>Capabilities</span>
+          <h2>Everything you need to ship polished apps</h2>
+          <p>From discovery to App Store submission, we handle strategy, design, development, and launch support.</p>
+        </div>
+        <div class="card-grid columns-2">
+          <article class="card">
+            <div class="tag">Strategy</div>
+            <h3>Product discovery & roadmapping</h3>
+            <p>We clarify goals, define user journeys, and create a realistic plan to reach your target launch date.</p>
+            <ul>
+              <li>User research & persona definition</li>
+              <li>Feature prioritization & roadmap</li>
+              <li>Technical feasibility assessments</li>
+              <li>Analytics & measurement planning</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="tag">Execution</div>
+            <h3>Design & native development</h3>
+            <p>We craft platform-specific interfaces, implement performant code, and integrate backend services your app depends on.</p>
+            <ul>
+              <li>Figma prototypes, design systems, and QA</li>
+              <li>React Native & Expo, Swift, Kotlin</li>
+              <li>Push notifications, in-app purchases, auth</li>
+              <li>Continuous delivery & automated testing</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="inner">
+        <div class="section-heading">
+          <span>Process</span>
+          <h2>How we build mobile products</h2>
+        </div>
+        <div class="process-list">
+          <div class="process-item">
+            <strong>Alignment workshop</strong>
+            <p>Clarify business outcomes, technical constraints, and user expectations in a single session.</p>
+          </div>
+          <div class="process-item">
+            <strong>Design sprints</strong>
+            <p>Rapid prototypes and user testing to lock in flows, visuals, and critical interactions.</p>
+          </div>
+          <div class="process-item">
+            <strong>Build & integrate</strong>
+            <p>Iterative development with weekly demos, transparent backlog management, and proactive communication.</p>
+          </div>
+          <div class="process-item">
+            <strong>Launch & iterate</strong>
+            <p>App Store submission, monitoring, analytics dashboards, and roadmap planning for post-launch growth.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="inner">
+        <div class="section-heading">
+          <span>Pricing guide</span>
+          <h2>Investment ranges</h2>
+          <p>Budgets depend on integrations, timeline, security requirements, and ongoing support needs.</p>
+        </div>
+        <div class="card-grid columns-2">
+          <article class="card">
+            <h3>MVP & pilot apps</h3>
+            <p>Great for validating product ideas or launching internal tools.</p>
+            <div class="tag">$8,000 – $18,000</div>
+          </article>
+          <article class="card">
+            <h3>Consumer & member apps</h3>
+            <p>Feature-rich experiences with secure authentication, analytics, and content management.</p>
+            <div class="tag">$18,000 – $35,000</div>
+          </article>
+          <article class="card">
+            <h3>Enterprise initiatives</h3>
+            <p>Complex integrations, offline support, compliance, and large-scale deployments.</p>
+            <div class="tag">$35,000+</div>
+          </article>
+          <article class="card">
+            <h3>Ongoing retainers</h3>
+            <p>Flexible support for feature delivery, maintenance, and analytics improvements.</p>
+            <div class="tag">Custom</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="inner cta-banner">
+      <h2 style="margin:0; font-size:2rem;">Ready to launch your mobile app?</h2>
+      <p style="margin:0; color:var(--text-secondary);">Share your idea, audience, and timeline. We’ll build a plan that gets you into the hands of users fast.</p>
+      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+        <a class="nav__cta" href="../index.html#contact">Book a discovery call</a>
+        <a class="nav__cta" style="background:rgba(139,92,246,0.16); color:var(--purple-light);" href="mailto:sayhi@sent.com">Email Jay &amp; Dessiah</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="inner footer__grid">
+      <span>© 2024 Smart Scale. Based in Katy, Texas.</span>
+      <div style="display:flex; gap:1.25rem; flex-wrap:wrap;">
+        <a href="../index.html#services">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../index.html#portfolio-section">Portfolio</a>
+        <a href="../about.html">About</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menu = document.getElementById('mobile-menu');
+    const openBtn = document.querySelector('.mobile-toggle');
+    const closeBtn = document.querySelector('.mobile-toggle[data-close]');
+
+    function toggleMenu(explicit) {
+      const isOpen = explicit !== undefined ? explicit : !menu.classList.contains('open');
+      menu.classList.toggle('open', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    }
+
+    openBtn?.addEventListener('click', () => toggleMenu(true));
+    closeBtn?.addEventListener('click', () => toggleMenu(false));
+    menu?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+  </script>
+</body>
+</html>
+
