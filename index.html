@@ -190,6 +190,14 @@
       line-height: 1.65;
     }
 
+    .hero__focus-title {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      margin: 2rem 0 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+    }
+
     .hero__actions {
       display: flex;
       flex-wrap: wrap;
@@ -234,12 +242,34 @@
     }
 
     .hero__trust {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 1.75rem;
+      width: min(1140px, 92vw);
       display: flex;
-      flex-wrap: wrap;
+      justify-content: space-between;
       gap: 1rem;
-      margin-top: 2.5rem;
+      padding: 0 0.25rem;
       color: var(--text-secondary);
-      font-size: 0.95rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      z-index: 2;
+    }
+
+    .hero__trust span {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1rem;
+      border-radius: 14px;
+      background: rgba(15, 11, 41, 0.78);
+      border: 1px solid rgba(139, 92, 246, 0.28);
+      backdrop-filter: blur(6px);
+      color: #f8d27a;
+      font-weight: 600;
     }
 
     .hero__trust span {
@@ -480,8 +510,8 @@
 
     @media (min-width: 700px) {
       .hero__grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        align-items: center;
+        grid-template-columns: minmax(0, 1fr);
+        align-items: start;
       }
 
       .card-grid {
@@ -510,6 +540,12 @@
         padding-top: 4.5rem;
       }
 
+      .hero__trust {
+        bottom: 1.25rem;
+        gap: 0.75rem;
+        font-size: 0.8rem;
+      }
+
       .hero__actions {
         flex-direction: column;
         align-items: stretch;
@@ -517,6 +553,26 @@
 
       .nav__cta {
         display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        padding-bottom: 7rem;
+      }
+
+      .hero__trust {
+        position: static;
+        transform: none;
+        width: 100%;
+        margin-top: 2.5rem;
+        flex-direction: column;
+        gap: 0.6rem;
+        font-size: 0.78rem;
+      }
+
+      .hero__trust span {
+        width: 100%;
       }
     }
 
@@ -594,23 +650,17 @@
           <span class="hero__badge">Boutique Software Studio</span>
           <h1 class="hero__title">Custom software built by people who care</h1>
           <p class="hero__subtitle">Husband-wife development team crafting websites, web apps, and mobile apps for growing businesses. Based in Katy, Texas—always within reach, always personal.</p>
+          <h2 class="hero__focus-title">Your success, our focus</h2>
           <div class="hero__actions">
             <a class="btn btn--primary" href="#contact">Start your project</a>
             <a class="btn btn--ghost" href="#portfolio-section">See our work</a>
           </div>
-          <div class="hero__trust">
-            <span>5+ projects delivered</span>
-            <span>Owner-led communication</span>
-            <span>AI-enhanced quality control</span>
-          </div>
         </div>
-        <div class="card" style="background: rgba(13, 10, 35, 0.72);">
-          <div class="card__icon">Idea</div>
-          <h3 class="card__title">Your success, our focus</h3>
-          <p class="card__body">We translate business goals into clean, reliable products your customers love. Strategy, design, development & maintenance—all handled by the two people whose names are on the company.</p>
-          <div class="card__body" style="color: var(--purple-light); font-weight:600;">Your success with our unmatched experience</div>
-          <p class="card__body">We specialize in modern stacks (Next.js, Node.js, React Native) and pair them with practical project management, crystal-clear communication, and proactive support.</p>
-        </div>
+      </div>
+      <div class="hero__trust">
+        <span>5+ projects delivered</span>
+        <span>Owner-led communication</span>
+        <span>AI-enhanced quality control</span>
       </div>
     </section>
 
